@@ -1,0 +1,78 @@
+DataChoice (represents a parameter (field))
+  Fields of type:
+    DataSelection (subsets a choice with times and levels)
+  Methods:
+    getDataSources
+  Example:
+    v_wind @ isobaric
+  
+DataInstance (sampled; needed for grid points)
+  Fields of type:
+    DataChoice        
+    DataSelection     
+    Data              
+  
+DataSource -- interface
+  Methods:  
+    getDataChoices
+    getData
+    getAllLevels
+    
+  Example:
+    NAM_CONUS_80km_20100813_0000.grib1
+      
+      
+==========
+
+Displayable
+  Animation
+  DisplayableData
+    RGBDisplayable
+	  Grid2DDisplayable
+      IsoSurface
+        Grid3DDisplayable
+
+DisplayControl interface
+  Supports the controlling of aspects of a display
+
+DisplayControlBase
+  DisplayControlImpl      
+    ProbeControl
+    GeopodPlugin
+    GridDisplayControl
+      ThreeDSurfaceControl
+      
+DisplayControlImpl
+  addDisplayable
+  getViewManager
+  
+ViewManager
+  NavigatedViewManager
+    MapViewManager
+
+ViewManager  
+  Provides an interface for managing user interactions, GUI creation, etc.
+  List<DisplayInfo> displayInfos
+  JMenu animationMenu
+  JMenuBar menuBar
+
+DisplayInfo
+  DisplayControl displayControl;
+  ViewManager viewManager;
+  Displayable displayable;
+  
+  
+==========
+  
+DisplayRendererJ3D (For background and metadata rendering algorithms that use Java3D)
+  
+DisplayMaster (Manages a DisplayImpl and a list of Displayable's)  
+
+DisplayImpl
+  DisplayImplJ3D (For displays that use Java3D)
+  
+  
+  
+  
+  
+  

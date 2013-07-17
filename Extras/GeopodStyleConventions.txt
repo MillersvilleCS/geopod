@@ -1,0 +1,69 @@
+Geopod Style Conventions
+========================
+
+Use mnemonic identifiers as long as necessary
+  Leverage Eclipse's name completion (Ctrl-SPACE)
+Include units when important
+Avoid multiple abbreviations in a single identifier
+  and use standard abbreviations
+Downcase all but the first character in an acronym
+
+Examples:
+  elapsedTimeInMs instead of elTimeMs
+  IdvProfile instead of IDVProfile
+
+Class Names
+===========
+
+Use upper camel case
+
+Examples:
+  GeopodPlugin
+
+Method Names
+============
+
+Use lower camel case
+
+Examples:
+  setMatrix
+  convertBoxPointToWorld
+
+Field Names
+===========
+
+Use a "m_" prefix
+Use lower camel case
+
+Examples:
+  m_elapsedTimeInMs
+
+Local Names
+===========
+
+Use lower camel case
+
+Examples:
+  elapsedTimeInMs
+
+Comments
+========
+
+Good names can obviate comments
+Capitalize the first letter
+If using only one clause or sentence don't use a period
+  If using multiple sentences use a period
+Avoid comments at the end of a line like this // Comment
+
+Examples:
+  // Compute velocity as a function of time
+  v = f (t); 
+  instead of 
+  v = f (t); // Compute velocity ...
+
+  // No comment necessary
+  currentTimeInMs = getCurrentTimeInMs ();
+  // Convert earth location to box point
+  //   This comment isn't necessary either
+  boxPoint = convertEarthLocationToBox (earthLoc);
+

@@ -1,0 +1,22 @@
+
+ProbeControl.<init>() line: 268	
+
+NativeConstructorAccessorImpl.newInstance0(Constructor, Object[]) line: not available [native method]	
+
+NativeConstructorAccessorImpl.newInstance(Object[]) line: 57	  
+
+DelegatingConstructorAccessorImpl.newInstance(Object[]) line: 45  
+
+Constructor<T>.newInstance(Object...) line: 525		
+
+Class<T>.newInstance0() line: 374     
+
+Class<T>.newInstance() line: 327      
+
+ControlDescriptor.doMakeDisplay(List, IntegratedDataViewer, Hashtable, DataSelection, boolean) line: 886	
+
+DefaultIdv(IntegratedDataViewer).doMakeControl(List, ControlDescriptor, Hashtable, DataSelection, boolean) line: 2600	
+
+DefaultIdv(IntegratedDataViewer).doMakeControl(List, ControlDescriptor, Hashtable, DataSelection) line: 2541	 
+
+IdvUIManager.processDialog(DataControlDialog) line: 1583		

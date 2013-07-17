@@ -1,0 +1,211 @@
+Absolute_vorticity @ pressure
+Albedo @ surface
+Baseflow-Groundwater_Runoff_0hours @ surface
+Best_Lifted_Index @ pressure_difference_layer
+Blackadars_Mixing_Length_Scale @ hybrid
+Canopy_Conductance @ surface
+Categorical_Freezing_Rain @ surface
+Categorical_Ice_Pellets @ surface
+Categorical_Rain @ surface
+Categorical_Snow @ surface
+Cloud_Ice @ pressure
+Cloud_Ice @ hybrid
+Cloud_mixing_ratio @ pressure
+Cloud_mixing_ratio @ hybrid
+Convective_available_potential_energy @ pressure_difference_layer
+Convective_available_potential_energy @ surface
+Convective_cloud_cover @ entire_atmosphere
+Convective_Cloud_Efficiency @ entire_atmosphere
+Convective_inhibition @ pressure_difference_layer
+Convective_inhibition @ surface
+Convective_precipitation_0hours @ surface
+Convective_Precipitation_Rate @ surface
+Dew_point_temperature @ pressure
+Dew_point_temperature @ pressure_difference_layer
+Direct_Evaporation_Cease_soil_moisture @ surface
+Downward_Long-Wave_Rad_Flux @ surface
+Downward_Long-Wave_Rad_Flux_0hours @ surface
+Downward_Short-Wave_Rad_Flux_0hours @ surface
+Downward_Short-Wave_Rad_Flux @ surface
+Drag_Coefficient @ surface
+Evaporation_0hours @ surface
+Exchange_Coefficient @ surface
+Frictional_Velocity @ surface
+Geopotential_height @ pressure
+Geopotential_height @ adiabatic_condensation_lifted
+Geopotential_height @ highest_tropospheric_freezing
+Geopotential_height @ hybrid
+Geopotential_height @ lowest_level_of_the_wet_bulb_zero
+Geopotential_height @ maximum_wind
+Geopotential_height @ surface
+Geopotential_height @ zeroDegC_isotherm
+Ground_Heat_Flux_0hours @ surface
+High_cloud_cover @ high_cloud
+Horizontal_Moisture_Divergence @ pressure
+Horizontal_Moisture_Divergence @ pressure_difference_layer
+Humidity_parameter_in_canopy_conductance @ surface
+Ice_cover_Proportion @ surface
+Land_cover_1land_2sea @ surface
+Large_scale_precipitation_non-convective_0hours @ surface
+Latent_heat_net_flux @ surface
+Latent_heat_net_flux_0hours @ surface
+Liquid_Volumetric_Soil_Moisture_non_frozen @ depth_below_surface_layer
+Low_cloud_cover @ low_cloud
+Maximum_Snow_Albedo @ surface
+Medium_cloud_cover @ middle_cloud
+Minimal_Stomatal_Resistance @ surface
+Moisture_Availability @ depth_below_surface_layer
+Momentum_flux_u_component @ surface
+Momentum_flux_v_component @ surface
+MSLP_Eta_Reduction @ msl
+Number_of_Soil_Layers_in_Root_Zone @ surface
+Parcel_lifted_index_to_500_hPa @ pressure_difference_layer
+Planetary_Boundary_Layer_Height @ surface
+Plant_Canopy_Surface_Water @ surface
+Potential_Evaporation_0hours @ surface
+Potential_temperature @ height_above_ground
+Potential_temperature @ pressure_difference_layer
+Precipitable_water @ entire_atmosphere
+Precipitable_water @ pressure_difference_layer
+Precipitation_rate @ surface
+Pressure_of_level_from_which_parcel_was_lifted @ pressure_difference_layer
+Pressure_reduced_to_MSL @ msl
+Pressure @ pressure_difference_layer
+Pressure @ adiabatic_condensation_lifted
+Pressure @ cloud_base
+Pressure @ cloud_tops
+Pressure @ convective_cloud_bottom
+Pressure @ convective_cloud_top
+Pressure @ deep_convective_cloud_bottom
+Pressure @ deep_convective_cloud_top
+Pressure @ grid_scale_cloud_bottom
+Pressure @ grid_scale_cloud_top
+Pressure @ hybrid
+Pressure @ maximum_wind
+Pressure @ shallow_convective_cloud_bottom
+Pressure @ shallow_convective_cloud_top
+Pressure @ surface
+Pressure @ tropopause
+Probability_of_frozen_Precipitation @ surface
+Rain_mixing_ratio @ hybrid
+Relative_humidity @ pressure
+Relative_humidity @ pressure_difference_layer
+Relative_humidity @ height_above_ground
+Relative_humidity @ hybrid
+Relative_humidity @ sigma_layer
+Relative_humidity @ zeroDegC_isotherm
+Rime_Factor @ hybrid
+Sensible_heat_net_flux_0hours @ surface
+Sensible_heat_net_flux @ surface
+Snow-Free_Albedo @ surface
+Snow_Cover @ surface
+Snow_depth @ surface
+Snow_melt_0hours @ surface
+Snow_mixing_ratio @ pressure
+Snow_mixing_ratio @ hybrid
+Snow_Phase_Change_Heat_Flux_0hours @ surface
+Soil_moisture_content @ depth_below_surface_layer
+Soil_moisture_parameter_in_canopy_conductance @ surface
+Soil_Porosity @ surface
+Soil_temperature @ depth_below_surface_layer
+Soil_temperature @ depth_below_surface
+Soil_type_as_in_Zobler @ surface
+Solar_parameter_in_canopy_conductance @ surface
+Specific_humidity @ pressure
+Specific_humidity @ pressure_difference_layer
+Specific_humidity @ height_above_ground
+Specific_humidity @ hybrid
+Specific_humidity @ surface
+Storm_relative_helicity @ height_above_ground_layer
+Storm_Surface_Runoff_0hours @ surface
+Stream_function @ pressure
+Surface_Lifted_Index @ pressure_layer
+Surface_roughness @ surface
+Surface_Slope_Type @ surface
+Temperature @ pressure
+Temperature @ pressure_difference_layer
+Temperature @ cloud_tops
+Temperature @ height_above_ground
+Temperature @ hybrid
+Temperature @ surface
+Temperature @ tropopause
+Temperature_parameter_in_canopy_conductance @ surface
+Total_cloud_cover @ entire_atmosphere
+Total_cloud_cover_0hours @ entire_atmosphere
+Total_Column-Integrated_Cloud_Ice @ entire_atmosphere
+Total_Column-Integrated_Cloud_Water @ entire_atmosphere
+Total_Column-Integrated_Condensate @ entire_atmosphere
+Total_Column_Integrated_Rain @ entire_atmosphere
+Total_Column_Integrated_Snow @ entire_atmosphere
+Total_Condensate @ hybrid
+Total_precipitation_0hours @ surface
+Transpiration_Stress-onset_soil_moisture @ surface
+Turbulent_kinetic_energy @ pressure
+Turbulent_kinetic_energy @ hybrid
+U-component_of_wind @ pressure
+U-component_of_wind @ pressure_difference_layer
+U-component_of_wind @ hybrid
+U-component_of_wind @ height_above_ground
+U-component_of_wind @ maximum_wind
+U-component_of_wind @ tropopause
+U-Component_Storm_Motion @ height_above_ground_layer
+Upward_Long-Wave_Rad_Flux_0hours @ atmosphere_top
+Upward_Long-Wave_Rad_Flux @ surface
+Upward_Long-Wave_Rad_Flux_0hours @ surface
+Upward_Short-Wave_Rad_Flux_0hours @ atmosphere_top
+Upward_Short-Wave_Rad_Flux_0hours @ surface
+Upward_Short-Wave_Rad_Flux @ surface
+V-component_of_wind @ pressure
+V-component_of_wind @ pressure_difference_layer
+V-component_of_wind @ hybrid
+V-component_of_wind @ height_above_ground
+V-component_of_wind @ maximum_wind
+V-component_of_wind @ tropopause
+V-Component_Storm_Motion @ height_above_ground_layer
+Vegetation @ surface
+Vegetation_Type @ surface
+Vertical_speed_sheer @ tropopause
+Vertical_velocity_pressure @ pressure
+Vertical_velocity_pressure @ pressure_difference_layer
+Vertical_velocity_pressure @ hybrid
+Visibility @ surface
+Volumetric_Soil_Moisture_Content @ depth_below_surface_layer
+Water_equivalent_of_accumulated_snow_depth_0hours @ surface
+Water_equivalent_of_accumulated_snow_depth @ surface
+Water_temperature @ surface
+Wilting_Point @ surface
+Wind_speed_gust @ surface
+Speed (from U-component_of_wind & V-component_of_wind)
+Flow Vectors (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+True Wind vectors (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+Dewpoint (from Temperature & Relative_humidity)
+Mixing ratio (from Temperature & Relative_humidity)
+Dewpoint Depression (from Temperature & dewpoint)
+Equiv. Potential Temperature (from Temperature & Relative_humidity)
+1000-500 hPa Thickness
+Thickness
+Sounding Data (Temperature & dewpoint only)
+Sounding Data (with true winds)
+Potential Temperature (from Temperature)
+Potential Temperature (from Temperature & Pressure)
+Horizontal Divergence (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+Relative Vorticity (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+Absolute Vorticity (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+Horizontal Advection (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+Horizontal Flux Divergence (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+Geostrophic Wind Vectors (from Geopotential_height)
+Geostrophic Wind (from Geopotential_height)
+AGeostrophic Wind Vectors (from U-component_of_wind, V-component_of_wTemperature @ isobaric not available in the selected data sources
+ind, and Geopotential_height)
+Relative Humidity (from Temperature & mixingratio)
+Speed (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)
+Flow Vectors (from U-component_of_wind & V-component_of_wind)
+True Wind vectors (from U-component_of_wind & V-component_of_wind)
+Horizontal Divergence (from U-component_of_wind & V-component_of_wind)
+Relative Vorticity (from U-component_of_wind & V-component_of_wind)
+Absolute Vorticity (from U-component_of_wind & V-component_of_wind)
+Isentropic Potential Vorticity (from Temperature & absvort)
+Potential Vorticity (from theta & flowvectors)
+Horizontal Advection (from U-component_of_wind & V-component_of_wind)
+Horizontal Flux Divergence (from U-component_of_wind & V-component_of_wind)
+Absolute_vorticity @ pressure

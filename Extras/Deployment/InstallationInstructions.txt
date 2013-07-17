@@ -1,0 +1,29 @@
+Geopod installation instructions
+
+* Download and install IDV (version 3.0b1 or higher) from:
+		http://www.unidata.ucar.edu/downloads/idv/index.jsp
+		
+* Run patchIDV.bat as administrator.
+
+* If patchIDV.bat produces an error, do the following:
+	- Find the file "local-visad.jar" in the IDV program folder. Replace it with
+		the one included with the Geopod plugin.
+	
+	- Find the file "runIDV.bat" in the IDV program folder. Replace it with
+		the one included with the Geopod plugin.	
+		
+		The most likely location for the IDV program folder on windows is 
+		"C:\Program Files\IDV_2.9u4\" or
+		"C:\Program Files (x86)\IDV_2.9u4\"
+	
+* Open IDV.
+
+* Go to the menu and select Tools>Plugin Manager
+
+* Select File>Install Plugin From File
+
+* Navigate to and select the GeopodPlugin.jar, then click Open.
+
+* Close the Plugin Manager and restart IDV.
+
+* Geopod is ready for use.

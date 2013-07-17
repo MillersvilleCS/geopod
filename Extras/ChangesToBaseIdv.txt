@@ -1,0 +1,155 @@
+
+Changes to IDV
+==============
+
+ucar.unidata.idv.ui.IdvUIManager.java
+-------------------------------------
+
+	public void initDone ()
+	{
+		if (haveInitialized)
+		{
+			return;
+		}
+		haveInitialized = true;
+		JPopupMenu.setDefaultLightWeightPopupEnabled (false);
+
+		// Millersville University Geopod Team:
+		//   Heavy-weight tooltips cause signficant slowdown in our extension.
+		//   Commented out following line
+		//ToolTipManager.sharedInstance ().setLightWeightPopupEnabled (false);
+
+	public void doBasicInitialization ()
+	{
+		JPopupMenu.setDefaultLightWeightPopupEnabled (false);
+
+		// Millersville University Geopod Team:
+		//   Heavy-weight tooltips cause signficant slowdown in our extension.
+		//   Commented out following line
+		//ToolTipManager.sharedInstance().setLightWeightPopupEnabled(false);
+
+ucar.unidata.idv.DefaultIdv.java
+--------------------------------
+		
+	// Millersville University Geopod Team:
+	//   Overrode quit to avoid another "Really want to quit?" pop-up. 
+	@Override
+	public boolean quit ()
+	{
+		boolean okToQuit = releaseResources ();
+		if (okToQuit && super.getInteractiveMode ())
+		{
+			exit (0);
+		}
+		return (okToQuit);
+	}
+	
+ucar.unidata.idv.StateManager.java
+----------------------------------
+	
+	protected void initState (boolean interactiveMode)
+	{
+
+		//Seems like we have to have this way up front here as something we do below
+		//triggers the mac to ignore these settings
+
+		//For now don't do this:
+		//System.setProperty("apple.laf.useScreenMenuBar", "true");
+
+		System.setProperty ("com.apple.mrj.application.apple.menu.about.name", "IDV");
+		// we'll have to figure out a better way to do this
+
+		// Millersville University Geopod Team: 
+		// We need mixing to work so lightweight components are not obscured by the heavyweight component Canvas3D
+		// Commented out following line    
+		//System.setProperty("sun.awt.disableMixing", "true");
+	
+Changes to visad
+================
+
+visad.java3d.ShadowTypeJ3D.java
+-------------------------------
+		
+	private static Appearance staticMakeCachedAppearance(
+   		GraphicsModeControl mode, TransparencyAttributes constant_alpha,
+   		ColoringAttributes constant_color, GeometryArray geometry,
+   		boolean no_material, boolean okToCache) {
+   
+		...
+	
+ 		appearance.setCapability(Appearance.ALLOW_RENDERING_ATTRIBUTES_READ);
+ 		appearance.setCapability(Appearance.ALLOW_TEXGEN_READ);
+ 		appearance.setCapability(Appearance.ALLOW_TEXTURE_ATTRIBUTES_READ);
+ 		appearance.setCapability(Appearance.ALLOW_TEXTURE_READ);
+		// Geopod Team: Added the capability to write rendering attributes
+ 		//   so we can write the visibility flag to implement the mini-map. 
+		//   Below ALLOW_VISIBLE_WRITE is also set.
+ 		appearance.setCapability (Appearance.ALLOW_RENDERING_ATTRIBUTES_WRITE);
+ 		// appearance.setCapability(Appearance.ALLOW_TEXTURE_UNIT_STATE_READ);
+ 		appearance.setCapability(Appearance.ALLOW_TRANSPARENCY_ATTRIBUTES_READ);
+
+		...
+ 
+ 		RenderingAttributes rendering = new RenderingAttributes();
+ 		rendering.setCapability(RenderingAttributes.ALLOW_ALPHA_TEST_FUNCTION_READ);
+ 		rendering.setCapability(RenderingAttributes.ALLOW_ALPHA_TEST_VALUE_READ);
+ 		rendering.setCapability(RenderingAttributes.ALLOW_DEPTH_ENABLE_READ);
+ 		// Geopod Team: Added the capability to write the visible attribute
+ 		//   so we can use the same scene graph but only draw the map and a cone representing 
+ 		//   the Geopod in our top-down display (the mini-map)
+ 		rendering.setCapability (RenderingAttributes.ALLOW_VISIBLE_WRITE);
+
+		...
+
+visad.java3d.DisplayImplJ3D.java
+--------------------------------
+
+	private void setGeometryCapabilities (GeometryArray array)
+	{
+		array.setCapability (GeometryArray.ALLOW_COLOR_READ);
+		array.setCapability (GeometryArray.ALLOW_COORDINATE_READ);
+		array.setCapability (GeometryArray.ALLOW_COUNT_READ);
+		array.setCapability (GeometryArray.ALLOW_FORMAT_READ);
+		array.setCapability (GeometryArray.ALLOW_NORMAL_READ);
+		array.setCapability (GeometryArray.ALLOW_TEXCOORD_READ);
+
+		// Millersville University Geopod Team: 
+		//   We color isosurfaces so we need to be able to write the color array.
+		array.setCapability (GeometryArray.ALLOW_REF_DATA_WRITE);
+
+		// only used when using BY_REFERENCE, so just set it anyways
+		// array.setCapability(GeometryArray.ALLOW_REF_DATA_READ);
+	}
+	
+visad.java3d.DisplayRendererJ3D.java
+------------------------------------
+
+	/** MouseBehaviorJ3D */
+	private MouseBehaviorJ3D mouse = null;
+	@SuppressWarnings("unused")
+	private double back_clip = 0.0;
+	@SuppressWarnings("unused")
+	private double front_clip = 0.0;
+
+	/**
+	 * Added by the Millersville University Geopod team.
+	 */
+	private KeyboardBehaviorJ3D keyboard = null;
+
+	...
+
+	/**
+	 * Added by the Millersville University Geopod team so we can disable the IDV keyboard behavior
+	 *   when our window has focus.
+	 * 
+	 * Get the <CODE>KeyboardBehavior</CODE> associated with this renderer.
+	 * 
+	 * @return the <CODE>KeyboardBehavior</CODE> used by this renderer to handle
+	 *         keyboard events.
+	 */
+	public KeyboardBehavior getKeyboardBehavior ()
+	{
+		return keyboard;
+	}
+	   		
+						

@@ -1,0 +1,63 @@
+DataChoice key names:
+
+v-component of wind at isobaric levels													GridRelative_v
+v-component of wind at layer between levels at specif. pressure diffs from ground		GridRelative_v_lpdg
+v-component of wind at fixed height above ground										GridRelative_v_fhg
+v-component of wind at tropopause														GridRelative_v_trop
+Pressure reduced to MSL at mean sea level												P_msl
+Relative humidity at isobaric levels													RH
+Relative humidity at layer between levels at specif. pressure diffs from ground			RH_lpdg
+Relative humidity at fixed height above ground											RH_fhg
+Relative humidity at layer between 2 sigma levels										RH_ls
+Temperature at isobaric levels															T
+Temperature at layer between levels at specif. pressure diffs from ground				T_lpdg
+Temperature at fixed height above ground												T_fhg
+Temperature at tropopause																T_trop
+u-component of wind at fixed height above ground										GridRelative_u_fhg
+u-component of wind at layer between levels at specif. pressure diffs from ground		GridRelative_u_lpdg
+u-component of wind at isobaric levels													GridRelative_u
+u-component of wind at tropopause														GridRelative_u_trop
+Geopotential height at isobaric levels													Z
+Pressure vertical velocity at isobaric levels											omega
+Vertical speed shear at tropopause														vert_sshr_trop
+Total precipitation at surface of the earth												PRECIP
+Surface lifted index at surface of the earth											LI
+Absolute vorticity at isobaric levels													absvor
+Pressure at tropopause																	P_trop
+Pressure at surface of the earth														P_sfc
+Convective available potential energy at layer between levels
+	 		at specif. pressure diffs from ground										cape_lpdg
+Convective available potential energy at surface of the earth							cape_sfc
+Convective inhibition at surface of the earth											cin_sfc
+Convective inhibition at layer between levels at specif. pressure diffs from ground		cin_lpdg
+Precipitable water at entire atmosphere considered as a single layer					pr_water_atm
+Speed (from GridRelative_u & GridRelative_v)											windspeed
+Flow Vectors (from GridRelative_u & GridRelative_v)										flowvectors
+True Wind vectors (from GridRelative_u & GridRelative_v)								truewindvectors
+Dewpoint (from T & RH)																	dewpoint
+Mixing ratio (from T & RH)																mixingratio
+Dewpoint Depression (from T & dewpoint)													dpdk
+Equiv. Potential Temperature (from T & RH)												thetae
+1000-500 hPa Thickness																	thickness_1000_500
+Thickness																				Anythickness
+Sounding Data (T & dewpoint only)														sounding_nowind
+Sounding Data (with winds)																sounding_truewind
+Potential Temperature (from T)															theta
+Horizontal Divergence (from GridRelative_u & GridRelative_v)							horizontaldivergence
+Relative Vorticity (from GridRelative_u & GridRelative_v)								relvort
+Absolute Vorticity (from GridRelative_u & GridRelative_v)								absvort
+Isentropic Potential Vorticity (from T & absvort)										IPV
+Horizontal Advection (from GridRelative_u & GridRelative_v)								advection
+Horizontal Flux Divergence (from GridRelative_u & GridRelative_v)						fluxdivergence
+Geostrophic Wind Vectors (from Z)														geostrophic_wind_vector
+Geostrophic Wind (from Z)																geostrophic_wind
+AGeostrophic Wind Vectors (from GridRelative_u, GridRelative_v, and Z)					ageostrophic_wind_vector
+AGeostrophic Wind (from GridRelative_u, GridRelative_v, and Z)							ageostrophic_wind_vector
+Speed (from GridRelative_u_fhg & GridRelative_v_fhg)									windspeed
+Flow Vectors (from GridRelative_u_fhg & GridRelative_v_fhg)								flowvectors
+True Wind vectors (from GridRelative_u_fhg & GridRelative_v_fhg)						truewindvectors
+Horizontal Divergence (from GridRelative_u_fhg & GridRelative_v_fhg)					horizontaldivergence
+Relative Vorticity (from GridRelative_u_fhg & GridRelative_v_fhg)						relvort
+Absolute Vorticity (from GridRelative_u_fhg & GridRelative_v_fhg)						absvort
+Horizontal Advection (from GridRelative_u_fhg & GridRelative_v_fhg)						advection
+Horizontal Flux Divergence (from GridRelative_u_fhg & GridRelative_v_fhg)				fluxdivergence

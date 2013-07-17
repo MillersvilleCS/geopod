@@ -1,0 +1,33 @@
+
+Initialization Logic
+====================
+
+GeopodPlugin.init ()
+  Initialize SceneGraphControl and IDVCoordinateUtility
+  
+  Geopod ()
+    Create ViewBranch
+    Create TransformGroupControl
+    Create movement behaviors (key, mouse, and mirror)
+    Create devices (ParticleImager and FlightDataRecorder)
+    Create Autopilot
+    Create IsoSurfaceLock
+    Create Compass
+    Set starting pose
+  
+  Hud ()
+    Create DisplayUpdater
+    Create GeopodFrame on EDT (waiting till finished)
+      GeopodFrame ()
+        Set frame sizes
+        Set layering
+        Create interface components (dashboard, canvas, button panels, etc.)
+      
+    Give canvas to Geopod's view branch
+  
+  Tell Geopod to attach its view branch (go live)
+  Process initial data choices
+  Initialize Geopod and Hud after data load
+    
+  Iconify IDV windows
+  

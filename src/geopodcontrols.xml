@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<GeopodPlugins>
+	<control 
+		id="geopod" categories="*-3D-*" class="geopod.GeopodPlugin" 
+		description="Control for a Geopod"
+		label="Geopod" displaycategory="3D Surface"
+		properties="windowVisible=true;displayName=Isosurfaces;makeWindow=true">
+	</control>
+</GeopodPlugins>

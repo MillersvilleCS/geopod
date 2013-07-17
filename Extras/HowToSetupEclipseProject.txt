@@ -1,0 +1,64 @@
+How to Setup Eclipse Project
+
+o Check out Geopod "trunk" as a New Java project (if using Subclipse)
+
+o If Java 3D is not installed, do the following for Arch Linux. For Windows use the installer.
+
+  $ yaourt -S java3d
+  ... Edit PKGBUILD ? [Y/n] ("A" to abort) 
+  => n
+  ... Continue building java3d ? [Y/n] 
+  => Y
+  ... Continue installing java3d ? [Y/n] 
+  => Y
+
+o Add the Java 3D jars (core, util, vecmath) to the build path (libraries tab) if they 
+  are not there already.
+
+o Add the following libraries to the build path. They are all in the Libraries folder.	
+
+  Right click on Libraries and go to Build path -> configure path
+
+  A '*' indicates an omitted (irrelevant) version number.
+  Note: to add multiple jar files at once, single click on one
+	jar file. Hold CRTL and click more packages.
+
+	gson-#.jar 
+	guava-r#.jar
+	auxdata.jar, external.jar, idv.jar, jython.jar, 
+	  local-visad.jar, ncIdv.jar, visad.jar
+	miglayout-#.jar
+	swingx-1.6.jar
+	TimingFramework-#.jar
+	xstream-#.jar
+	xpp3_min-#.jar
+	
+	replace # with the current version number. Be sure to only include 
+	the *.jars mentioned above.
+	
+o Export General->Ant Buildfiles as build.xml
+
+  Right click on Geopod directory in package explorer and
+    go to export -> Ant Buildfiles
+  Make sure build.xml is in the 'Name for Ant buildfile'
+    field.
+  Finish.
+  
+  NOTE: if you later make any changes to the java build path, 
+  		you will need to repeat this step
+
+o Set up a run configuration under Run -> run configuration
+
+	Type: Java Application
+	Name: IDV with Geopod
+	Main class: ucar.unidata.idv.IntegratedDataViewer
+	
+	Under arguments	
+	Program arguments: -plugin ./Geopod.jar
+	VM arguments: -Xmx2048m -XX:MaxPermSize=128m
+	
+o Use Ant tasks in userBuild.xml to build and run Geopod
+
+  In the package explorer, right click on userBuild.xml and
+    select Ant build.
+    

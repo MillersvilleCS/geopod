@@ -20,11 +20,11 @@ SETTING UP AN ECLIPSE PROJECT USING EGIT
 
 4. The 'source git repository' screen will come up
 
-  ~Do the following for each of the fields
+  ~do the following for each of the fields
   
     Location
       URI: leave blank, it will be filled in automatically
-      Host:  enter 'github.com'
+      Host: enter 'github.com'
       Repository path: enter 'gzoppetti/geopod.git'
       
     Connection
@@ -36,7 +36,7 @@ SETTING UP AN ECLIPSE PROJECT USING EGIT
       Password: your github password
       Store in secure store: optional
 
-~click 'next'
+  ~click 'next'
 
 5. The 'branch selection' screen will come up
 
@@ -44,7 +44,7 @@ SETTING UP AN ECLIPSE PROJECT USING EGIT
 
 6. The 'local destination' screen will come up
 
-  ~Do the following for each of the fields
+  ~do the following for each of the fields
   
     Destination
       Directory: where the remository will be cloned (you most likley want your eclipse workspace)

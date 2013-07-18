@@ -4,41 +4,47 @@
 
 3. the 'select repositotory source' screen  will come up
 
-~select 'URI'
+  ~select 'URI'
 
-~click 'next'
+  ~click 'next'
 
 4. the 'source git repository' screen will come up
 
-~Do the following for each of the fields
-
-  Location
-    URI: leave blank, it will be filled in automatically
-    Host:  enter 'github.com'
-    Repository path: enter 'gzoppetti/geopod.git'
-    
-  Connection
-    Protocol: select 'https'
-    Port: leave blank
-    
-  Authentication
-    User: your github username
-    Password: your github password
-    Store in secure store: optional
+  ~Do the following for each of the fields
+  
+    Location
+      URI: leave blank, it will be filled in automatically
+      Host:  enter 'github.com'
+      Repository path: enter 'gzoppetti/geopod.git'
+      
+    Connection
+      Protocol: select 'https'
+      Port: leave blank
+      
+    Authentication
+      User: your github username
+      Password: your github password
+      Store in secure store: optional
 
 ~click 'next'
 
 5. the 'beanch selection' screen will come up
 
-~make sure 'master' is selected
+  ~make sure 'master' is selected
 
 6. the 'local destination' screen will come up
 
-~Do the following for each of the fields
+  ~Do the following for each of the fields
+  
+    Destination
+      Directory: where the remository will be cloned (you most likley want your eclipse workspace)
+      Initial branch: 'master'
+      Clone submodules: leave blank
+    Configuration
+      Remote name: 'origin'
+      
+  ~hit 'finish'
+  
+7. Link a Java 7 JRE
 
-  Destination
-    Directory: where the remository will be cloned (you most likley want your eclipse workspace)
-    Initial branch: 'master'
-    Clone submodules: leave blank
-  Configuration
-    Remote name: 'origin'
+8. Link Java3D

@@ -1,14 +1,14 @@
-1. Install egit from the eclipse marketplace
+1. Install egit from the Eclipse marketplace
 
-2. create a new git project: file -> import -> git -> projects from git
+2. Create a new git project: file -> import -> git -> projects from git
 
-3. the 'select repositotory source' screen  will come up
+3. The 'select repositotory source' screen  will come up
 
   ~select 'URI'
 
   ~click 'next'
 
-4. the 'source git repository' screen will come up
+4. The 'source git repository' screen will come up
 
   ~Do the following for each of the fields
   
@@ -28,11 +28,11 @@
 
 ~click 'next'
 
-5. the 'beanch selection' screen will come up
+5. The 'branch selection' screen will come up
 
   ~make sure 'master' is selected
 
-6. the 'local destination' screen will come up
+6. The 'local destination' screen will come up
 
   ~Do the following for each of the fields
   
@@ -45,6 +45,6 @@
       
   ~hit 'finish'
   
-7. Link a Java 7 JRE
+7. Add a Java 7 or higher JRE
 
-8. Link Java3D
+8. Add Java3D jars and natives.

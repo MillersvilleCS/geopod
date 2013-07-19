@@ -1,60 +1,60 @@
-Geopod is an open source, java-based plugin for the Integrated Data Viewer (IDV), a geoscience visualization software
+Geopod is an open source, Java-based plugin for the Integrated Data Viewer (IDV), a geoscience visualization software
 framework created by Unidata. Developed by the Computer Science and Earth Science departments at Millersville University
 through a National Science Foundation grant, Geopod is a learning tool designed to enhance undergraduate level earth
 science education by providing students and instructors with a novel and intuitive way to explore meteorological
 concepts. Geopod presents a new perspective and simplified interface for using some important features of traditional
 IDV, while including new features to enhance learning and facilitate classroom use.
 
+SETTING UP AN ECLIPSE PROJECT USING EGit
 
-SETTING UP AN ECLIPSE PROJECT USING EGIT
+1. Install EGit from the Eclipse marketplace
 
-1. Install egit from the Eclipse marketplace
+2. Create a new git project: File -> Import -> Git -> Projects from Git
 
-2. Create a new git project: file -> import -> git -> projects from git
+3. The 'Select Repositotory Source' dialog will appear
 
-3. The 'select repositotory source' screen  will come up
+  ~Select 'URI'
 
-  ~select 'URI'
+  ~Click 'Next'
 
-  ~click 'next'
+4. The 'Source Git Repository' dialog will appear
 
-4. The 'source git repository' screen will come up
-
-  ~do the following for each of the fields
+  ~Fill in the fields as follows
   
     Location
-      URI: leave blank, it will be filled in automatically
-      Host: enter 'github.com'
-      Repository path: enter 'gzoppetti/geopod.git'
+      URI:  blank (it will be filled in automatically)
+      Host: github.com
+      Repository path: gzoppetti/geopod.git
       
     Connection
-      Protocol: select 'https'
-      Port: leave blank
+      Protocol: https
+      Port:     blank
       
     Authentication
-      User: your github username
+      User:     your github username
       Password: your github password
       Store in secure store: optional
 
-  ~click 'next'
+  ~Click 'Next'
 
-5. The 'branch selection' screen will come up
+5. The 'Branch Selection' dialog will appear
 
-  ~make sure 'master' is selected
+  ~Select 'master'
 
-6. The 'local destination' screen will come up
+6. The 'Local Destination' dialog will appear
 
-  ~do the following for each of the fields
+  ~Fill in the fields as follows
   
     Destination
-      Directory: where the remository will be cloned (you most likley want your eclipse workspace)
-      Initial branch: 'master'
-      Clone submodules: leave blank
-    Configuration
-      Remote name: 'origin'
-      
-  ~hit 'finish'
-  
-7. Add a Java 7 or higher JRE
+      Directory: where the remository will be cloned (most likely your Eclipse workspace)
+      Initial branch:   master
+      Clone submodules: unchecked
 
-8. Add Java3D jars and natives.
+    Configuration
+      Remote name: origin
+      
+  ~Click 'Finish'
+  
+7. Add a Java 7 or higher JRE System Library to the Build Path
+
+8. Add the Java 3D jars to the Build Path. 

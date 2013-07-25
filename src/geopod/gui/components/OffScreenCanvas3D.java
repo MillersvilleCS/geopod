@@ -1,190 +1,75 @@
 package geopod.gui.components;
 
-import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GraphicsConfiguration;
 import java.awt.image.BufferedImage;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.concurrent.BlockingDeque;
 
 import javax.media.j3d.Canvas3D;
 import javax.media.j3d.ImageComponent2D;
 import javax.media.j3d.Screen3D;
 
-public class OffScreenCanvas3D
-		extends Canvas3D
-{
+public class OffScreenCanvas3D extends Canvas3D {
 	private static final long serialVersionUID = -5850049957890111127L;
 
-	private Deque<BufferedImage> m_unsavedImages;
-
+	private OnScreenCanvas3D m_onScreenCanvas3D;
+	private ImageComponent2D m_imageBuffer;
 	private int m_screenCaptureWidth;
 	private int m_screenCaptureHeight;
-	private double m_onScreenCanvasWidth;
-	private double m_onScreenCanvasHeight;
 
-	private BufferedImage m_bImage;
-	private ImageComponent2D m_imageBuffer;
+	private BlockingDeque<BufferedImage> m_images;
+	private BlockingDeque<Long> m_timestamps;
 
-	/**
-	 * Raised by calling {@link OnScreenCanvas3D#getScreenshot()}
-	 */
-	private boolean m_isTakingScreenshot = false;
-
-	public OffScreenCanvas3D (GraphicsConfiguration gconfig, boolean offscreenflag)
-	{
-		super (gconfig, offscreenflag);
+	public OffScreenCanvas3D(GraphicsConfiguration gconfig,
+			boolean offscreenflag) {
+		super(gconfig, offscreenflag);
 	}
 
-	/**
-	 * This method is only meant to be called by the OnScreenCanvas3D that "has"
-	 * it. This method syncs the virtual (.getSize()) and physical
-	 * (.getScreen3D()) sizes of the on and off screen canvases and instantiates
-	 * the Deque of unsaved images, the BufferedImage m_bImage, and the
-	 * ImageComponent2D m_buffer.
-	 * 
-	 * @see OnScreenCanvas3D#syncSizesWithOffScreenCanvas()
-	 */
-	protected void postInit (Dimension d, Screen3D sOn)
-	{
-		m_unsavedImages = new ArrayDeque<BufferedImage> ();
-
-		m_onScreenCanvasWidth = d.getWidth ();
-		m_onScreenCanvasHeight = d.getHeight ();
-
-		Screen3D sOff = this.getScreen3D ();
-		sOff.setSize (sOn.getSize ());
-		sOff.setPhysicalScreenWidth (sOn.getPhysicalScreenWidth ());
-		sOff.setPhysicalScreenHeight (sOn.getPhysicalScreenHeight ());
-
-		if (m_bImage == null)
-		{
-			this.setScreenCaptureSize ((int) m_onScreenCanvasWidth);
-			m_bImage = new BufferedImage (m_screenCaptureWidth, m_screenCaptureHeight, BufferedImage.TYPE_INT_ARGB);
-			m_imageBuffer = new ImageComponent2D (ImageComponent2D.FORMAT_RGBA, m_bImage);
-		}
+	protected void postInit(OnScreenCanvas3D onScreenCanvas3D) {
+		m_onScreenCanvas3D = onScreenCanvas3D;
+		this.setScreenCaptureSize(onScreenCanvas3D.getWidth(),
+				onScreenCanvas3D.getHeight());
 	}
 
-	/**
-	 * Retrieves an image from the head of the deque. Meant to be used in a loop
-	 * after stopping movie capture.
-	 * 
-	 * @return the least recently rendered frame.
-	 * @see #getLastUnsavedImage()
-	 */
-	public BufferedImage getNextUnsavedImage ()
-	{
-		if (m_unsavedImages.isEmpty ())
-		{
-			return null;
-		}
-
-		BufferedImage bImage = m_unsavedImages.pollFirst ();
-		return bImage;
+	protected void setContainers(BlockingDeque<BufferedImage> images,
+			BlockingDeque<Long> timestamps) {
+		m_images = images;
+		m_timestamps = timestamps;
 	}
 
-	/**
-	 * Retrieves an image from the tail of the deque. Meant to be used for
-	 * single image captures.
-	 * 
-	 * @return the most recently rendered frame.
-	 * @see #getNextUnsavedImage()
-	 */
-	public BufferedImage getLastUnsavedImage ()
-	{
-		if (m_unsavedImages.isEmpty ())
-		{
-			return null;
-		}
-
-		BufferedImage bImage = m_unsavedImages.pollLast ();
-		return bImage;
+	protected int getScreenCaptureWidth() {
+		return m_screenCaptureWidth;
 	}
 
-	//TODO: write descriptors
-
-	public Dimension getScreenCaptureSize ()
-	{
-		return (new Dimension (m_screenCaptureWidth, m_screenCaptureHeight));
+	protected int getScreenCaptureHeight() {
+		return m_screenCaptureHeight;
 	}
 
-	/**
-	 * Update the render size of the screen capture. The height will be
-	 * automatically determined by using the OnScreenCanvas' aspect ratio.
-	 * 
-	 * @see #setScreenCaptureSize(int, int)
-	 * @see #setScreenCaptureSize(int, int, boolean)
-	 */
-	public void setScreenCaptureSize (int width)
-	{
-		this.setScreenCaptureSize (width, m_screenCaptureHeight, true);
-	}
-
-	/**
-	 * Update the render size of the screen capture. Assumes you don't want to
-	 * keep the aspect ratio since you are specifying two dimensions.
-	 * 
-	 * @see #setScreenCaptureSize(int)
-	 * @see #setScreenCaptureSize(int, int, boolean)
-	 */
-	public void setScreenCaptureSize (int width, int height)
-	{
-		this.setScreenCaptureSize (width, height, false);
-	}
-
-	/**
-	 * Update the render size of the screen capture.
-	 * 
-	 * @param keepAspectRatio
-	 *            If true, will only use width to figure out the height based on
-	 *            the onScreenBuffer's size.
-	 */
-	public void setScreenCaptureSize (int width, int height, boolean keepAspectRatio)
-	{
-		assert (m_onScreenCanvasWidth > 0);
-		assert (m_onScreenCanvasHeight > 0);
-
+	protected void setScreenCaptureSize(int width, int height) {
 		m_screenCaptureWidth = width;
+		m_screenCaptureHeight = height;
 
-		if (keepAspectRatio)
-		{
-			double aspectRatio = m_onScreenCanvasWidth / m_onScreenCanvasHeight;
-			m_screenCaptureHeight = (int) ((double) m_screenCaptureWidth / aspectRatio);
-		}
-		else
-		{
-			m_screenCaptureHeight = height;
-		}
+		Screen3D sOff = this.getScreen3D();
+		Screen3D sOn = m_onScreenCanvas3D.getScreen3D();
+		sOff.setSize(sOn.getSize());
+		sOff.setPhysicalScreenWidth(sOn.getPhysicalScreenWidth());
+		sOff.setPhysicalScreenHeight(sOn.getPhysicalScreenHeight());
 
-		//TODO: if resized during run-time, do I need to change height/width of m_bImage and m_imageBuffer? 
+		BufferedImage bImage = new BufferedImage(m_screenCaptureWidth,
+				m_screenCaptureHeight, BufferedImage.TYPE_INT_ARGB);
+		m_imageBuffer = new ImageComponent2D(bImage.getType(), bImage);
+		m_imageBuffer
+				.setCapabilityIsFrequent(ImageComponent2D.ALLOW_IMAGE_READ);
+		this.setOffScreenBuffer(m_imageBuffer);
 	}
 
-	/**
-	 * Schedules a the rendering of one frame into this OffScreenCanvas3D's off
-	 * screen buffer. Raises a flag to tell {@link #postSwap()} to copy the
-	 * rendered frame into deque of unsaved images. Only meant to be called by
-	 * {@link OnScreenCanvas3D#getScreenshot()}.
-	 * 
-	 * @see #getLastUnsavedImage()
-	 * @see #getNextUnsavedImage()
-	 */
-	public void getScreenshot ()
-	{
-		m_isTakingScreenshot = true;
-		this.renderOffScreenBuffer ();
-	}
-
-	/**
-	 * If a frame has been rendered by {@link #getScreenshot()}, then we add
-	 * that frame to the tail end of the deque of unsaved images.
-	 */
 	@Override
-	public void postSwap ()
-	{
-		if (m_isTakingScreenshot)
-		{
-			m_isTakingScreenshot = false;
-			super.postSwap ();
-			m_unsavedImages.add (m_imageBuffer.getImage ());
-		}
+	public void postSwap() {
+		m_images.add(m_imageBuffer.getImage());
+		m_timestamps.add(System.currentTimeMillis());
+	}
+
+	@Override
+	public void paint(Graphics g) {
 	}
 }

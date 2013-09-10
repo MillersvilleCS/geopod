@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>GEOpod - GEOsciences Probe Of Discovery - Contact Us</title>
+<script src="./Js/Libraries/jquery-1.6.1.js"></script>
+<script src="./Js/Libraries/JQueryUi/js/jquery-ui-1.8.14.custom.min.js"></script>
+<script src="./Js/Libraries/jquery.form.js"></script>
+<script src="./Js/Libraries/validate/jquery.validate.js"></script>
+<script src="./Js/contactUs.js"></script>
+
+<link rel="stylesheet" href="Css/mainStyle.css" />
+<link rel="stylesheet" href="Css/contactForm.css" />
+
+</head>
+<body>
+	<div class="content">
+		<div class="header"></div>
+		<div class="container_12">
+			<div class="grid_1">&nbsp;</div>
+			<div class="grid_10">
+
+				<p>If you have questions or comments about the Geopod project,
+					use the form below to send us an email. We may not be able to
+					respond quickly, but your input is appreciated.</p>
+
+				<form id="contactForm">
+					<div id="serverError"></div>
+					<p>
+						<label for="name">Name</label> <input type="text" name="name"
+							id="name" class="required" />
+					</p>
+					<p>
+						<label for="replyEmail">Email address</label> <input type="text"
+							name="replyEmail" id="replyEmail" class="required email" />
+					</p>
+					<p>
+						<label for="subject">Subject</label> <input type="text"
+							name="subject" id="subject" class="required" />
+					</p>
+					<label for="message">Message</label>
+					<textarea name="message" id="message"
+						class="required ui-widget-content" rows="10" cols="35"></textarea>
+
+					<input type="submit" name="sendButton" id="sendButton" value="Send" />
+				</form>
+
+
+
+				<div class="bottomText">
+					Departments of Computer Science and Earth Sciences <br />
+					Millersville University, Millersville, PA 17551
+				</div>
+			</div>
+			<div class="grid_1">&nbsp;</div>
+		</div>
+
+	</div>
+</body>
+</html>

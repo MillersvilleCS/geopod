@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Testing</title>
+
+<script src="Js/Libraries/jquery-1.6.1.js"></script>
+<script src="Js/Libraries/JQueryUi/js/jquery-ui-1.8.14.custom.min.js"></script>
+<link rel="stylesheet" href="./Js/Libraries/JQueryUi/css/smoothness/jquery-ui-1.8.14.custom.css">
+
+<script src="Js/Libraries/sortableMultiAccordion.js"></script>
+
+<script src="./Js/Libraries/jquery.tmpl.min.js"></script>
+
+<script>
+	$ (document).ready (
+			function ()
+			{
+				$ ("#accordion1").multiAccordion ();
+				$ ("#accordion1").bind ("onChange",
+						function (event, panel, isOpening)
+						{
+							console.log (panel);
+							console.log (isOpening);
+						});
+
+				var panelNum = 0;
+				$ ("#appendButton").click (function ()
+				{
+					var newPanel = '<div>'
+					               + '<h3 class="accordionHeader">'
+					                 + '<a href="#">New Header ' + panelNum + '</a>'
+					               + '</h3>'
+					               + '<div>New Content ' + panelNum + '</div>'
+					             + '</div>';
+					++panelNum;
+					console.log($ (newPanel));
+					$ ("#accordion1").multiAccordion ("append", $ (newPanel));
+				});
+
+				var panelToRemove = 2;
+				$ ("#removeButton").click (
+						function ()
+						{
+							$ (
+									"#accordion1 > div:nth-child("
+											+ panelToRemove + ")")
+									.multiAccordion ("remove");
+						});
+
+				$ ("#countButton").click (
+						function ()
+						{
+							var numPanels = $ ("#accordion1").multiAccordion (
+									"getNumPanels");
+							alert ("Num panels = " + numPanels);
+						});
+
+				$ ("#openButton").click (
+						function ()
+						{
+							var numPanels = $ ("#accordion1").multiAccordion (
+									"openPanelByIndex", 2);
+						});
+
+				$ ("#closeButton").click (
+						function ()
+						{
+							var numPanels = $ ("#accordion1").multiAccordion (
+									"closePanelByIndex", 2);
+						});
+
+				$ ("#openAllButton").click (
+						function ()
+						{
+							var numPanels = $ ("#accordion1").multiAccordion (
+									"openAllPanels");
+						});
+
+				$ ("#closeAllButton").click (
+						function ()
+						{
+							var numPanels = $ ("#accordion1").multiAccordion (
+									"closeAllPanels");
+						});
+				$ ("#appendTemplateButton").click (
+						function ()
+						{
+							var templateData = {a: 22, b:17};
+							var newTemplateObject = $ ("#TestTemplate").tmpl (templateData);
+							$ ("#accordion1").multiAccordion (
+									"append", newTemplateObject.first());
+							console.log(newTemplateObject);
+							console.log(newTemplateObject.first());
+						});
+
+			});
+</script>
+
+</head>
+
+<body>
+
+	<br />
+	<br />
+
+	<div id="accordion1">
+		<div>
+			<h3 class="accordionHeader">
+				<a href="#">First header</a>
+			</h3>
+			<div>First content</div>
+		</div>
+
+		<div>
+			<h3 class="accordionHeader">
+				<a href="#">Second header</a>
+			</h3>
+			<div>Second content</div>
+		</div>
+	</div>
+
+	<input id="appendButton" type="button" value="Append" />
+	<input id="removeButton" type="button" value="Remove" />
+	<input id="countButton" type="button" value="Count" />
+	<input id="openButton" type="button" value="Open" />
+	<input id="closeButton" type="button" value="Close" />
+	<input id="openAllButton" type="button" value="OpenAll" />
+	<input id="closeAllButton" type="button" value="CloseAll" />
+	<input id="appendTemplateButton" type="button" value="Append From Template" />
+	
+	<!-- Test Template -->
+	<script id="TestTemplate" type="text/x-jQuery-tmpl">
+		
+		<div id="25" class="Objective">
+			<h3 class="ObjectiveHeader"><a href="#">${a}: Test Objective Template</a></h3>
+				<div>
+					<input type="hidden" name="order" value="${b}" class="ObjectiveDataField"/>
+					<label>Title:</label>
+					<input type="text" name="objectiveTitle" value="this would be the title" class="ObjectiveDataField"/>
+					</br>
+					<label>Description:</label>
+					</br>
+					<textArea name="objectiveText" rows="5" cols="100" class="ObjectiveDataField">this would be the text</textArea>
+					</br>
+					<input type="button" class="DeleteObjectiveButton" value="delete"/>
+				</div>
+		</div>
+	</script>
+
+</body>
+
+</html>

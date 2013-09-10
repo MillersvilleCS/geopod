@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<meta charset="utf-8" />
+
+<title>View Mission</title>
+
+<!-- JQuery -->
+<script src="./Js/Libraries/jquery-1.6.1.js"></script>
+
+<!-- JQuery Ui -->
+<script src="./Js/Libraries/JQueryUi/js/jquery-ui-1.8.14.custom.min.js"></script>
+
+<!-- JQuery Ui Stylesheet -->
+<link rel="stylesheet"
+	href="./Js/Libraries/JQueryUi/css/smoothness/jquery-ui-1.8.14.custom.css">
+
+<!-- Multi-open Sortable Accordion -->
+<script src="./Js/Libraries/sortableMultiAccordion.js"></script>
+
+<!-- jQuery Template library  -->
+<script src="./Js/Libraries/jquery.tmpl.min.js"></script>
+
+<!-- Mission Class -->
+<script src="./Js/Mission.js"></script>
+
+<!-- Some common mission functions -->
+<script src="./Js/missionModificationUtility.js"></script>
+
+<!-- Main page scripts -->
+<script src="./Js/viewMission.js"></script>
+
+<!-- Css Stylesheets -->
+<link rel="stylesheet" href="./Css/everything.css" />
+<link rel="stylesheet" href="./Css/viewMission.css" />
+
+</head>
+
+<body>
+		
+	<!-- Dialog boxes -->
+	<div class="Popup" id="DiscardPrompt" title="Discard Mission" ></div>
+	<div class="Popup" id="MakePublicPrompt" title="Make Public" ></div>
+	<div class="Popup" id="MakePrivatePrompt" title="Make Private" ></div>
+		
+	<!-- Main Viewer Page -->
+	<h1 id="ViewMissionHeader" class="PageHeader">View Mission</h1>
+	<div id="missionDisplayArea">
+		<label class="FieldLabel">Author:</label> 
+		<span id="AuthorDisplay"></span>
+		<label class="FieldLabel">Status:</label> 
+		<span id="StatusDisplay"></span>
+		<span id="ChangeStatusLink" class="FakeLink"></span>
+		<br/>
+		<label class="FieldLabel">Category:</label> 
+		<span data-name="categoryName" class="MissionDataField"></span> 
+		<br/>
+		<label class="FieldLabel">Topic:</label>
+		<span data-name="topicName" class="MissionDataField" ></span>
+		<br/>
+		<label class="FieldLabel">Estimated Time To Complete:</label> 
+		<span data-name="estimatedTimeToComplete" class="MissionDataField"></span>
+		<br/>
+		<label class="FieldLabel">Mission Name:</label>
+		<br/> 
+		<span data-name="missionName" class="MissionDataField" ></span> 
+		<br /> 
+		<label class="FieldLabel">Mission Description:</label>
+		<br/> 
+		<span data-name="missionDescription" class="MissionDataField" ></span>
+		<br/>
+		<label class="FieldLabel">Background:</label>
+		<br/>
+		<div data-name="backgroundText" class="MissionDataField"></div>
+		<br/>
+		<label class="FieldLabel">Objectives:</label>
+		<br/>
+		<div id="ObjectivesAccordion"></div>
+		
+	</div>
+
+
+	<!-- All possible buttons (not all will be displayed at once) -->
+	<button id="Edit" class="OptionButton Complete Owner">Edit</button>
+	<button id="EditDraft" class="OptionButton Draft Owner">Edit Draft</button>
+	<button id="Extend" class="OptionButton ">Extend</button>
+	<button id="ExportAsXml" class="OptionButton Complete">Export As GEO</button>
+	<button id="Discard" class="OptionButton Owner">Discard</button>
+	<button id="Back" class="OptionButton">Back</button>
+	
+	<!-- Template for objective enties-->
+	<script id="ObjectiveTemplate" type="text/x-jQuery-tmpl">
+		
+		<div id="${getNextNumber('objective')}" class="Objective">
+			<h3 class="ObjectiveHeader accordionHeader"><a href="#">${getNextNumber('objective') + 1}: ${objectiveTitle}</a></h3>
+				<div>
+					<div class="ObjectiveTabs">
+						<ul>
+							<li><a href="#description">Description</a></li>
+							<li><a href="#assessment">Assessment</a></li>
+							<li><a href="#conditions">Conditions</a></li>
+						</ul>
+						<div id="description">
+							<input type="hidden" data-name="order" value="${getNextNumber('objective')}" class="ObjectiveDataField"/>
+							<label class="FieldLabel">Title:</label> 
+							<span data-name="objectiveTitle" class="ObjectiveDataField">${objectiveTitle}</span>
+							</br>
+							<label class="FieldLabel">Description:</label>
+							</br>
+							<span data-name="objectiveText" class="ObjectiveDataField">${objectiveText}</span>
+						</div>
+						<div id="assessment">
+							<div class="QuestionsAccordion"></div>
+						</div>
+						<div id="conditions">
+							<p>This may never even exist</p>
+						</div>
+					</div>
+				</div>
+		</div>
+	</script>
+	
+	<!-- Template for questions-->
+	<script id="QuestionTemplate" type="text/x-jQuery-tmpl">
+		
+		<div id="${getNextNumber('question')}" class="Question" data-typeid="${questionTypeId}">
+			<h3 class="QuestionHeader"><a href="#">${parseInt(order) + 1}: ${(questionText.length > 100) ? questionText.substring (0, 100) + "..." : questionText}</a></h3>
+			<div>
+				<input type="hidden" data-name="order" value="${order}" class="QuestionDataField"/>
+				<label class="FieldLabel">Question Text:</label>
+				</br>
+				<span data-name="questionText" class="QuestionDataField">${questionText}</span>
+				</br>
+				<label class="FieldLabel AnswersLabel" hidden="true">Answers:</label>	
+				<div name="answersArea" class="AnswersArea" >
+				{{if questionTypeId == 0}}
+                    	<div name="answersList" class="AnswersList" data-placement-marker="null"></div>
+				{{/if}}
+				</div>
+			</div>
+		</div>
+	</script>
+	
+	<!-- Template for answer group -->
+	<script id="AnswerGroupTemplate" type="text/x-jQuery-tmpl">
+		
+		<div class="AnswerGroup">
+			<div class="OutlineArea">
+				<h3 class="AnswerGroupHeader">{#}</h3>
+				<form>
+					<div name="answersList" class="AnswersList">
+					</div>
+				</form>
+			</div>
+			<br/>
+		</div>
+	</script>
+	
+	<!-- Template for individual answer -->
+	<script id="AnswerTemplate" type="text/x-jQuery-tmpl">
+		<div id="${getNextNumber('answer')}" class="Answer">
+			<input type="hidden" data-name="order" value="${order}" class="AnswerDataField"/>
+			<span data-name="answerText" class="AnswerDataField AnswerLine">${answerText}</span>
+			{{if isCorrect == "1"}}
+				<img src="./Images/CorrectAnswer.png" alt="Correct Answer" width="10" height="10" title="Correct Answer"/>
+			{{else}}
+				<img src="./Images/IncorrectAnswer.png" alt="Incorrect Answer" width="10" height="10" title="Incorrect Answer"/>
+			{{/if}}
+			<span data-name="points" class="AnswerDataField" >${points}</span>
+		</div>
+	</script>
+
+</body>
+
+</html>

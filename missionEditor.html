@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<meta charset="utf-8" />
+
+<title>Mission Editor</title>
+
+<!-- JQuery -->
+<script src="./Js/Libraries/jquery-1.6.1.js"></script>
+
+<!-- JQuery Ui -->
+<script src="./Js/Libraries/JQueryUi/js/jquery-ui-1.8.14.custom.min.js"></script>
+
+<!-- JQuery Ui Stylesheet -->
+<link rel="stylesheet"
+	href="./Js/Libraries/JQueryUi/css/smoothness/jquery-ui-1.8.14.custom.css">
+
+<!-- JQuery Ui-based timepicker -->
+<script src="./Js/Libraries/timepicker/jquery.ui.timepicker.js"></script>
+
+<!-- JQuery Ui-based timepicker stylesheet -->
+<link rel="stylesheet"
+	href="./Js/Libraries/timepicker/jquery-ui-timepicker.css" />
+
+<!-- JQuery bValidator Plugin -->
+<script src="./Js/Libraries/bValidator/jquery.bvalidator.js"></script>
+
+<!-- Multi-open Sortable Accordion -->
+<script src="./Js/Libraries/sortableMultiAccordion.js"></script>
+
+<!-- jQuery Template library  -->
+<script src="./Js/Libraries/jquery.tmpl.min.js"></script>
+
+<!-- Utility for creating dependent category and topic dropdowns -->
+<script src="./Js/categoryTopicUtility.js"></script>
+
+<!-- CKEditor -->
+<script src="./ckeditor/ckeditor.js"></script>
+
+<!-- CKEditor jQuery adapter -->
+<script src="./ckeditor/adapters/jquery.js"></script>
+
+<!-- Mission Class -->
+<script src="./Js/Mission.js"></script>
+
+<!-- Main page scripts -->
+<script src="./Js/missionEditor.js"></script>
+
+<!-- Css Stylesheet -->
+<link rel="stylesheet" href="./Css/everything.css" />
+
+<!-- Special stuff for error display -->
+<link rel="stylesheet" href="./Css/missionEditor.css" />
+
+<!-- Stylesheet for bValidator-->
+<!-- Uncomment if want to use pop-up messages -->
+<!-- <link rel="stylesheet" type="text/css" href="./Js/Libraries/bValidator/bvalidator.css"/> -->
+
+</head>
+
+<body>
+		
+	<!-- Dialog boxes -->
+	<div class="Popup" id="SavedToDraftsAlert" title="Mission Saved" >This mission, "<span id="MissionName"></span>", has been saved in your drafts folder. </div>
+	<div class="Popup" id="CancelChangesPrompt" title="Unsaved Changes"> This mission, "<span id="MissionName"></span>", has unsaved changes. Are you sure you want to exit? <!-- <br/><br/> <button value=true>Yes, exit</button> <button value=false>No, don't exit</button> --></div>
+	<div class="Popup" id="DiscardPrompt" title="Discard Mission" ></div>
+	<div class="Popup" id="PublicPrivatePrompt" title="Choose Status" >Do you want this mission to be public or private? If you make this mission public, other users will be able to view, export and extend it. Private missions are visible only to you. <br/><input type='radio' name='isPublic' value=1 />Public <input type='radio' name='isPublic' value=0 checked="checked"/>Private </div>
+	<div class="Popup" id="CommitChangesPrompt" title="Change Existing Mission" >This mission is a draft of changes to an existing mission. Are you sure you want to replace the existing mission with this one?</div>	
+	<div class="Popup" id="SavedAsCompleteAlert" title="Mission Complete" ></div>
+	<div class="Popup" id="SelectCategoryAlert" title="Select Category First" >Please select a category before adding a topic.</div>
+	<div class="Popup" id="DeleteObjectivePrompt" title="Delete Objective" >Are you sure you want to delete objective "<span id="ObjectiveName"></span>"?</div>
+	<div class="Popup" id="DeleteQuestionPrompt" title="Delete Question" >Are you sure you want to delete this question?</div>
+	<div class="Popup" id="DeleteAnswerGroupPrompt" title="Delete Dropdown" >Are you sure you want to delete this entire dropdown?</div>
+	<div class="Popup" id="DeleteAnswerPrompt" title="Delete Answer" >Are you sure you want to delete this answer?</div>
+	<div class="Popup" id="ValidateMissionPrompt" title="Problem Saving Mission" >Please complete the required fields before saving this mission as complete.</div>
+	
+	
+	<!-- Add Category Dialog -->
+	<div class="Popup" id="CreateCategoryDialog" title="Create New Category" >
+	<label>Category Name:</label> <br />
+	<input type="text" name="categoryName" id="CategoryName" class="NewCategoryField" value="" /> <br />
+	<label>Category Description:</label> <br />
+	<input type="text" name="categoryDescription" id="CategoryDescription" class="NewCategoryField" value="" /> <br />
+	</div>	
+	
+	<!-- Add Topic Dialog -->
+	<div class="Popup" id="CreateTopicDialog" title="Create New Topic" >
+	<label>Parent Category:</label> <span id="CategoryName"></span> <br />
+	<label>Topic Name:</label> <br />
+	<input type="text" name="topicName" id="TopicName" class="NewTopicField" value="" /> <br />
+	<label>Topic Description:</label> <br />
+	<input type="text" name="topicDescription" id="TopicDescription" class="NewTopicField" value="" /> <br />
+	</div>
+		
+	<!-- Main Editor Page -->
+	<h1 id="EditMissionHeader" class="PageHeader">Please Wait</h1>
+	<p id="HelpLink"> Having problems? See <a href="./helpPage.html" target="_blank" >Mission Editor Help</a>.</p>
+	<!-- This form will have Missions columnnames of properties user can change -->
+	<form id="missionForm" action="">
+		<label>Category:</label> 
+		<select id="CategoryDropdown" name="categoryId" class="MissionDataField" data-bvalidator="select"></select> 
+		<span class="errorMessage" data-element-for="categoryId" data-action="select" hidden='true'>Please select a category.</span>
+		<label onclick="displayAddCategoryDialog()" class="FakeLink ModifyOption">add Category...</label>
+		<br/>
+		<span id="TopicSpan" class="disabled">
+		<label>Topic:</label>
+		<select id="TopicDropdown" name="topicId" class="MissionDataField" data-bvalidator="select" disabled><option value="0">Choose Topic...</option></select>
+		<span class="errorMessage" data-element-for="topicId" data-action="select" hidden='true'>Please select a topic.</span>
+		<label onclick="displayAddTopicDialog()" class="FakeLink ModifyOption">add Topic...</label>
+		</span>
+		<label>Estimated Time To Complete:</label> 
+		<input type="text" name="estimatedTimeToComplete" id="EstimatedTimeInput" class="MissionDataField" value="00:00" placeholder="choose time..." readOnly/>
+		<br/>
+		<label>Mission Name:</label>
+		<br/> 
+		<span class="errorMessage" data-element-for="missionName" data-action="required" hidden='true'>Please enter a mission name. <br /></span> 
+		<span class="errorMessage" data-element-for="missionName" data-action="maxlength" hidden='true'>Mission names cannot be longer than 255 characters. <br /></span> 
+		<input type="text" name="missionName" id="MissionNameInput" class="MissionDataField" data-bvalidator="maxlength[255],required"/> <br /> 
+		<label>Mission Description:</label>
+		<br/> 
+		<span class="errorMessage" data-element-for="missionDescription" data-action="required" hidden='true'>Please enter a mission description. <br /></span> 
+		<span class="errorMessage" data-element-for="missionDescription" data-action="maxlength" hidden='true'>Mission descriptions cannot be longer than 768 characters. <br /></span> 
+		<textarea name="missionDescription" id="MissionDescriptionInput" class="MissionDataField" data-bvalidator="maxlength[768],required"></textarea>
+		<br/>
+		<label>Background:</label>
+		<br/>
+		<span class="errorMessage" data-element-for="backgroundText" data-action="required" hidden='true'>Please enter a background for this mission. <br /> </span> 
+		<textArea id="BackgroundEditor" name="backgroundText" class="MissionDataField" data-bvalidator="required"></textArea>
+		<br/>
+		<label>Objectives:</label>
+		<br/>
+		<input type="button" class="AddObjectiveButton" id="auxiliary" value="+ Add Objective" hidden='true'/>
+		<div id="ObjectivesAccordion"></div>
+		<input type="button" class="AddObjectiveButton" value="+ Add Objective"/>
+		
+	</form>
+
+
+	<!-- All possible buttons (not all will be displayed at once) -->
+	<button id="Save" class="OptionButton Edit">Save</button>
+	<button id="SaveAsDraft" class="OptionButton New EditNonDraft">Save
+		As Draft</button>
+	<button id="SaveAsComplete" class="OptionButton New Edit EditNonDraft">Save
+		As Complete</button>
+	<button id="Cancel" class="OptionButton Edit EditNonDraft">Cancel</button>
+	<button id="Discard" class="OptionButton New Edit EditNonDraft">Discard</button>
+
+	<p id="NotificationArea"></p>
+	
+	<!-- Template for objective enties-->
+	<script id="ObjectiveTemplate" type="text/x-jQuery-tmpl">
+		
+		<div id="${getNextNumber('objective')}" class="Objective">
+			<h3 class="ObjectiveHeader accordionHeader"><a href="#" data-parent-alert>${getNextNumber('objective') + 1}: ${objectiveTitle}</a></h3>
+				<div>
+					<div class="ObjectiveTabs">
+						<ul>
+							<li><a href="#description" data-parent-alert>Description</a></li>
+							<li><a href="#assessment" data-parent-alert>Assessment</a></li>
+							<li><a href="#conditions" data-parent-alert>Conditions</a></li>
+						</ul>
+						<div id="description">
+							<input type="hidden" name="order" value="${getNextNumber('objective')}" class="ObjectiveDataField"/>
+							<label>Title:</label> 
+							<input type="text" name="objectiveTitle" value="${objectiveTitle}" class="ObjectiveDataField" data-bvalidator="maxlength[255],required"/>
+							<span class="errorMessage" data-element-for="objectiveTitle" data-action="required" hidden='true'>Please enter an objective title.</span>
+							<span class="errorMessage" data-element-for="objectiveTitle" data-action="maxlength" hidden='true'>Objective title cannot have more than 255 characters.</span> 
+							</br>
+							<label>Description:</label>
+							</br>
+							<span class="errorMessage" data-element-for="objectiveText" data-action="required" hidden='true'>Please enter an objective description. <br /> </span> 
+							<textArea name="objectiveText" rows="5" cols="100" class="ObjectiveDataField" data-bvalidator="required">${objectiveText}</textArea>
+						</div>
+						<div id="assessment">
+							<span class="AddQuestionWidget" id="auxiliary" hidden='true'>
+								<label>Add new</label>
+								<select class="QuestionTypeSelector">
+									<option value="0">Multiple Choice</option>
+									<option value="1">Multi Dropdown</option>
+								</select>
+								<label>question</label>
+								<input type="button" value="Add" class="AddQuestionButton"/>
+							</span>
+							<div class="QuestionsAccordion"></div>
+							<span class="AddQuestionWidget">
+								<label>Add new</label>
+								<select class="QuestionTypeSelector">
+									<option value="0">Multiple Choice</option>
+									<option value="1">Multi Dropdown</option>
+								</select>
+								<label>question</label>
+								<input type="button" value="Add" class="AddQuestionButton"/>
+							</span>
+						</div>
+						<div id="conditions">
+							<p>This may never even exist</p>
+						</div>
+					</div>
+					<input type="button" class="DeleteObjectiveButton" value="delete objective" title="delete this objective"/>
+				</div>
+		</div>
+	</script>
+	
+	<!-- Template for questions-->
+	<script id="QuestionTemplate" type="text/x-jQuery-tmpl">
+		
+		<div id="${getNextNumber('question')}" class="Question" data-typeid="${questionTypeId}">
+			<h3 class="QuestionHeader"><a href="#" data-parent-alert>${parseInt(order) + 1}: ${(questionText.length > 100) ? questionText.substring (0, 100) + "..." : questionText}</a></h3>
+			<div>
+				<input type="hidden" name="order" value="${order}" class="QuestionDataField"/>
+				<label>Question Text:</label>
+				{{if questionTypeId == 1}}
+					<input type="button" class="InsertMarker" value="Insert Dropdown" />
+				{{/if}}
+				</br>
+				<span class="errorMessage" data-element-for="questionText" data-action="required" hidden='true'>Please enter text for this question. <br /> </span> 
+				<span class="errorMessage" data-element-for="questionText" data-action="maxlength" hidden='true'>Question text must contain no more than 1000 characters. <br /> </span> 
+				<textarea name="questionText" rows="5" cols="100" class="QuestionDataField" 
+				{{if questionTypeId == 1}}
+					onDrop="ignore(event)"
+					onDragOver="ignore(event)"
+				{{/if}}
+					data-bvalidator="maxlength[1000],required" >${questionText}</textarea>
+				<label class="AnswersLabel" hidden="true">Answers:</label>	
+				{{if questionTypeId == 1}}
+					<span class="errorMessage" data-element-for="answersArea" data-action="minChildren" hidden='true'>Please create at least one drobdown for this question.<br /> </span> 	
+				{{/if}}
+				<div name="answersArea" class="AnswersArea" 
+				{{if questionTypeId == 0}}
+					>   
+						<span class="errorMessage" data-element-for="answersList" data-action="minChildren" hidden='true'>Please enter at least two answers for this question. <br /> </span>
+						<span class="errorMessage" data-element-for="answersList" data-action="oneOrMoreCorrect" hidden='true'>Please select at least one correct answer.<br /> </span>	
+                    	<div name="answersList" class="AnswersList" data-placement-marker="null" data-bvalidator="minChildren[Answer:2],oneOrMoreCorrect">
+						</div>
+						<input type="button" value="Add answer" class="AddAnswerButton" />
+				{{else}}
+					data-bvalidator="minChildren[AnswerGroup:1]">
+				{{/if}}
+				</div>
+			  	<input type="button" class="DeleteQuestionButton" value="delete question"/>
+			</div>
+		</div>
+	</script>
+	
+	<!-- Template for answer group -->
+	<script id="AnswerGroupTemplate" type="text/x-jQuery-tmpl">
+		
+		<div class="AnswerGroup">
+			<div class="OutlineArea">
+				<h3 class="AnswerGroupHeader">{#}</h3>
+				<form>
+					<span class="errorMessage" data-element-for="answersList" data-action="minChildren" hidden='true'>Please create at least two answers for this dropdown.<br /> </span>
+					<span class="errorMessage" data-element-for="answersList" data-action="oneOrMoreCorrect" hidden='true'>Please select one correct answer.<br /> </span>	
+					<div name="answersList" class="AnswersList" data-bvalidator="minChildren[Answer:2],oneOrMoreCorrect">
+					</div>
+				</form>
+				<input type="button" value="Add answer" class="AddAnswerButton" />
+				<input type="button" value="Delete Dropdown" class="DeleteDropdownButton" />
+			</div>
+			<br/>
+		</div>
+	</script>
+	
+	<!-- Template for individual answer -->
+	<script id="AnswerTemplate" type="text/x-jQuery-tmpl">
+		<div id="${getNextNumber('answer')}" class="Answer ui-state-default">
+			<input type="hidden" name="order" value="${order}" class="AnswerDataField"/>
+			<span class="errorMessage" data-element-for="answerText" data-action="required" hidden='true'>Please enter text for this answer.</span>	
+			<span class="errorMessage" data-element-for="answerText" data-action="maxlength" hidden='true'>Answer text must be 150 characters or less.</span>	
+			<input type="text" name="answerText" value="${answerText}" class="AnswerDataField AnswerLine" data-bvalidator="maxlength[150],required"/>
+			<input type=
+			{{if $item.type == "radio"}}
+				"radio"
+			{{else}}
+				"checkbox"
+			{{/if}}	
+				name="isCorrect" value="${isCorrect}" 
+			{{if isCorrect == "1"}}
+				checked='true' 
+			{{/if}}
+				class="AnswerDataField" />
+			<span class="errorMessage" data-element-for="points" data-action="number" hidden='true'>Please enter a number.</span>
+			<input type="text" size="4" name="points" value="${points}" class="AnswerDataField" data-bvalidator="number,required"/>
+			<input type="button" value="X" class="DeleteAnswerButton" />
+		</div>
+	</script>
+
+</body>
+
+</html>

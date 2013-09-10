@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<title>GEOpod - GEOsciences Probe Of Discovery - Features</title>
+
+<script src="Js/Libraries/jquery-1.6.1.js"></script>
+<link rel="stylesheet" href="Css/mainStyle.css" />
+<script>
+	$ (document).ready (function ()
+	{
+		$ ('div.header').load ('homeHeader.html', function ()
+		{
+			$ ('div.titleText').html ("Geopod Features");
+			$ ('.featuresNavLink').addClass ('selectedLink');
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div class="content">
+		<div class="header"></div>
+		<div class="container_12">
+			<div class="grid_1">&nbsp;</div>
+			<div class="grid_10">
+
+				<div>
+					<span class="headingStyle">Interface Overview</span>
+					<p>The Geopod interface was carefully designed to be simple and
+						intuitive, presenting necessary features with a minimum of
+						distraction. The main parts of the Geopod interface are described
+						below.</p>
+					<div class="grid_10">
+						<img class=OverviewImage title="Geopod Interface Overview"
+							alt="Geopod Interface Image"
+							src="./Images/HomePageImages/GeopodOverview.png"> <br />
+					</div>
+
+					<ol>
+						<li><b>Main viewing area</b> allows plenty of room for users
+							to examine isosurfaces in the data volume.</li>
+						<li><b>Parameter display</b> at the bottom of the screen
+							holds up to 9 parameters; optional <b>overflow panel</b> displays
+							up to an additional 10. Users can drag and drop parameter entries
+							to create whatever custom arrangement they find most convenient.</li>
+						<li><b>Navigational instruments</b> assist users as they fly
+							Geopod through the data volume. See the <a href="#navigation">Navigation</a>
+							section below for details.</li>
+						<li><b>Buttons</b> allow access to additional functionality.
+							See the <a href="#devices">Devices</a> and <a
+							href="#additionalFeatures">Additional Features</a> sections for
+							more details.</li>
+					</ol>
+				</div>
+				<br /> <br />
+				<div id=navigation>
+					<span class="headingStyle">Navigation</span>
+					<p>Geopod is all about flying inside the atmosphere to explore
+						meteorological phenomena, so it’s important for users to be able
+						to understand where they are and easily get where they want to be.
+						Fortunately, Geopod provides a wide range of navigational
+						instruments to help users pilot effectively.</p>
+					<hr>
+					<span class="minorHeadingStyle">Key and Mouse Navigation</span>
+					<p>
+						Most navigation in Geopod is done with video-game like key and
+						mouse controls. The traditional WSAD keys are used for forward,
+						backward, left and right movement, with additional keys used to
+						pitch, roll and yaw. Other keys are shortcuts to useful locations.
+						For example, <b>R</b> resets the Geopod to its starting position
+						above the data volume while <b>T</b> positions Geopod in a
+						top-down view over the data volume. Two varieties of rotation are
+						available with the mouse: click and drag rotation with the left
+						mouse button and continuous rotation with the right mouse button,
+						allowing users to select the behavior that works best for them.
+					</p>
+					<hr>
+
+					<div class="featuresEntry">
+						<span class="minorHeadingStyle">Autopilot and Lat/Lon/Alt
+							Display</span> <br /> <img class="RightAlignedImage topImage"
+							title="Lat/Lon/Alt control shows current position"
+							alt="Lat/Lon/Alt control Image"
+							src="./Images/HomePageImages/GeopodLatLonAlt.png"><br />
+						The Lat/Lon/Alt display allows Geopod users to always see exactly
+						where they are in the atmosphere, and can also be combined with
+						the Autopilot feature to take the Geopod to an exact location.
+						Simply enter the location you want in the Lat/Lon/Alt boxes and
+						click “GO” to be flown anywhere. This is particularly useful for
+						returning to interesting locations, or directing students to
+						locations where they will observe particular atmospheric
+						conditions.
+					</div>
+					<hr>
+
+					<p class="featuresEntry">
+						<span class="minorHeadingStyle">Geocoding (forward and
+							reverse)</span> <br /> <br />Geopod leverages Google’s geocoding
+						capabilities to help users connect positions in the atmosphere to
+						locations on the political map. <img class="LeftAlignedImage"
+							title="Geocode control showing geographic location"
+							alt="Geocode Image"
+							src="./Images/HomePageImages/GeopodGeocode.png">Using
+						forward geocoding, Geopod users can to determine the city, state
+						or country over which Geopod is currently positioned. Reverse
+						geocoding, used in conjunction with the autopilot feature, allows
+						users to type in a place name and then fly there.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<img class="RightAlignedImage" title="Isosurface with Flight Path"
+							alt="Isosurface Image showing Flight Path"
+							src="./Images/HomePageImages/GeopodIsosurfacePath.png"> <span
+							class="minorHeadingStyle">Isosurface Lock</span><br /> <br />
+						The isosurface lock helps users explore the relationships between
+						various atmospheric parameters. This feature allows users to “lock
+						on” to and fly along an isosurface, where they can use the
+						parameter display panel to observe how some parameters change
+						while the isosurface parameter maintains a constant value. While
+						users are locked on, their flight path is painted along the
+						surface so that afterward they can see exactly where they've been.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<span class="minorHeadingStyle">Mini-map</span><br /> <br /> <img
+							class="LeftAlignedImage topImage"
+							title="Mini-map (yellow triangle is Geopod's position)"
+							alt="Image of Geopod Mini-map"
+							src="./Images/HomePageImages/GeopodMinimap.png">The
+						Mini-map lets users easily see where they are in relation to the
+						rest of the world. Located in the upper left-hand corner of the
+						screen, the Mini-map displays a map of the world with a marker
+						indicating the Geopod’s current position. This is especially
+						useful if you are exploring a complicated isosurface and have lost
+						sight of the earth’s surface.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<span class="minorHeadingStyle">Compass</span> <img
+							class="RightAlignedImage" title="Compass"
+							alt="Image of Geopod Compass"
+							src="./Images/HomePageImages/GeopodCompass.png"><br /> <br />Geopod’s
+						compass allows users to determine their heading and makes it easy
+						to follow directions like “fly northeast…”
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<span class="minorHeadingStyle">Attitude Indicator</span><br /> <img
+							class="LeftAlignedImage" title="Attitude Indicator"
+							alt="Image of Geopod Attitude Indicator"
+							src="./Images/HomePageImages/GeopodAttitudeIndicator.png">
+						<br /> This instrument measures the pitch and roll of the Geopod
+						and allows users to quickly determine if they are aligned with the
+						earth’s surface. The indicator was designed to be easy to read at
+						a glance. If the red line is in the brown area, Geopod is pitched
+						downward, if the red line is in blue area (as shown), Geopod is
+						pitched upward, and if the red line is exactly between the two
+						areas, Geopod is level with the surface.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<img class="RightAlignedImage indentRightSmall"
+							title="Speed Control" alt="Image of Geopod Speed Control"
+							src="./Images/HomePageImages/GeopodSpeedControl.png"><span
+							class="minorHeadingStyle">Speed Control</span> <br /> <br />
+						With this instrument, users can adjust the speed at which Geopod
+						flies as they navigate through the atmosphere. This way, users can
+						move very slowly to investigate the effects small changes in
+						position have on atmospheric conditions, or very quickly to cover
+						large distances to reach an area of interest.
+					</p>
+
+				</div>
+				<hr>
+				<hr>
+				<br /> <br />
+				<div id=devices>
+					<span class="headingStyle">Devices</span>
+					<p>In addition to isosurface and parameter display, Geopod
+						provides a number of useful devices that facilitate and enhance
+						student’s exploration of the atmosphere. These devices allow
+						students to gather additional data about atmospheric conditions or
+						view existing information in different ways.</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<img
+							class="RightAlignedImage indentRightLarge indentLeftSmall topImage"
+							title="Dropsonde Vertical Profile"
+							alt="Image of Geopod Dropsonde"
+							src="./Images/HomePageImages/GeopodDropsonde.png"> <span
+							class="minorHeadingStyle">Dropsonde</span> <br /> <br />This
+						device allows Geopod users to see a vertical profile of the
+						atmosphere at their current latitude and longitude. Users can view
+						graphs of temperature, dewpoint, relative humidity, u wind and v
+						wind plotted against pressure or, if they prefer, altitude. Geopod
+						maintains a customizable history of launched dropsondes which
+						users can cycle through to see how the graphs change at different
+						locations.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<span class="minorHeadingStyle">Particle Imager</span> <br /> <br />
+						<img class="LeftAlignedImage topImage"
+							title="Particle Imager indicating Sectored Plates formation"
+							alt="Image of Geopod Particle Imager"
+							src="./Images/HomePageImages/GeopodParticleImager.png">The
+						Particle Imager helps users explore the effects of temperature and
+						relative humidity on particle formation by displaying images of
+						the particles that could form under the conditions at their
+						current location. This device updates continuously; a changed
+						image alerts users that they have moved to a location with
+						different particle formation. Users can cycle also through several
+						particle images within the same particle formation category.
+					</p>
+
+					<hr>
+
+					<p class="featuresEntry">
+						<img class="RightAlignedImage topImage indentRightSmall"
+							title="Distance Calculator"
+							alt="Image of Geopod Distance Calculator"
+							src="./Images/HomePageImages/GeopodDistanceMeasurer.png"><span
+							class="minorHeadingStyle">Distance Calculator</span><br /> <br />The
+						Distance Calculator measures the straight-line distance between a
+						starting point and the Geopod’s current location. Updating
+						continuously as the Geopod moves, this device ensures that users
+						can always see how far away they are from when they started and
+						evaluate changes in parameter values accordingly.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<span class="minorHeadingStyle">Notepad and Note Location
+							System</span><br /> <br /> <img class="LeftAlignedImage topImage"
+							title="Notepad showing Noted Locations"
+							alt="Image of Geopod Notepad"
+							src="./Images/HomePageImages/GeopodNotepad.png"> <img
+							class="RightAlignedImage topImage bottomImage indentRightSmall"
+							title="Note Location Prompt"
+							alt="Image of Geopod Note Location Prompt"
+							src="./Images/HomePageImages/GeopodNoteLocationPrompt.png">The
+						Note Location System allows users to keep track of interesting
+						locations as they fly through the atmosphere. “Noting” a location
+						saves its lat, lon and alt along with the values of all the
+						parameters in the parameter display panel and an optional comment
+						in the Notepad. Users can later open the Notepad to see their
+						noted locations and add additional comments. The Notepad serves as
+						a mini-text editor: users can edit their notes, save them in a
+						.txt file, and open other .txt files from previous sessions all
+						inside Geopod.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<img class="RightAlignedImage topImage"
+							title="Gridpoints displayed in Geopod"
+							alt="Image of Geopod Gridpoints"
+							src="./Images/HomePageImages/GeopodGridpoints.png"><span
+							class="minorHeadingStyle">Gridpoint Visualizer</span><br /> <br />Geopod
+						and IDV use 3D gridded data sets, which means that data from
+						certain points in the atmosphere is interpolated to provide
+						information for every location in the data volume. The Gridpoint
+						visualizer helps users to understand this underlying dataset by
+						showing the locations where actual data was given. Using the
+						autopilot, users can easily fly to any of these gridpoints and see
+						the actual conditions there.
+					</p>
+					<hr>
+					<span class="minorHeadingStyle">Flight Data Recorder and
+						Flight Playback</span>
+					<p>The Flight Data Recorder allows users to maintain a record
+						of their flight path and the activities, like launching dropsondes
+						and noting locations, that they have performed at various
+						locations. Then with the Flight Playback feature, users can be
+						automatically taken back through their movements and activities to
+						review exactly what took place during their exploration of the
+						atmosphere.</p>
+
+				</div>
+				<hr>
+				<hr>
+				<br /> <br />
+				<div id=additionalFeatures>
+					<span class="headingStyle">Additional Features</span>
+					<p>In addition to navigational instruments and the devices
+						described above, Geopod provides several additional systems that
+						provide advanced features and allow users to customize their
+						experience.</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<span class="minorHeadingStyle">Parameter Chooser</span> <br /> <br />
+						<img class="LeftAlignedImage topImage" title="Parameter Chooser"
+							alt="Image of Geopod Parameter Chooser"
+							src="./Images/HomePageImages/GeopodParameterChooser.png">The
+						parameter chooser lets users decide which parameters they want
+						Geopod to display and update as they navigate through the
+						atmosphere. Users can select up to 19 of the over 50 parameters
+						available, ensuring that they have just the right information to
+						explore whatever meteorological concepts they choose.
+					</p>
+					<hr>
+
+					<p class="featuresEntry">
+						<img class="RightAlignedImage topImage indentRightLarge"
+							title="Isosurface Display"
+							alt="Image of Geopod Isosurface Display"
+							src="./Images/HomePageImages/GeopodIsosurfaceDisplay.png"><span
+							class="minorHeadingStyle">Isosurface Display</span><br /> <br />This
+						feature makes it easy to view, adjust, and remove the 3D
+						isosurfaces displayed in Geopod. Users can see what parameter was
+						used to create each isosurface, determine what constant value of
+						that parameter is being shown, change the parameter value, remove
+						the isosurface completely, or use a shortcut to the IDV interface
+						where they can access more advanced isosurface manipulation
+						options.
+					</p>
+					<hr>
+
+					<div class="featuresEntry">
+						<br /> <span class="minorHeadingStyle">Help/Resource
+							System</span><br /> <br />
+						<div class=imageHolder>
+							<img class="LeftAlignedPairImage topImage"
+								title="Help System showing Key Controls"
+								alt="Image of Geopod Help System"
+								src="./Images/HomePageImages/GeopodHelpKeys.png"> <img
+								class="RightAlignedPairImage topImage"
+								title="Help System showing Resources"
+								alt="Image of Geopod Help System"
+								src="./Images/HomePageImages/GeopodHelpResources.png">
+						</div>
+						Help is always close at hand in Geopod. The help system gives a
+						complete description of key and mouse controls and provides links
+						to other helpful meteorological and Geopod-related content. <br />
+					</div>
+					<hr>
+
+					<p class="featuresEntry">
+						<img class="RightAlignedImage topImage indentRightLarge"
+							title="Settings Manager" alt="Image of Geopod Settings Manager"
+							src="./Images/HomePageImages/GeopodSettings.png"><span
+							class="minorHeadingStyle">Settings Manager</span><br /> <br />Advanced
+						settings can be safely ignored by novice users but provide
+						advanced users with the flexibility to modify how navigation,
+						flight recording, the Dropsonde device, and other systems behave.
+					</p>
+
+				</div>
+				<hr>
+				<hr>
+				<br /> <br />
+				<div>
+
+					<p class="featuresEntry">
+						<span class="headingStyle">Mission System</span> <br /> <br />
+						The mission system allows students to view missions (lab
+						assignments specially designed for use with Geopod) and take
+						assessments right from inside Geopod. See our <a
+							href="./missionSystemOverview.html">Mission System</a> page for
+						more information. <img class="LeftAlignedImage bottomImage"
+							title="Mission displayed in Geopod"
+							alt="Image of Geopod Mission System"
+							src="./Images/HomePageImages/GeopodMission.png"> <img
+							class="RightAlignedImage bottomImage"
+							title="Mission Assessment in Geopod"
+							alt="Image of Mission Assessment"
+							src="./Images/HomePageImages/GeopodMissionAssessment.png">
+					</p>
+				</div>
+			</div>
+			<div class="grid_1">&nbsp;</div>
+		</div>
+	</div>
+</body>
+</html>

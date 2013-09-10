@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<title>GEOpod - GEOsciences Probe Of Discovery - Home</title>
+
+<script src="Js/Libraries/jquery-1.6.1.js"></script>
+<script src="Js/Libraries/NivoSlider/jquery.nivo.slider.js"></script>
+
+<link rel="stylesheet" href="Css/mainStyle.css" />
+<link rel="stylesheet" href="Js/Libraries/NivoSlider/themes/bar/bar.css" />
+<link rel="stylesheet" href="Js/Libraries/NivoSlider/nivo-slider.css" />
+
+<script>
+	$ (document).ready (
+			function ()
+			{
+				$ ('div.header').load (
+						'homeHeader.html',
+						function ()
+						{
+							$ ('.homeNavLink').addClass ('selectedLink');
+							$ ('div.titleText').html (
+									'Geopod: Immersive 3D Data Visualization');
+						});
+
+				// Start Nivo Slider for displaying images
+				$ ('#slider').nivoSlider ();
+			});
+</script>
+</head>
+
+<body>
+	<div class="content">
+		<div class="header"></div>
+		<div class="container_12">
+			<div class="grid_1">&nbsp;</div>
+			<div class="grid_10">
+
+				<div class="slider-wrapper theme-bar">
+					<div id="slider" class="nivoSlider">
+						<img src="Images/Slider/Dropsonde.png" /> <img
+							src="Images/Slider/GridPoints.png" /> <img
+							src="Images/Slider/Particle.png" /> <img
+							src="Images/Slider/TopDownLockOn.png" /> <img
+							src="Images/Slider/Isosurface.png" />
+					</div>
+
+				</div>
+
+
+
+
+				<p>
+					<span class="minorHeadingStyle">What is Geopod?</span> <br />
+					Geopod is an open source, java-based plugin for the <a
+						href="http://www.unidata.ucar.edu/software/idv">Integrated
+						Data Viewer (IDV)</a>, a geoscience visualization software framework
+					created by <a href="http://www.unidata.ucar.edu">Unidata</a>.
+					Developed by the Computer Science and Earth Science departments at
+					<a href="http://www.millersville.edu">Millersville University</a>
+					through a National Science Foundation grant, Geopod is a learning
+					tool designed to enhance undergraduate level earth science
+					education by providing students and instructors with a novel and
+					intuitive way to explore meteorological concepts. Geopod presents a
+					new perspective and simplified interface for using some important
+					features of traditional IDV, while including new features to
+					enhance learning and facilitate classroom use.
+				</p>
+
+
+				<p>
+					<span class="minorHeadingStyle">How does Geopod help
+						students learn?</span> <br /> Geopod changes how students interact with
+					the meteorological data presented with IDV. Rather than simply
+					viewing a 3D image on a 2D screen, Geopod users are immersed in a
+					3D environment where they can navigate with video-game like
+					controls, see atmospheric conditions at their current location, and
+					use a variety of systems to gather additional data as they fly
+					through the atmosphere. This unique, intuitive interaction style is
+					designed to motivate students to explore the atmosphere and
+					encourage them to learn meteorological concepts.
+				</p>
+				<p>
+					As students explore the atmosphere, Geopod uses a variety of
+					techniques to help them to understand and visualize atmospheric
+					conditions. One of the most significant of these is depicting <span
+						class="italicizedBold">isosurfaces</span> of various parameters
+					which allow students to see all locations (as a 3D surface) where
+					those parameters take on particular values. Geopod is capable of
+					displaying isosurfaces for a variety of different parameters or for
+					the same parameter at multiple values simultaneously. Rather than
+					just viewing these isosurfaces from a distance, students can fly
+					through them to investigate their appearance at close range.
+				</p>
+				<p>
+					Additionally, as students fly through the atmosphere to explore
+					isosurfaces, Geopod’s continuously updating <span
+						class="italicizedBold">parameter display panel</span> shows the
+					current values of up to 19 different parameters. This allows
+					students to investigate not just the shape of the isosurface, but
+					its influence on and the interactions among many other parameters.
+					<img class=LeftAlignedImage
+						title="Parameter Display and Overflow Panels" alt="Geopod Image"
+						src="./Images/HomePageImages/GeopodParameters.png"> To
+					further enhance learning, the isosurface lock mechanism allows
+					students to “lock on” to an isosurface and fly along the surface,
+					observing how other parameters change while the one parameter
+					remains constant.
+				</p>
+				<p>
+					In addition to the primary learning mechanisms of isosurface and
+					parameter display, a variety of other features like the Dropsonde
+					device, Particle Imager, Note Location system and many others help
+					students gather data and learn meteorological concepts. See our <a
+						href="./features.html">Features</a> page for more details.
+				</p>
+				<p>
+					To facilitate student exploration and minimize time spent learning
+					the software, Geopod’s interface was designed to be clean,
+					easy-to-use, and accessible to novices and experts alike. In 2010
+					we conducted a <a href="documents/GeopodUsabilityStudy.pdf">usability
+						study (PDF)</a> to help us find and address any user difficulties, and
+					we have been improving continuously ever since.
+				</p>
+
+				<p>
+					<span class="minorHeadingStyle">Does Geopod present accurate
+						atmospheric conditions?</span> <br /> Absolutely. The data used in
+					Geopod for isosurface rendering, parameter display, and all other
+					subsystems is authentic geophysical data taken from data sources
+					loaded into IDV. As such it is based on actual physics, thus
+					exhibiting technical accuracy and scientific soundness.
+				</p>
+
+				<p>
+					<span class="minorHeadingStyle">How does Geopod help
+						instructors present material?</span> <br /> Geopod's Mission System is
+					a powerful yet flexible teaching tool which allows educators to
+					create and distribute missions which their students can access
+					directly from Geopod. Using our online Mission Builder, instructors
+					can combine background material with specific objectives and
+					assessment questions to produce their own mission precisely
+					tailored to their class goals, or adapt one of the missions already
+					created by other instructors. Students can then view the mission,
+					carry out its objectives, and respond to assessment questions all
+					while using Geopod. Visit the <a
+						href="./missionSystemOverview.html">Mission System</a> page to
+					learn more.
+				</p>
+
+				<p>
+					<span class="minorHeadingStyle">How can I learn more about
+						Geopod?<img class="RightAlignedImage bottomImage topImage"
+						title="Geopod with Particle Imager and Gridpoints"
+						alt="Geopod Image" src="./Images/HomePageImages/Geopod.png">
+					</span> <br /> To find out more about what Geopod has to offer, visit our
+					<a href="./features.html">Features</a> page or use the resources
+					below:
+				</p>
+
+				<ul>
+					<li><a href="documents/GeopodDemo.wmv">Geopod Demo (WMV)</a></li>
+
+					<li><a href="documents/GeopodUsersGuide.pdf">Geopod Users
+							Guide (PDF)</a></li>
+
+					<li><a href="documents/GeopodQuickStartGuide.pdf">Geopod
+							Quick Start Guide (PDF)</a></li>
+				</ul>
+
+				<p>
+					Geopod is open source and freely available to the public. If you
+					would like to try Geopod for yourself, just visit the <a
+						href="./install.html">Install</a> page for instructions. We are
+					still in the testing stage but we welcome friendly users and
+					constructive criticism. If you have additional questions, feel free
+					to <a href="./contactUs.html">contact us</a>.
+				</p>
+
+			</div>
+			<div class="grid_1">&nbsp;</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+.PageHeader {
+	text-align: center;
+}
+
+.dropdownTitle {
+	font-weight: bold;
+}
+
+#WelcomeText {
+	font-style: italic;
+	float: left;
+}
+
+.FakeLink {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#RightAlignTab {
+	float: right;
+}
+
+#LogOut {
+	float: right;
+}
+
+.loadingIcon {
+	display: none;
+}
+
+.disabled {
+	color: gray;
+}
+
+.debug {
+	color: green ! important;
+	background: red ! important;
+}
+
+.error {
+	color: red;
+}
+/* .favoriteMission {
+	background: #D6FDD6;
+	background-image: url('../Images/Star.png');
+}
+
+.privateMission {
+	background: BurlyWood;
+}
+
+.privateMission.favoriteMission {
+	background: #BEA9E8;
+} */
+table {
+	border-collapse: collapse;
+	border: 1px solid gray;
+}
+
+tr,td {
+	border: 1px solid gray;
+	padding: 0.2em;
+}
+
+thead tr {
+	background: #eee;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eee),
+		to(#bbb) );
+	background: -moz-linear-gradient(top, #eee, #bbb);
+}
+
+.Popup {
+	display: none;
+}
+
+/* to make popups have no close buttons*/
+.ui-dialog-titlebar-close {
+	display: none;
+}
+
+textarea {
+	resize: none;
+	width: 100%;
+}
+
+.InsertMarker {
+	float: right;
+}
+
+.ViewAllLink,.DeleteDropdownButton,.DeleteAnswerButton {
+	float: right;
+}
+
+table {
+	width: 100%;
+}
+
+.OutlineArea {
+	border: 1px solid;
+}
+
+.AnswerLine {
+	width: 85%;
+	float: left;
+}
+
+.DeleteQuestionButton {
+	display: table;
+	margin: 10px auto;
+}
+
+.Answer {
+	margin: 0.3em 0.2em 0.3em 0.2em;
+	padding: 0.5em 0.4em 0.5em 1.5em;
+}
+
+.ChildErrorIndicator {
+	background-color: #FFCCCC;
+}
+
+.TotalMissionDisplay {
+	float: right;
+	font-size: 17.6px;
+	font-weight: normal;
+}
+
+#TotalMissions {
+	padding-right: 10px;
+}
+
+.HelpTitle {
+	font-weight: bold;
+}
+
+.HelpSpecialText {
+	font-style: italic;
+}
+
+.HelpPageMain {
+	font-size: 14px;
+}
+
+.HelpIndented {
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.HelpSmall {
+	font-size: 12px;
+}
+
+.HelpImage {
+	padding-left: 10px;
+}
+
+.HelpImageCentered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto
+}
+
+.HelpTextWithImage {
+	text-align: justify;
+}

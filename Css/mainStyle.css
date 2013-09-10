@@ -1,0 +1,535 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*
+	Variable Grid System.
+	Learn more ~ http://www.spry-soft.com/grids/
+	Based on 960 Grid System - http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+body {
+	background-color: #e8eeff;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+}
+
+a img {
+	text-decoration: none;
+	border: 0px;
+}
+
+div.content {
+	width: 960px;
+	margin: 0 auto;
+	height: 100%;
+	padding-bottom: 40px;
+}
+
+div.header {
+	height: 150px;
+}
+
+div.footer {
+	width: 960px;
+	height: 40px;
+}
+
+.logo {
+	background: url(../Images/logo.png) no-repeat;
+	width: 220px;
+	height: 115px;
+}
+
+.topNav {
+	background: url(../Images/headerGradient2.png) no-repeat;
+	width: 740px;
+	margin-top: 25px;
+	font-size: 16px;
+}
+
+div.topNavLink {
+	text-align: center;
+	float: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: transparent;
+}
+
+div.topNavLink.selectedLink {
+	background-color: #98b48d;
+	border-color: #575e5e;
+}
+
+a.topNavLink,a.topNavLink:visited {
+	text-decoration: none;
+	color: black;
+}
+
+a.topNavLink:hover {
+	text-decoration: none;
+	color: white;
+}
+
+.homeNavLink {
+	width: 90px;
+}
+
+.featuresNavLink {
+	width: 89px;
+}
+
+.eventsNavLink {
+	width: 82px;
+}
+
+.installNavLink {
+	width: 62px;
+}
+
+.aboutUsNavLink {
+	width: 102px;
+}
+
+.contactUsNavLink {
+	width: 105px;
+}
+
+.missionSystemOverviewNavLink {
+	width: 142px;
+}
+
+div.titleText {
+	text-align: center;
+	font-size: 24px;
+	padding-top: 90px;
+	width: 780px;
+}
+
+div.titleText.missionTitle {
+	padding-left: 220px;
+	width: 700px;
+}
+
+.headingStyle {
+	font-size: 18px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.minorHeadingStyle {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+span.subHeadingStyle {
+	font-size: 14px;
+}
+
+div.bottomText {
+	text-align: center;
+}
+
+.italicizedBold {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.bold {
+	font-weight: bold
+}
+
+.italicized {
+	font-style: italic;
+}
+
+.RightAlignedImage {
+	padding-left: 10px;
+	padding-top: 5px;
+	float: right;
+}
+
+.OverviewImage {
+	padding-bottom: 10px;
+	padding-left: 10px;
+	float: left;
+}
+
+.LeftAlignedImage {
+	padding-top: 5px;
+	padding-right: 10px;
+	float: left;
+}
+
+.bottomImage {
+	padding-bottom: 15px;
+}
+
+.topImage {
+	padding-top: 0px;
+}
+
+.captionedImage {
+	padding-bottom: 0.5em;
+}
+
+.indentRightSmall {
+	padding-right: 15px;
+}
+
+.indentRightLarge {
+	padding-right: 25px;
+}
+
+.indentLeftSmall {
+	padding-left: 15px;
+}
+
+.indentLeftLarge {
+	padding-left: 25px;
+}
+
+div.rightAlignCaptionHolder {
+	font-size: 80%;
+	text-align: center;
+	width: 295px;
+	float: right;
+}
+
+div.imageHolder {
+	float: left;
+}
+
+.LeftAlignedPairImage {
+	padding-right: 3px;
+	float: left;
+}
+
+.RightAlignedPairImage {
+	padding-left: 3px;
+	padding-right: 10px;
+	float: right;
+}
+
+ol.letters {
+	list-style-type: lower-alpha;
+}
+
+li {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.featuresEntry {
+	display: inline-block;
+}
+
+.SpecialIndent {
+	border-style: solid;
+	border-width: 1px;
+	padding: 3px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+/* Containers
+----------------------------------------------------------------------------------------------------*/
+.container_12 {
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+}
+
+/* Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+.grid_1,.grid_2,.grid_3,.grid_4,.grid_5,.grid_6,.grid_7,.grid_8,.grid_9,.grid_10,.grid_11,.grid_12
+	{
+	display: inline;
+	float: left;
+	position: relative;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/* Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+.alpha {
+	margin-left: 0;
+}
+
+.omega {
+	margin-right: 0;
+}
+
+/* Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_12 .grid_1 {
+	width: 60px;
+}
+
+.container_12 .grid_2 {
+	width: 140px;
+}
+
+.container_12 .grid_3 {
+	width: 220px;
+}
+
+.container_12 .grid_4 {
+	width: 300px;
+}
+
+.container_12 .grid_5 {
+	width: 380px;
+}
+
+.container_12 .grid_6 {
+	width: 460px;
+}
+
+.container_12 .grid_7 {
+	width: 540px;
+}
+
+.container_12 .grid_8 {
+	width: 620px;
+}
+
+.container_12 .grid_9 {
+	width: 700px;
+}
+
+.container_12 .grid_10 {
+	width: 780px;
+}
+
+.container_12 .grid_11 {
+	width: 860px;
+}
+
+.container_12 .grid_12 {
+	width: 940px;
+}
+
+/* Prefix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_12 .prefix_1 {
+	padding-left: 80px;
+}
+
+.container_12 .prefix_2 {
+	padding-left: 160px;
+}
+
+.container_12 .prefix_3 {
+	padding-left: 240px;
+}
+
+.container_12 .prefix_4 {
+	padding-left: 320px;
+}
+
+.container_12 .prefix_5 {
+	padding-left: 400px;
+}
+
+.container_12 .prefix_6 {
+	padding-left: 480px;
+}
+
+.container_12 .prefix_7 {
+	padding-left: 560px;
+}
+
+.container_12 .prefix_8 {
+	padding-left: 640px;
+}
+
+.container_12 .prefix_9 {
+	padding-left: 720px;
+}
+
+.container_12 .prefix_10 {
+	padding-left: 800px;
+}
+
+.container_12 .prefix_11 {
+	padding-left: 880px;
+}
+
+/* Suffix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_12 .suffix_1 {
+	padding-right: 80px;
+}
+
+.container_12 .suffix_2 {
+	padding-right: 160px;
+}
+
+.container_12 .suffix_3 {
+	padding-right: 240px;
+}
+
+.container_12 .suffix_4 {
+	padding-right: 320px;
+}
+
+.container_12 .suffix_5 {
+	padding-right: 400px;
+}
+
+.container_12 .suffix_6 {
+	padding-right: 480px;
+}
+
+.container_12 .suffix_7 {
+	padding-right: 560px;
+}
+
+.container_12 .suffix_8 {
+	padding-right: 640px;
+}
+
+.container_12 .suffix_9 {
+	padding-right: 720px;
+}
+
+.container_12 .suffix_10 {
+	padding-right: 800px;
+}
+
+.container_12 .suffix_11 {
+	padding-right: 880px;
+}
+
+/* Push Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_12 .push_1 {
+	left: 80px;
+}
+
+.container_12 .push_2 {
+	left: 160px;
+}
+
+.container_12 .push_3 {
+	left: 240px;
+}
+
+.container_12 .push_4 {
+	left: 320px;
+}
+
+.container_12 .push_5 {
+	left: 400px;
+}
+
+.container_12 .push_6 {
+	left: 480px;
+}
+
+.container_12 .push_7 {
+	left: 560px;
+}
+
+.container_12 .push_8 {
+	left: 640px;
+}
+
+.container_12 .push_9 {
+	left: 720px;
+}
+
+.container_12 .push_10 {
+	left: 800px;
+}
+
+.container_12 .push_11 {
+	left: 880px;
+}
+
+/* Pull Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+.container_12 .pull_1 {
+	left: -80px;
+}
+
+.container_12 .pull_2 {
+	left: -160px;
+}
+
+.container_12 .pull_3 {
+	left: -240px;
+}
+
+.container_12 .pull_4 {
+	left: -320px;
+}
+
+.container_12 .pull_5 {
+	left: -400px;
+}
+
+.container_12 .pull_6 {
+	left: -480px;
+}
+
+.container_12 .pull_7 {
+	left: -560px;
+}
+
+.container_12 .pull_8 {
+	left: -640px;
+}
+
+.container_12 .pull_9 {
+	left: -720px;
+}
+
+.container_12 .pull_10 {
+	left: -800px;
+}
+
+.container_12 .pull_11 {
+	left: -880px;
+}
+
+/* Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* http://perishablepress.com/press/2008/02/05/lessons-learned-concerning-the-clearfix-css-hack */
+.clearfix:after {
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.clearfix {
+	display: block;
+}

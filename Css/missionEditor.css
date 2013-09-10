@@ -1,0 +1,12 @@
+textarea.bvalidator_invalid,input[type=text].bvalidator_invalid {
+	background-color: #FFCCCC;
+}
+
+.errorMessage {
+	font-size: 12px;
+	color: red;
+}
+
+#HelpLink {
+	text-align: center;
+}

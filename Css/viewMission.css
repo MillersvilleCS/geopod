@@ -1,0 +1,25 @@
+.FieldLabel {
+	font-size: 110%;
+	font-weight: bold;
+}
+
+.Answer {
+	border-style: solid;
+	border-width: thin;
+	border-color: black;
+}
+
+[data-name=backgroundText] {
+	border-style: solid;
+	border-color: black;
+	padding: 10px;
+}
+
+#ChangeStatusLink {
+	font-style: italic;
+	font-size: small;
+}
+
+.AnswerLine {
+	width: 95%;
+}

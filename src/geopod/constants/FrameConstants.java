@@ -31,6 +31,7 @@ public final class FrameConstants
 	public static final Rectangle NAV_EXT_PANEL_BOUNDS;
 	public static final Rectangle PARTICLE_PANEL_BOUNDS;
 	public static final Rectangle DROPSONDE_PANEL_BOUNDS;
+	public static final Rectangle MOVIECAPTURE_PANEL_BOUNDS;
 
 	public static final Rectangle TOP_VIEW_CANVAS_BOUNDS;
 
@@ -44,7 +45,8 @@ public final class FrameConstants
 	public static final Rectangle MISSION_PANEL_BOUNDS;
 	public static final Rectangle ISOSURFACE_VIEW_PANEL_BOUNDS;
 	public static final Rectangle DISTANCE_PANEL_BOUNDS;
-	public static final Rectangle MOVIECAPTURE_PANEL_BOUNDS;
+	public static final Rectangle TIMECONTROL_PANEL_BOUNDS;
+	
 	public static final Rectangle CONFIG_PANEL_BOUNDS;
 
 	public static final String APPLICATION_ICON_PATH;
@@ -76,13 +78,17 @@ public final class FrameConstants
 		NAV_EXT_PANEL_BOUNDS = new Rectangle (1615, 600, 60, 300);
 		PARTICLE_PANEL_BOUNDS = new Rectangle (1200, 78, 406, 337);
 		DROPSONDE_PANEL_BOUNDS = new Rectangle (1200, 420, 406, 505);
+		TIMECONTROL_PANEL_BOUNDS = new Rectangle ((INNER_VIEWING_AREA_BOUNDS.width / 2) - 75,
+		                                          PRIMARY_BUTTON_PANEL_BOUNDS.y - 40, 150, 40);
 		// The bounding rectangle height and the panel height should be the same
-		DISTANCE_PANEL_BOUNDS = centerRectangle (new Rectangle (78, 78, INNER_VIEWING_AREA_BOUNDS.width, 190), new Dimension (412, 190));
-		MOVIECAPTURE_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (1140, 820));
+		
 
 		
 		TOP_VIEW_CANVAS_BOUNDS = new Rectangle (78, 78, 225, 225);
 
+		DISTANCE_PANEL_BOUNDS = centerRectangle (new Rectangle (78, 78, INNER_VIEWING_AREA_BOUNDS.width, 190), new Dimension (412, 190));
+//		TIMECONTROL_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (150, 40));
+		MOVIECAPTURE_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (1140, 820));
 		PARAMETER_CHOOSER_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (1500, 820));
 		HELP_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (360, 480));
 		LOADING_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (500, 200));

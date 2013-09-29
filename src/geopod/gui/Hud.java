@@ -15,6 +15,7 @@ import geopod.eventsystem.events.GeopodEventId;
 import geopod.gui.components.OffScreenCanvas3D;
 import geopod.gui.components.OnScreenCanvas3D;
 import geopod.gui.panels.ParameterChooserPanel;
+import geopod.gui.panels.TimeControlPanel;
 import geopod.input.Keys;
 import geopod.utils.ThreadUtility;
 import geopod.utils.coordinate.IdvCoordinateUtility;
@@ -438,6 +439,10 @@ public class Hud
 			else if (actionCommand.equals ("lock"))
 			{
 				m_geopod.toggleSurfaceLock ();
+			}
+			else if (actionCommand.equals ("timePlay"))
+			{
+				m_flightFrame.timeControlPlay ();
 			}
 		}
 		catch (NullPointerException e)

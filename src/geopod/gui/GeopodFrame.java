@@ -20,6 +20,7 @@ import geopod.gui.panels.NotificationPanel;
 import geopod.gui.panels.ParameterChooserPanel;
 import geopod.gui.panels.PrimaryButtonPanel;
 import geopod.gui.panels.StatusPanel;
+import geopod.gui.panels.TimeControlPanel;
 import geopod.gui.panels.ToolPanel;
 import geopod.gui.panels.datadisplay.OverflowPanel;
 import geopod.gui.panels.datadisplay.SensorDisplayPanel;
@@ -104,6 +105,7 @@ public class GeopodFrame extends JFrame {
 	private HelpPanel m_helpPanel;
 	private ParameterChooserPanel m_parameterChooserPanel;
 	private StatusPanel m_statusPanel;
+	private TimeControlPanel m_timeControlPanel;
 
 	private LoadingPanel m_loadingPanel;
 	private LookUpPanel m_lookUpPanel;
@@ -268,6 +270,38 @@ public class GeopodFrame extends JFrame {
 		addLayeredComponent(m_topViewPanel, JLayeredPane.PALETTE_LAYER,
 				TOP_VIEW_CANVAS_BOUNDS);
 
+		
+		
+		
+		
+		
+		
+		
+		//////////////////////////////////////////
+		m_timeControlPanel = new TimeControlPanel(m_hud);
+		
+		m_timeControlPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				m_timeControlPanel.play ();
+			}
+		});
+		addLayeredComponent (m_timeControlPanel, 
+		                     JLayeredPane.PALETTE_LAYER,
+		                     TIMECONTROL_PANEL_BOUNDS);
+
+		//////////////////////////////////////////////
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		m_buttonPanel = new PrimaryButtonPanel(m_hud);
 		addLayeredComponent(m_buttonPanel, JLayeredPane.PALETTE_LAYER,
 				PRIMARY_BUTTON_PANEL_BOUNDS);
@@ -797,6 +831,13 @@ public class GeopodFrame extends JFrame {
 	 */
 	public void toggleConfigurationPanel() {
 		toggleVisibility(m_configurationPanel);
+	}
+	
+	/**
+	 * 
+	 */
+	public void timeControlPlay() {
+		m_timeControlPanel.play ();
 	}
 
 	/**

@@ -41,14 +41,14 @@ SETTING UP AN ECLIPSE PROJECT USING EGit
   ~Fill in the fields as follows
   
     Destination
-      Directory: where the remository will be cloned (most likely your Eclipse workspace)
+      Directory: where the repository will be cloned (most likely your Eclipse workspace)
       Initial branch:   master
       Clone submodules: unchecked
 
     Configuration
       Remote name: origin
       
-  ~Click 'Finish'
+  ~Click 'Next'
   
 7. Add a Java 7 or higher JRE System Library to the Build Path
 

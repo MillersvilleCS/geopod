@@ -1,64 +1,63 @@
 package geopod.gui.components;
 
 import java.awt.GraphicsConfiguration;
+import java.awt.image.BufferedImage;
+import java.util.concurrent.BlockingDeque;
 
 import javax.media.j3d.Canvas3D;
 
-public class OnScreenCanvas3D
-		extends Canvas3D
-{
+public class OnScreenCanvas3D extends Canvas3D {
 	private static final long serialVersionUID = -285918237121096542L;
-
 	private OffScreenCanvas3D m_offScreenCanvas;
+	private boolean m_isSchedulingScreenshot;
 
-	private boolean m_isSendingFrameRenderRequest = false;
-
-	public OnScreenCanvas3D (GraphicsConfiguration gconfig, boolean offscreenflag)
-	{
-		super (gconfig, offscreenflag);
+	public OnScreenCanvas3D(GraphicsConfiguration gconfig, boolean offscreenflag) {
+		super(gconfig, offscreenflag);
 	}
 
-	public OffScreenCanvas3D getOffScreenCanvas ()
-	{
+	public OffScreenCanvas3D getOffScreenCanvas() {
 		return m_offScreenCanvas;
 	}
 
-	/**
-	 * This method MUST be called before attempting to
-	 * {@linkplain #syncSizesWithOffScreenCanvas() take screenshots}.
-	 */
-	public void setOffScreenCanvas (OffScreenCanvas3D c)
-	{
+	public void setOffScreenCanvas(OffScreenCanvas3D c) {
 		m_offScreenCanvas = c;
-		this.syncSizesWithOffScreenCanvas ();
+		m_offScreenCanvas.postInit(this);
 	}
 
 	/**
-	 * This method should only be called by
-	 * {@link #setOffScreenCanvas(OffScreenCanvas3D)}.
+	 * Must be called before {@link #getScreenshot() taking screenshots}.
 	 */
-	public void syncSizesWithOffScreenCanvas ()
-	{
-		m_offScreenCanvas.postInit (this.getSize (), this.getScreen3D ());
+	public void setContainers(BlockingDeque<BufferedImage> images,
+			BlockingDeque<Long> timestamps) {
+		m_offScreenCanvas.setContainers(images, timestamps);
+	}
+
+	public int getScreenCaptureWidth() {
+		return m_offScreenCanvas.getScreenCaptureWidth();
+	}
+
+	public int getScreenCaptureHeight() {
+		return m_offScreenCanvas.getScreenCaptureHeight();
+	}
+
+	public void setScreenCaptureSize(int width, int height) {
+		m_offScreenCanvas.setScreenCaptureSize(width, height);
 	}
 
 	/**
-	 * Schedules the rendering of one frame by this instance's
-	 * {@link OffScreenCanvas3D}. Before calling this method,
-	 * {@link #syncSizesWithOffScreenCanvas()} MUST be called.
+	 * Schedules the rendering of one frame from this {@code OnScreenCanvas3D}'s
+	 * {@link OffScreenCanvas3D}. The {@code OffScreenCanvas3D} will then add
+	 * the frame to its image container.
 	 */
-	public void getScreenshot ()
-	{
-		m_isSendingFrameRenderRequest = true;
+	public void getScreenshot() {
+		this.m_isSchedulingScreenshot = true;
 	}
 
-	@Override
-	public void postSwap ()
-	{
-		if (m_isSendingFrameRenderRequest)
-		{
-			m_isSendingFrameRenderRequest = false;
-			m_offScreenCanvas.getScreenshot ();
+	public void postSwap() {
+		if (m_isSchedulingScreenshot) {
+			m_isSchedulingScreenshot = false;
+			m_offScreenCanvas.renderOffScreenBuffer();
 		}
+
 	}
 }

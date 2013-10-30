@@ -8,11 +8,12 @@ package geopod.constants.parameters.enums;
  */
 public enum ComponentParameter
 {
+	U_WIND_WRF("u_wind"), V_WIND_WRF("v_wind"),
 	U_WIND("u-component_of_wind"), V_WIND("v-component_of_wind"),
 	//GEOPOTENTIAL_HEIGHT("Geopotential_height"),
 	//VERTICAL_VELOCITY_PRESSURE("Vertical_velocity_pressure"),
-	TEMPERATURE("Temperature"),
-	RELATIVE_HUMIDITY("Relative_humidity"),
+	TEMPERATURE("Temperature"),	// same for WRF datasets
+	RELATIVE_HUMIDITY("Relative_humidity"),	// same for WRF datasets
 	//MIXING_RATIO("mixingratio"),
 	DEWPOINT("dewpoint"),
 	//ABSOLUTE_VORTICITY("absvort"),

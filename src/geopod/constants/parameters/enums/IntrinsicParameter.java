@@ -21,6 +21,7 @@ public enum IntrinsicParameter
 	EQUIVALENT_POTENTIAL_TEMPERATURE("Equiv. Potential Temperature"),
 	//FLOW_VECTORS("Flow Vectors"),
 	GEOPOTENTIAL_HEIGHT("Geopotential height"),
+	GEOPOTENTIAL_HEIGHT_WRF("Geopotential_height"),
 	//GEOSTOPHIC_WIND("Geostrophic Wind"),
 	//GEOSTOPHIC_WIND_VECTORS("Geostrophic Wind Vectors"),
 	//GRID_2D_TRAJECTORY("Grid 2D Trajectory"),

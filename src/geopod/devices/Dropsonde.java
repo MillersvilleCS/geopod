@@ -2,7 +2,6 @@ package geopod.devices;
 
 import geopod.ConfigurationManager;
 import geopod.constants.parameters.IDV4ParameterConstants;
-import geopod.constants.parameters.ParameterListConstants;
 import geopod.constants.parameters.ParameterUtil;
 import geopod.utils.coordinate.IdvCoordinateUtility;
 import geopod.utils.idv.VerticalProfileUtility;

@@ -72,9 +72,9 @@ public class ToolPanel
 		m_hud.addObserver (distanceButton, GeopodEventId.DISTANCE_BUTTON_STATE_CHANGED);
 		super.add (distanceButton, "wrap");
 		
-		String movieCaptureImage = "//Resources/Images/User Interface/Buttons/MissionButton.png";
-		String movieCaptureImageDown = "//Resources/Images/User Interface/Buttons/DistanceButtonDown.png";
-		String movieCaptureImageHover = "//Resources/Images/User Interface/Buttons/DistanceButtonHover.png";
+		String movieCaptureImage = "//Resources/Images/User Interface/Buttons/VideoButton.png";
+		String movieCaptureImageDown = "//Resources/Images/User Interface/Buttons/VideoButtonDown.png";
+		String movieCaptureImageHover = "//Resources/Images/User Interface/Buttons/VideoButtonHover.png";
 		GeopodButton movieCaptureButton = new GeopodButton (movieCaptureImage, movieCaptureImageDown, movieCaptureImageHover);
 		movieCaptureButton.setToolTipTexts (" Open Movie Capture ", " Close Movie Capture ");
 		movieCaptureButton.setActionCommand ("movieCapture");

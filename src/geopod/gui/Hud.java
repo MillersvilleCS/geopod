@@ -15,7 +15,7 @@ import geopod.eventsystem.events.GeopodEventId;
 import geopod.gui.components.OffScreenCanvas3D;
 import geopod.gui.components.OnScreenCanvas3D;
 import geopod.gui.panels.ParameterChooserPanel;
-import geopod.gui.panels.TimeControlPanel;
+import geopod.gui.panels.AnimationControlPanel;
 import geopod.input.Keys;
 import geopod.utils.ThreadUtility;
 import geopod.utils.coordinate.IdvCoordinateUtility;
@@ -31,6 +31,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -44,6 +45,8 @@ import ucar.unidata.data.DataSource;
 import ucar.unidata.idv.ViewManager;
 import ucar.unidata.idv.control.ThreeDSurfaceControl;
 import ucar.unidata.util.LogUtil;
+import ucar.visad.display.AnimationWidget;
+import visad.VisADException;
 import visad.georef.EarthLocation;
 
 /**
@@ -440,9 +443,15 @@ public class Hud
 			{
 				m_geopod.toggleSurfaceLock ();
 			}
-			else if (actionCommand.equals ("timePlay"))
+			else if (actionCommand.equals ("animationPlayPause"))
 			{
-				m_flightFrame.timeControlPlay ();
+				m_flightFrame.animationControlPlayPause ();
+			}
+			else if (actionCommand.equals ("animationPrevious")) {
+				m_flightFrame.animationControlPrevious ();
+			}
+			else if (actionCommand.equals ("animationNext")) {
+				m_flightFrame.animationControlNext ();
 			}
 		}
 		catch (NullPointerException e)
@@ -649,6 +658,10 @@ public class Hud
 		{
 			m_flightFrame.updateDisplay ();
 		}
+	}
+	
+	public AnimationWidget getAnimationWidget() {
+		return m_plugin.getViewManager().getAnimationWidget();
 	}
 
 	/**

@@ -6,6 +6,7 @@ import geopod.constants.parameters.enums.ComponentParameter;
 import geopod.constants.parameters.enums.IntrinsicParameter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -89,9 +90,9 @@ public class ParameterUtil
 	 * 
 	 * @return
 	 */
-	public static List<String> getDefaultGeopodParameters ()
+	public static Collection<String> getDefaultGeopodParameters ()
 	{
-		List<String> params = new ArrayList<String> ();
+		Set<String> params = new HashSet<String> ();
 
 		// Speed
 		params.add (derivedParameter (IntrinsicParameter.SPEED,
@@ -105,9 +106,6 @@ public class ParameterUtil
 		params.add (intrinsicParameter (IntrinsicParameter.GEOPOTENTIAL_HEIGHT, AtLevelModifier.AT_ISOBARIC));
 		params.add (intrinsicParameter (IntrinsicParameter.GEOPOTENTIAL_HEIGHT, AtLevelModifier.AT_PRESSURE));
 
-		// Temperature + Dewpoint
-		params.addAll (getDropsondeTDpParameters ());
-
 		// Relative Humidity
 		params.addAll (getDropsondeRHParameters ());
 
@@ -116,7 +114,34 @@ public class ParameterUtil
 				componentParameter (ComponentParameter.TEMPERATURE, ComponentAtLevelModifier._ISOBARIC),
 				componentParameter (ComponentParameter.RELATIVE_HUMIDITY, ComponentAtLevelModifier._ISOBARIC)));
 
-		return Collections.unmodifiableList (params);
+		// Temperature
+		params.add (intrinsicParameter (IntrinsicParameter.TEMPERATURE, AtLevelModifier.AT_ISOBARIC));
+		params.add (intrinsicParameter (IntrinsicParameter.TEMPERATURE, AtLevelModifier.AT_PRESSURE));
+
+		// Dewpoint
+		/*
+		 * NOTE: The second parameter added here, Dewpoint Depression requires
+		 * the unqualified name of the Dewpoint parameter as one of its components.
+		 * This is yet another inconsistency in the new IDV4.0u parameter scheme.
+		 * Should this nomenclature ever change, the methods provided above should
+		 * more than suffice for future alteration.
+		 */
+		params.add (derivedParameter (IntrinsicParameter.DEWPOINT,
+				componentParameter (ComponentParameter.TEMPERATURE, ComponentAtLevelModifier._ISOBARIC),
+				componentParameter (ComponentParameter.RELATIVE_HUMIDITY, ComponentAtLevelModifier._ISOBARIC)));
+		params.add (derivedParameter (IntrinsicParameter.DEWPOINT_DEPRESSION,
+				componentParameter (ComponentParameter.TEMPERATURE, ComponentAtLevelModifier._ISOBARIC),
+				ComponentParameter.DEWPOINT.toString ()));
+
+		// Add all the parameters for the dropsonde
+		params.addAll (getDefaultDropsondeParameters ());
+
+		// To please the WRF gods
+		params.addAll (WRFParameterUtil.getDefaultGeopodParameters ());
+		
+		System.err.println(params.toString());
+
+		return Collections.unmodifiableSet (params);
 	}
 
 	/**
@@ -124,7 +149,7 @@ public class ParameterUtil
 	 * 
 	 * @return
 	 */
-	public static List<String> getPermanentGeopodParameters ()
+	public static Collection<String> getPermanentGeopodParameters ()
 	{
 		List<String> params = new ArrayList<String> ();
 
@@ -147,23 +172,11 @@ public class ParameterUtil
 	{
 		Set<String> params = new HashSet<String> ();
 
-		// Temperature + Relative Humidity
-		params.addAll (getPermanentGeopodParameters ());
+		// Temperature + Dewpoint
+		params.addAll (getDropsondeTDpParameters ());
 
-		// Dewpoint
-		/*
-		 * NOTE: The second parameter added here, Dewpoint Depression requires
-		 * the unqualified name of the Dewpoint parameter as one of its components.
-		 * This is yet another inconsistency in the new IDV4.0u parameter scheme.
-		 * Should this nomenclature ever change, the methods provided above should
-		 * more than suffice for future alteration.
-		 */
-		params.add (derivedParameter (IntrinsicParameter.DEWPOINT,
-				componentParameter (ComponentParameter.TEMPERATURE, ComponentAtLevelModifier._ISOBARIC),
-				componentParameter (ComponentParameter.RELATIVE_HUMIDITY, ComponentAtLevelModifier._ISOBARIC)));
-		params.add (derivedParameter (IntrinsicParameter.DEWPOINT_DEPRESSION,
-				componentParameter (ComponentParameter.TEMPERATURE, ComponentAtLevelModifier._ISOBARIC),
-				ComponentParameter.DEWPOINT.toString ()));
+		// Relative Humidity
+		params.addAll (getDropsondeRHParameters ());
 
 		// U-Wind + V-Wind
 		params.addAll (getDropsondeUVWindParameters ());
@@ -203,6 +216,9 @@ public class ParameterUtil
 				componentParameter (ComponentParameter.TEMPERATURE, ComponentAtLevelModifier._ISOBARIC),
 				ComponentParameter.DEWPOINT.toString ()));
 
+		// To please the WRF gods
+		params.addAll (WRFParameterUtil.getDropsondeTDewParameters ());
+
 		return Collections.unmodifiableList (params);
 	}
 
@@ -222,6 +238,9 @@ public class ParameterUtil
 		// V-Wind
 		params.add (intrinsicParameter (IntrinsicParameter.V_WIND, AtLevelModifier.AT_ISOBARIC));
 		params.add (intrinsicParameter (IntrinsicParameter.V_WIND, AtLevelModifier.AT_PRESSURE));
+
+		// To please the WRF gods
+		params.addAll (WRFParameterUtil.getDropsondeWindParameters ());
 
 		return Collections.unmodifiableList (params);
 	}
@@ -245,6 +264,9 @@ public class ParameterUtil
 		 */
 		params.add (intrinsicParameter (IntrinsicParameter.RELATIVE_HUMIDITY_L, AtLevelModifier.AT_ISOBARIC));
 		params.add (intrinsicParameter (IntrinsicParameter.RELATIVE_HUMIDITY_L, AtLevelModifier.AT_PRESSURE));
+
+		// To please the WRF gods
+		params.addAll (WRFParameterUtil.getDropsondeRHParameters ());
 
 		return Collections.unmodifiableList (params);
 
@@ -271,6 +293,8 @@ public class ParameterUtil
 		params.add (derivedParameter (IntrinsicParameter.POTENTIAL_TEMPERATURE,
 				componentParameter (ComponentParameter.TEMPERATURE, ComponentAtLevelModifier._ISOBARIC),
 				componentParameter (ComponentParameter.RELATIVE_HUMIDITY, ComponentAtLevelModifier._ISOBARIC)));
+
+		params.addAll (WRFParameterUtil.getDropsondeThetaEParameters ());
 
 		return Collections.unmodifiableList (params);
 	}

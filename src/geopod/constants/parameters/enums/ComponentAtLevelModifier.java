@@ -11,6 +11,7 @@ public enum ComponentAtLevelModifier
 {
 	_ISOBARIC("_isobaric"),
 	_HEIGHT_ABOVE_GROUND("_height_above_ground"),
+	NONE("")
 	;
 
 	private String name;

@@ -18,6 +18,12 @@ public enum AtLevelModifier
 	//AT_GROUND_OR_WATER_SURFACE("Ground or water surface"),
 	AT_HEIGHT_ABOVE_GROUND("Specified height level above ground"),
 	AT_ISOBARIC("Isobaric surface"),
+	
+	AT_ISOBARIC_WRF("isobaric"),
+	AT_SURFACE_WRF("surface"),
+	AT_PRESSURE_WRF("pressure"),
+	AT_HEIGHT_ABOVE_GROUND_WRF("height_above_ground"),
+	
 	//AT_LEVEL_OF_CLOUD_TOPS("Level of cloud tops"),
 	//AT_MAXIMUM_WIND_LEVEL("Maximum wind level"),
 	//AT_MEAN_SEA_LEVEL("Mean sea level"),

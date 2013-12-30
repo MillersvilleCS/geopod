@@ -277,7 +277,7 @@ public class Geopod
 	 * Maps the Dropsones to the dropsondeMarkers
 	 */
 	private Map<Dropsonde, DropsondeMarker> dropsondeMap;
-	
+
 	private Dropsonde m_selectedSonde;
 	/**
 	 * The behavior that handles key input for Geopod movement.
@@ -721,7 +721,7 @@ public class Geopod
 			sonde.launch (getEarthLocation (), m_time);
 
 			// Only show the dropsonde if it contains valid data
-			if (sonde.hasData () && ! historyContains (sonde))
+			if (sonde.hasData () && !historyContains (sonde))
 			{
 				DropsondeMarker marker = new DropsondeMarker (getWorldPose ().getPosition ());
 				// Maps the marker to the sonde so it can be deleted when the sonde is destroyed
@@ -729,7 +729,7 @@ public class Geopod
 				SceneGraphControl.spliceIntoIdvContentBranch (marker);
 				// Add the dropsonde to the history
 				m_dropsondeHistory.addElement (sonde);
-				
+
 				Debug.println (sonde + " added. (" + m_dropsondeHistory.getSize () + " dropsondes total)");
 
 				// Notify observers that the dropsonde was launched successfully
@@ -748,15 +748,17 @@ public class Geopod
 		// return the dropsonde that was just launched
 		return (sonde);
 	}
+
 	/**
 	 * Checks whether a Dropsonde with duplicate data already exists.
+	 * 
 	 * @param sonde
 	 */
 	private boolean historyContains (Dropsonde sonde)
 	{
 		for (int i = 0; i < m_dropsondeHistory.getSize (); ++i)
 		{
-			Dropsonde pastSonde = ((Dropsonde)m_dropsondeHistory.getElementAt (i));
+			Dropsonde pastSonde = ((Dropsonde) m_dropsondeHistory.getElementAt (i));
 			LatLonPoint currPoint = pastSonde.getLauchLocation ();
 			if (currPoint.equals (sonde.getLauchLocation ()))
 			{
@@ -765,6 +767,7 @@ public class Geopod
 		}
 		return false;
 	}
+
 	/**
 	 * 
 	 * @param hash
@@ -778,7 +781,8 @@ public class Geopod
 		}
 		dropsondeMap.remove (sonde);
 	}
-	public void updateSelectedSonde(Dropsonde sonde)
+
+	public void updateSelectedSonde (Dropsonde sonde)
 	{
 		if (m_selectedSonde != null && dropsondeMap.containsKey (m_selectedSonde))
 		{
@@ -790,6 +794,7 @@ public class Geopod
 		}
 		m_selectedSonde = sonde;
 	}
+
 	/**
 	 * @return a list of all the dropsondes on record.
 	 */

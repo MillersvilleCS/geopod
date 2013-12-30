@@ -3,7 +3,6 @@ package geopod;
 
 /*****************************************************************************/
 
-import geopod.constants.parameters.IDV4ParameterConstants;
 import geopod.constants.parameters.ParameterUtil;
 import geopod.devices.Sensor;
 import geopod.eventsystem.IObserver;
@@ -23,6 +22,7 @@ import geopod.utils.idv.SceneGraphControl;
 import java.awt.Frame;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -82,7 +82,7 @@ public class GeopodPlugin
 	 * The data sets to use when initially creating a Geopod. Not used if
 	 * restoring from a bundle.
 	 */
-	public static final List<String> m_defaultDataChoices;
+	public static final Collection<String> m_defaultDataChoices;
 
 	/**
 	 * Skip DataChoice's in this category as we only want 3d volumes.
@@ -97,7 +97,7 @@ public class GeopodPlugin
 	/**
 	 * List of sensors we definitely do not want to remove
 	 */
-	private static final List<String> m_nonRemovableSensorNames;
+	private static final Collection<String> m_nonRemovableSensorNames;
 
 	/**************************************************************************/
 
@@ -219,7 +219,7 @@ public class GeopodPlugin
 		{
 			ms_isGeopodInstanceCreated = true;
 		}
-		
+
 		// Establish links with IDV scene graph
 		NavigatedDisplay navigatedDisplay = super.getNavigatedDisplay ();
 		DisplayImpl displayImpl = (DisplayImpl) navigatedDisplay.getDisplay ();
@@ -341,21 +341,24 @@ public class GeopodPlugin
 			// that are in the default data choices list.
 			for (String name : m_defaultDataChoices)
 			{
-				//System.err.println ("\tesginter: dataChoiceName: " + name);
 				boolean found = false;
 				DataSource dataSource = this.getDataSource ();
 				List<DataChoice> dataChoices = dataSource.getDataChoices ();
+
 				for (DataChoice dataChoice : dataChoices)
 				{
 					if (name.equals (dataChoice.getDescription ()))
 					{
 						found = true;
 						selectedDataChoices.add (dataChoice);
+						System.err.println ("\tFound " + name + ". Loading...");
+						break;
 					}
 				}
+
 				if (!found)
 				{
-					Debug.println (name + " not available in the selected data sources");
+					Debug.println ("\t" + name + " not available in the selected data sources");
 				}
 			}
 			DataChoice startingChoice = (DataChoice) super.getInitDataChoices ().get (0);
@@ -428,6 +431,7 @@ public class GeopodPlugin
 		{
 			for (DataChoice dataChoice : choicesToRemove)
 			{
+
 				String parameterName = dataChoice.getDescription ();
 				if (!m_nonRemovableSensorNames.contains (parameterName))
 				{
@@ -544,11 +548,13 @@ public class GeopodPlugin
 			e.printStackTrace ();
 		}
 	}
+
 	@Override
 	public void dataChanged ()
 	{
 		super.dataChanged ();
 	}
+
 	/**
 	 * Create a panel to allow the selected data choices to be changed.
 	 * 
@@ -610,7 +616,7 @@ public class GeopodPlugin
 		closeDialog.setLocationRelativeTo (flightFrame);
 		closeDialog.setVisible (true);
 		// 'choice' will be "null" if closePane is null
-		String choice = String.valueOf (closePane.getValue ()); 
+		String choice = String.valueOf (closePane.getValue ());
 
 		// Don't attempt to exit if we only hit cancel or closed the dialog
 		if (!(choice.equals (CANCEL) || choice.equals ("null")))
@@ -780,29 +786,29 @@ public class GeopodPlugin
 	protected void timeChanged (Real time)
 	{
 		m_geopod.timeChanged (time);
-		
+
 		for (Entry<String, Sensor> sen : m_sensorMap.entrySet ())
 		{
 			try
 			{
 				DataInstance oldInstance = sen.getValue ().getDataInstance ();
-				DataInstance newDataInstance = new GridDataInstance (oldInstance.getDataChoice (), oldInstance.getDataSelection (),
-						super.getRequestProperties ());
+				DataInstance newDataInstance = new GridDataInstance (oldInstance.getDataChoice (),
+						oldInstance.getDataSelection (), super.getRequestProperties ());
 				sen.getValue ().setDataInstance (newDataInstance);
 			}
 			catch (RemoteException e)
 			{
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace ();
 			}
 			catch (VisADException e)
 			{
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace ();
 			}
 		}
 		super.timeChanged (time);
-		
+
 	}
 
 	@Override

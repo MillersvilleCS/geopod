@@ -27,6 +27,7 @@ import javax.vecmath.Point3f;
 import ucar.unidata.data.DataInstance;
 import ucar.unidata.data.grid.GridDataInstance;
 import ucar.unidata.data.grid.GridUtil;
+import visad.CoordinateSystem;
 import visad.Data;
 import visad.FieldImpl;
 import visad.FlatField;
@@ -48,7 +49,8 @@ public class GridPointDisplayer
 	{
 		NONE_SELECTED = -1;
 		DEFAULT_GRID_POINT_STRIDE = 4;
-		POINT_SIZE = 12;
+//		POINT_SIZE = 12;
+		POINT_SIZE = 4;
 	}
 
 	private BranchGroup m_gridPointBranch;
@@ -198,13 +200,41 @@ public class GridPointDisplayer
 		if (setDimension == 3 || setDimension == 2)
 		{
 			IterableVisADSet locations = new IterableVisADSet (spatialDomainSet);
+//			CoordinateSystem cs = spatialDomainSet.getCoordinateSystem();
+			
 			@SuppressWarnings("rawtypes")
 			Iterator locIter = locations.iterator ();
+			
+			boolean xlatFirst = true;
+			String dataType = spatialDomainSet.getType().prettyString();
+			if (dataType.contains("lat[")) 
+			{
+				xlatFirst = (dataType.indexOf("lat[") < dataType.indexOf("lon[")) ? true : false;
+			}
+			else
+			{
+				xlatFirst = (dataType.indexOf("x[") < dataType.indexOf("y[")) ? true : false;
+			}
+			
+			final int lat, lon, alt;
+			if (xlatFirst) 
+			{
+				lat = 0;
+				lon = 1;
+				alt = 2;
+			}
+			else 
+			{
+				lon = 0;
+				lat = 1;
+				alt = 2;
+			}
 
 			while (locIter.hasNext ())
 			{
 				float[] elArray = (float[]) locIter.next ();
-				EarthLocationLite el = new EarthLocationLite (elArray[0], elArray[1], elArray[2]);
+//				EarthLocationLite el = new EarthLocationLite (elArray[0], elArray[1], elArray[2]); // for normal data set, read in as lat lon alt
+				EarthLocationLite el = new EarthLocationLite (elArray[lat], elArray[lon], elArray[alt]); // trying this for special dataset
 				Point3f boxPoint = IdvCoordinateUtility.convertEarthToBoxFloat (el);
 				Point3f point = new Point3f (boxPoint);
 				pointSet.add (point);
@@ -274,6 +304,8 @@ public class GridPointDisplayer
 			}
 		}
 		indPointArray.setValidIndexCount (index);
+		
+		System.out.println("GridPointDisplayer.selectPointsByStride(): index = " + index);
 	}
 
 	/**

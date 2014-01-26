@@ -49,8 +49,7 @@ public class GridPointDisplayer
 	{
 		NONE_SELECTED = -1;
 		DEFAULT_GRID_POINT_STRIDE = 4;
-//		POINT_SIZE = 12;
-		POINT_SIZE = 4;
+		POINT_SIZE = 8;
 	}
 
 	private BranchGroup m_gridPointBranch;
@@ -200,41 +199,16 @@ public class GridPointDisplayer
 		if (setDimension == 3 || setDimension == 2)
 		{
 			IterableVisADSet locations = new IterableVisADSet (spatialDomainSet);
-//			CoordinateSystem cs = spatialDomainSet.getCoordinateSystem();
 			
 			@SuppressWarnings("rawtypes")
 			Iterator locIter = locations.iterator ();
-			
-			boolean xlatFirst = true;
-			String dataType = spatialDomainSet.getType().prettyString();
-			if (dataType.contains("lat[")) 
-			{
-				xlatFirst = (dataType.indexOf("lat[") < dataType.indexOf("lon[")) ? true : false;
-			}
-			else
-			{
-				xlatFirst = (dataType.indexOf("x[") < dataType.indexOf("y[")) ? true : false;
-			}
-			
-			final int lat, lon, alt;
-			if (xlatFirst) 
-			{
-				lat = 0;
-				lon = 1;
-				alt = 2;
-			}
-			else 
-			{
-				lon = 0;
-				lat = 1;
-				alt = 2;
-			}
 
+			int[] coordinateIndex = getLatLonAltIndexes(spatialDomainSet.getType().prettyString());
+			
 			while (locIter.hasNext ())
 			{
 				float[] elArray = (float[]) locIter.next ();
-//				EarthLocationLite el = new EarthLocationLite (elArray[0], elArray[1], elArray[2]); // for normal data set, read in as lat lon alt
-				EarthLocationLite el = new EarthLocationLite (elArray[lat], elArray[lon], elArray[alt]); // trying this for special dataset
+				EarthLocationLite el = new EarthLocationLite(elArray[coordinateIndex[0]], elArray[coordinateIndex[1]], elArray[coordinateIndex[2]]);
 				Point3f boxPoint = IdvCoordinateUtility.convertEarthToBoxFloat (el);
 				Point3f point = new Point3f (boxPoint);
 				pointSet.add (point);
@@ -253,6 +227,67 @@ public class GridPointDisplayer
 		}
 
 		return (gridPoints);
+	}
+	
+	/** 
+	 * @param dataType A string that contains information about the ordering of latitude, 
+	 * longitude, and in the data set.
+	 * @return an array that "translates" index access such that:<br>
+	 * {@code returnval[0]} will be the index of the latitude,<br>
+	 * {@code returnval[1]} will be the index of the longitude, and<br>
+	 * {@code returnval[2]} will be the index of the altitude. 
+	 */
+	private int[] getLatLonAltIndexes(String dataType) 
+	{
+		int lat, lon, alt;
+		
+		if (dataType.contains("lat[")) 
+		{
+			lat = dataType.indexOf("lat[");
+			lon = dataType.indexOf("lon[");
+			alt = dataType.indexOf("isobaric["); // (Sean Arms') OpenDAP Dataset
+		}
+		else if (dataType.contains(("x["))) // NCEP
+		{
+			lat = dataType.indexOf("x[");
+			lon = dataType.indexOf("y[");
+			alt = dataType.indexOf("isobaric["); 
+		}
+		else {
+			System.out.println("GridPointDisplayer.determineLatLonAltIndexes(): Failed to correctly identify data type format (0). Assuming [lat, lon, alt].");
+			return new int[] {0, 1, 2};
+		}
+		
+		if (lat < 0 || lon < 0 || alt < 0) {
+			System.out.println("GridPointDisplayer.determineLatLonAltIndexes(): Failed to correctly identify data type format (1). Assuming [lat, lon, alt].");
+			return new int[] {0, 1, 2};
+		}
+		
+		// Sadly can't think of a more concise way to do this without making a sorted list...
+		if (lat < lon && lat < alt) {
+			if (lon < alt) {
+				return new int[] {0, 1, 2}; // [lat, lon, alt]
+			}
+			else {
+				return new int[] {0, 2, 1}; // [lat, alt, lon]
+			}
+		}
+		else if (lon < lat && lon < alt) {
+			if (lat < alt) {
+				return new int[] {1, 0, 2}; // [lon, lat, alt]
+			}
+			else {
+				return new int[] {1, 2, 0}; // [lon, alt, lat]
+			}
+		}
+		else {
+			if (lat < lon) {
+				return new int[] {2, 0, 1}; // [alt, lat, lon]
+			}
+			else {
+				return new int[] {2, 1, 0}; // [alt, lon, lat]
+			}
+		}	
 	}
 
 	/**
@@ -304,8 +339,6 @@ public class GridPointDisplayer
 			}
 		}
 		indPointArray.setValidIndexCount (index);
-		
-		System.out.println("GridPointDisplayer.selectPointsByStride(): index = " + index);
 	}
 
 	/**

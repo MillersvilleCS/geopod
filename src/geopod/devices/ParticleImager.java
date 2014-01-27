@@ -2,6 +2,9 @@ package geopod.devices;
 
 import geopod.Geopod;
 import geopod.constants.ParticleImagePathConstants;
+import geopod.constants.parameters.ParameterUtil;
+import geopod.constants.parameters.enums.AtLevelModifier;
+import geopod.constants.parameters.enums.IntrinsicParameter;
 import geopod.eventsystem.IObserver;
 import geopod.eventsystem.ISubject;
 import geopod.eventsystem.SubjectImpl;
@@ -253,17 +256,21 @@ public class ParticleImager
 			//The Particle Imager is Active (visible)
 			m_previousCategories = m_currentCategories;
 
-			Real temperature = m_geopod.getSensorValue ("Temperature @ isobaric");
-			Real relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ isobaric");
+			//Real temperature = m_geopod.getSensorValue ("Temperature @ isobaric");
+			Real temperature = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.TEMPERATURE, AtLevelModifier.AT_ISOBARIC));
+			//Real relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ isobaric");
+			Real relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.RELATIVE_HUMIDITY_U, AtLevelModifier.AT_ISOBARIC));
 
 			// Check for GRIB2 names if the above values do not exist.
 			if (temperature == null)
 			{
-				temperature = m_geopod.getSensorValue ("Temperature @ pressure");
+				//temperature = m_geopod.getSensorValue ("Temperature @ pressure");
+				temperature = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.TEMPERATURE, AtLevelModifier.AT_PRESSURE));
 			}
 			if (relativeHumidity == null)
 			{
-				relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ pressure");
+				//relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ pressure");
+				relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.RELATIVE_HUMIDITY_U, AtLevelModifier.AT_PRESSURE));
 			}
 
 			m_currentCategories = determineCategories (temperature, relativeHumidity);

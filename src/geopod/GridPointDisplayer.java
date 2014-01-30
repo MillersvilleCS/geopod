@@ -245,16 +245,15 @@ public class GridPointDisplayer
 		{
 			lat = dataType.indexOf("lat[");
 			lon = dataType.indexOf("lon[");
-			alt = dataType.indexOf("isobaric["); // (Sean Arms') WRF Dataset
-			if (alt == -1) {
-				alt = dataType.indexOf("isobaric2[");
-			}
+			alt = dataType.indexOf("isobaric"); // (Sean Arms') WRF Dataset
+			alt = dataType.indexOf("[", alt);
 		}
 		else if (dataType.contains(("x["))) // NCEP
 		{
 			lat = dataType.indexOf("x[");
 			lon = dataType.indexOf("y[");
-			alt = dataType.indexOf("isobaric["); 
+			alt = dataType.indexOf("isobaric"); // (Sean Arms') WRF Dataset
+			alt = dataType.indexOf("[", alt);		
 		}
 		else {
 			System.out.println("GridPointDisplayer.getLatLonAltIndexes(): Failed to correctly identify data type format (0). Assuming [lat, lon, alt].");

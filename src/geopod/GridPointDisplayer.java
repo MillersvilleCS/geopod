@@ -245,7 +245,10 @@ public class GridPointDisplayer
 		{
 			lat = dataType.indexOf("lat[");
 			lon = dataType.indexOf("lon[");
-			alt = dataType.indexOf("isobaric["); // (Sean Arms') OpenDAP Dataset
+			alt = dataType.indexOf("isobaric["); // (Sean Arms') WRF Dataset
+			if (alt == -1) {
+				alt = dataType.indexOf("isobaric2[");
+			}
 		}
 		else if (dataType.contains(("x["))) // NCEP
 		{
@@ -254,12 +257,14 @@ public class GridPointDisplayer
 			alt = dataType.indexOf("isobaric["); 
 		}
 		else {
-			System.out.println("GridPointDisplayer.determineLatLonAltIndexes(): Failed to correctly identify data type format (0). Assuming [lat, lon, alt].");
+			System.out.println("GridPointDisplayer.getLatLonAltIndexes(): Failed to correctly identify data type format (0). Assuming [lat, lon, alt].");
+			System.out.println("Data type format found: " + dataType);
 			return new int[] {0, 1, 2};
 		}
 		
 		if (lat < 0 || lon < 0 || alt < 0) {
-			System.out.println("GridPointDisplayer.determineLatLonAltIndexes(): Failed to correctly identify data type format (1). Assuming [lat, lon, alt].");
+			System.out.println("GridPointDisplayer.getLatLonAltIndexes(): Failed to correctly identify data type format (1). Assuming [lat, lon, alt].");
+			System.out.println("Data type format found: " + dataType);
 			return new int[] {0, 1, 2};
 		}
 		

@@ -793,7 +793,6 @@ public class MovieCapturePanel extends JPanel implements ISubject, ActionListene
 			if (m_chkHideGeopodInterface.isSelected ()) {
 				if (m_unsavedMainImages.isEmpty ()) {
 					m_pollLock.doRelease ();
-					System.err.println ("case 1");
 				} else {
 					// Poll
 					BufferedImage mainImage = pollImageFrom (m_unsavedMainImages);
@@ -801,7 +800,6 @@ public class MovieCapturePanel extends JPanel implements ISubject, ActionListene
 					
 					// Release
 					m_pollLock.doRelease ();
-					System.err.println ("case 2");
 					
 					// Write
 					writeImageToTmp (mainImage, timestamp);
@@ -809,7 +807,6 @@ public class MovieCapturePanel extends JPanel implements ISubject, ActionListene
 			} else {
 				if (m_unsavedMainImages.isEmpty () || m_unsavedMiniImages.isEmpty () || m_unsavedDashImages.isEmpty ()) {
 					m_pollLock.doRelease ();
-					System.err.println ("case 3");
 				} else {
 					// poll all
 					BufferedImage mainImage = pollImageFrom (m_unsavedMainImages);
@@ -819,7 +816,6 @@ public class MovieCapturePanel extends JPanel implements ISubject, ActionListene
 					
 					// release
 					m_pollLock.doRelease ();
-					System.err.println ("case 4");
 					
 					// stitch
 					BufferedImage dashImage = getScaledImage (m_captureWidth, m_captureHeight, tmpDashImage);

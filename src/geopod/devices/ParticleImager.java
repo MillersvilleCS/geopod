@@ -3,6 +3,7 @@ package geopod.devices;
 import geopod.Geopod;
 import geopod.constants.ParticleImagePathConstants;
 import geopod.constants.parameters.ParameterUtil;
+import geopod.constants.parameters.WRFParameterUtil;
 import geopod.constants.parameters.enums.AtLevelModifier;
 import geopod.constants.parameters.enums.IntrinsicParameter;
 import geopod.eventsystem.IObserver;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
@@ -90,6 +92,11 @@ public class ParticleImager
 	private BufferedImage m_currentImage;
 	private String m_currentCategory;
 
+	private Real temperature = null;
+	private String temperatureString = null;
+	private Real relativeHumidity = null;
+	private String relativeHumidityString = null;
+
 	/**
 	 * Constructs a ParticleImager with a current category of
 	 * NO_PARTICLE_FORMATION
@@ -99,6 +106,7 @@ public class ParticleImager
 	public ParticleImager (Geopod geopod)
 	{
 		m_geopod = geopod;
+
 		m_subjectImpl = new SubjectImpl ();
 
 		loadParticleImages ();
@@ -115,6 +123,7 @@ public class ParticleImager
 		m_currentCategory = NO_PARTICLE_FORMATION;
 
 		m_currentImage = m_defaultImage;
+
 	}
 
 	/**
@@ -163,7 +172,7 @@ public class ParticleImager
 			paths.add ("//Resources/Images/Particles/Dendrites/Fernlike_Stellar_Dendrite/Fern02.jpg");
 			*/
 			paths.addAll (ParticleImagePathConstants.DENDRITES);
-			
+
 			List<BufferedImage> stellarDendrites = FileLoadingUtility.loadBufferedImages (paths);
 			m_imageMap.put (STELLAR_DENDRITES, stellarDendrites);
 
@@ -173,7 +182,7 @@ public class ParticleImager
 			paths.add ("//Resources/Images/Particles/Needles/needle01.jpg");
 			*/
 			paths.addAll (ParticleImagePathConstants.NEEDLES);
-			
+
 			List<BufferedImage> needles = FileLoadingUtility.loadBufferedImages (paths);
 			m_imageMap.put (NEEDLES, needles);
 
@@ -245,6 +254,138 @@ public class ParticleImager
 		}
 	}
 
+	private void getRHTemp ()
+	{
+		// If we haven't found a string that will work
+		if (temperatureString == null)
+		{
+			temperatureString = ParameterUtil.intrinsicParameter (IntrinsicParameter.TEMPERATURE,
+					AtLevelModifier.AT_ISOBARIC);
+			/*temperature = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter (IntrinsicParameter.TEMPERATURE,
+					AtLevelModifier.AT_ISOBARIC));*/
+			temperature = m_geopod.getSensorValue (temperatureString);
+
+			// Check for GRIB2 names if the above values do not exist.
+			if (temperature == null)
+			{
+				//temperature = m_geopod.getSensorValue ("Temperature @ pressure");
+				temperatureString = ParameterUtil.intrinsicParameter (IntrinsicParameter.TEMPERATURE,
+						AtLevelModifier.AT_PRESSURE);
+				/*temperature = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter (IntrinsicParameter.TEMPERATURE,
+						AtLevelModifier.AT_PRESSURE));*/
+				temperature = m_geopod.getSensorValue (temperatureString);
+
+				// Try WRF naming conventions
+				if (temperature == null)
+				{
+					temperatureString = WRFParameterUtil.TEMPERATURE;
+					//System.err.println ("Fallback to WRF/GRIB parameter naming " + WRFParameterUtil.TEMPERATURE);
+					//temperature = m_geopod.getSensorValue (WRFParameterUtil.TEMPERATURE);
+					temperature = m_geopod.getSensorValue (temperatureString);
+
+					// Fallback to pre-IDV4 hardcoded string. Something's wrong.
+					if (temperature == null)
+					{
+						//System.err.println ("SEVERE fallback to pre-IDV4 parameter naming Temperature @ pressure");
+						temperatureString = "Temperature @ pressure";
+						//temperature = m_geopod.getSensorValue ("Temperature @ pressure");
+						temperature = m_geopod.getSensorValue (temperatureString);
+
+						if (temperature == null)
+						{
+							temperatureString = null;
+							System.err.println ("Could not find Temperature among sensors.");
+						}
+					}
+
+				}
+			}
+		}
+		else
+		{
+			temperature = m_geopod.getSensorValue (temperatureString);
+		}
+
+		if (relativeHumidityString == null)
+		{
+			relativeHumidityString = ParameterUtil.intrinsicParameter (IntrinsicParameter.RELATIVE_HUMIDITY_L,
+					AtLevelModifier.AT_ISOBARIC);
+			/*relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter (
+					IntrinsicParameter.RELATIVE_HUMIDITY_L, AtLevelModifier.AT_ISOBARIC));*/
+			relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+
+			// There are 2 Relative Humidity forms - one with a lowercase humidity and the other with an uppercase Humidity.
+			if (relativeHumidity == null)
+			{
+
+				relativeHumidityString = ParameterUtil.intrinsicParameter (IntrinsicParameter.RELATIVE_HUMIDITY_U,
+						AtLevelModifier.AT_ISOBARIC);
+				/*relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter (
+						IntrinsicParameter.RELATIVE_HUMIDITY_U, AtLevelModifier.AT_ISOBARIC));*/
+				relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+
+				if (relativeHumidity == null)
+				{
+					//relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ pressure");
+					relativeHumidityString = ParameterUtil.intrinsicParameter (IntrinsicParameter.RELATIVE_HUMIDITY_L,
+							AtLevelModifier.AT_PRESSURE);
+					/*relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter (
+							IntrinsicParameter.RELATIVE_HUMIDITY_L, AtLevelModifier.AT_PRESSURE));*/
+					relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+
+					// Try the uppercase pressure
+					if (relativeHumidity == null)
+					{
+
+						relativeHumidityString = ParameterUtil.intrinsicParameter (
+								IntrinsicParameter.RELATIVE_HUMIDITY_U, AtLevelModifier.AT_PRESSURE);
+						/*relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter (
+								IntrinsicParameter.RELATIVE_HUMIDITY_U, AtLevelModifier.AT_PRESSURE));*/
+						relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+
+						// Try WRF
+						if (relativeHumidity == null)
+						{
+							//System.err.println ("Fallback to WRF/GRIB parameter naming");
+							relativeHumidityString = WRFParameterUtil.RELATIVE_HUMIDITY;
+							//relativeHumidity = m_geopod.getSensorValue (WRFParameterUtil.RELATIVE_HUMIDITY);
+							relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+
+							// Try hard-coded
+							if (relativeHumidity == null)
+							{
+								/*System.err
+										.println ("Severe fallback to pre-IDV4 parameter naming Relative_humidity @ pressure");*/
+								relativeHumidityString = "Relative_humidity @ pressure";
+								//relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ pressure");
+								relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+
+								if (relativeHumidity == null)
+								{
+									//System.err.println ("Severe fallback to pre-IDV4 parameter naming Relative_humidity @ isobaric");
+									relativeHumidityString = "Relative_humidity @ isobaric";
+									//relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ isobaric");
+									relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+
+									if (relativeHumidity == null)
+									{
+										relativeHumidityString = null;
+										System.err.println ("Could not find Relative Humidity among sensors.");
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			relativeHumidity = m_geopod.getSensorValue (relativeHumidityString);
+		}
+
+	}
+
 	/**
 	 * Updates this ParticleImager to reflect the most current particle
 	 * formation category (if any) based on the Geopod's current sensor values.
@@ -256,25 +397,10 @@ public class ParticleImager
 			//The Particle Imager is Active (visible)
 			m_previousCategories = m_currentCategories;
 
-			//Real temperature = m_geopod.getSensorValue ("Temperature @ isobaric");
-			Real temperature = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.TEMPERATURE, AtLevelModifier.AT_ISOBARIC));
-			//Real relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ isobaric");
-			Real relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.RELATIVE_HUMIDITY_U, AtLevelModifier.AT_ISOBARIC));
-
-			// Check for GRIB2 names if the above values do not exist.
-			if (temperature == null)
-			{
-				//temperature = m_geopod.getSensorValue ("Temperature @ pressure");
-				temperature = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.TEMPERATURE, AtLevelModifier.AT_PRESSURE));
-			}
-			if (relativeHumidity == null)
-			{
-				//relativeHumidity = m_geopod.getSensorValue ("Relative_humidity @ pressure");
-				relativeHumidity = m_geopod.getSensorValue (ParameterUtil.intrinsicParameter(IntrinsicParameter.RELATIVE_HUMIDITY_U, AtLevelModifier.AT_PRESSURE));
-			}
+			getRHTemp ();
 
 			m_currentCategories = determineCategories (temperature, relativeHumidity);
-			
+
 			if (m_currentCategories.isEmpty ())
 			{
 				// No particle formations were found

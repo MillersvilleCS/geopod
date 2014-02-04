@@ -12,6 +12,7 @@ import geopod.eventsystem.events.GeopodEventId;
 import geopod.gui.GeopodFrame;
 import geopod.gui.Hud;
 import geopod.gui.panels.ParameterChooserPanel;
+import geopod.utils.SyncObj;
 import geopod.utils.ThreadUtility;
 import geopod.utils.coordinate.IdvCoordinateUtility;
 import geopod.utils.debug.Debug;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -37,6 +39,8 @@ import javax.media.j3d.RenderingAttributes;
 import javax.media.j3d.Shape3D;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+
+import org.apache.batik.dom.util.HashTable;
 
 import ucar.unidata.data.DataCancelException;
 import ucar.unidata.data.DataCategory;
@@ -176,6 +180,10 @@ public class GeopodPlugin
 	 * screens.
 	 */
 	private String m_dataChoiceNameBeingLoaded;
+	
+	
+	private List<String> m_dataChoicesBeingLoaded;
+	private SyncObj m_dataLoadingLock;
 
 	/**
 	 * Cached reference to the data choice the Geopod was created with. This
@@ -449,13 +457,47 @@ public class GeopodPlugin
 
 			m_geopod.clearSensorCache ();
 		}
-
-		// Add new sensors
-		for (DataChoice dataChoice : choicesToAdd)
-		{
-			processNewData (dataChoice);
+		
+		System.out.println("GeopodPlugin.addNewData(): Populating List<String> of data choice descriptions.");
+		m_dataChoicesBeingLoaded = new ArrayList<String>();
+		for (DataChoice dataChoice : choicesToAdd) {
+			m_dataChoicesBeingLoaded.add(dataChoice.getDescription());
 		}
+		m_dataLoadingLock = new SyncObj();
 
+		System.out.println("GeopodPlugin.addNewData(): Entering thread-spawning loop.");
+		long startTime = System.currentTimeMillis();
+		// Add new sensors
+		for (final DataChoice dataChoice : choicesToAdd)
+		{
+//			Thread dataLoader = new Thread() {
+//				
+//				@Override
+//				public void run() {
+//					processNewData_inParallel(dataChoice);
+//					
+//					synchronized (m_dataChoicesBeingLoaded) {
+//						if (m_dataChoicesBeingLoaded.isEmpty()) {
+//							m_dataLoadingLock.doNotify();
+//						}
+//					}
+//				}
+//			};
+//			String description = dataChoice.getDescription();
+//			description = description.substring(0, description.indexOf(' '));
+//			dataLoader.setName(description);
+//			System.out.println("GeopodPlugin.addNewData(): Starting " + dataLoader.getName());
+//			dataLoader.start();
+			processNewData (dataChoice); 
+		}
+		
+//		m_dataLoadingLock.doWait();
+		
+		System.out.println("GeopodPlugin.addNewData(): Spent " + ((System.currentTimeMillis() - startTime) / 1000) + "s in processNewData loop.");
+		// Timings for this loop using subsetted WRF on laptop:
+		//   114s, 110s
+		
+		
 		// Record which dataChoices are now being used
 		super.setDataChoices (newChoicesNoDups);
 
@@ -502,8 +544,11 @@ public class GeopodPlugin
 
 				try
 				{
+					
+					long startTime = System.currentTimeMillis();
 					DataInstance newDataInstance = new GridDataInstance (choice, selection,
 							super.getRequestProperties ());
+					System.out.println("GeopodPlugin.processNewData(): Just spent " + ((System.currentTimeMillis() - startTime) / 1000) + "s in DataInstance newDataInstance = ...");
 
 					Sensor newSensor = new Sensor (this, newDataInstance);
 
@@ -527,6 +572,117 @@ public class GeopodPlugin
 		}
 	}
 
+	/**
+	 * Called when the user has selected new data choices
+	 * 
+	 * @param newChoices
+	 *            new list of choices
+	 * 
+	 * @throws RemoteException
+	 *             Java RMI error
+	 * @throws VisADException
+	 *             VisAD Error
+	 */
+	protected void processNewData_inParallel (DataChoice choice)
+	{
+		// We use the description as an identifier, as the name is not unique
+		String choiceIdentifier = choice.getDescription ();
+		
+		Debug.print ("Loading \"" + choiceIdentifier + "\"...");
+
+		m_dataChoiceNameBeingLoaded = choiceIdentifier;
+		this.notifyObservers (GeopodEventId.DATA_CHOICE_LOADING_STARTED);
+
+		if (m_sensorMap.containsKey(choiceIdentifier))
+		{
+			// This should not happen anymore now that we are removing
+			// duplicates from the data choices
+			Debug.println (" data choice already loaded.");
+			synchronized (m_dataChoicesBeingLoaded) {
+				m_dataChoicesBeingLoaded.remove(choiceIdentifier);
+			}
+			return;
+		}
+		
+		try {
+			DataSelection selection = super.getDataSelection ();
+			long startTime1 = System.currentTimeMillis();
+			Hashtable requestProperties = super.getRequestProperties();
+			long startTime2 = System.currentTimeMillis();
+			DataInstance newDataInstance = new GridDataInstance (choice, selection,
+			                         							requestProperties);
+			System.out.println(Thread.currentThread().getName() + " spent " + ((startTime2 - startTime1) / 1000) + "s in requestProperties and " + ((System.currentTimeMillis() - startTime2) / 1000) + "in new GridDataInstance()");
+			Sensor newSensor = new Sensor (this, newDataInstance);
+	
+			synchronized (m_sensorMap) {
+				m_sensorMap.put (choiceIdentifier, newSensor);
+			}
+			
+			// Cache the sensor the Geopod was started with. This is
+			// used for the grid point displayer.
+			if (choice.toString ().equals (m_startingDataChoice.toString ()))
+			{
+				m_startingSensor = newSensor;
+			}
+			
+	//		this.notifyObservers (GeopodEventId.DATA_CHOICE_LOADING_FINISHED);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		synchronized (m_dataChoicesBeingLoaded) {
+			m_dataChoicesBeingLoaded.remove(choiceIdentifier);
+		}
+		
+		return;
+		
+//		
+//		synchronized (m_sensorMap)
+//		{
+////			if (m_sensorMap.containsKey (choiceIdentifier))
+////			{
+////				// This should not happen anymore now that we are removing
+////				// duplicates from the data choices
+////				Debug.println (" data choice already loaded.");
+////			}
+////			else
+//			{
+////				DataSelection selection = super.getDataSelection ();
+//
+//				try
+//				{
+////					DataInstance newDataInstance = new GridDataInstance (choice, selection,
+////							super.getRequestProperties ());
+//
+////					Sensor newSensor = new Sensor (this, newDataInstance);
+//
+////					m_sensorMap.put (choiceIdentifier, newSensor);
+//
+////					// Cache the sensor the Geopod was started with. This is
+////					// used for the grid point displayer.
+////					if (choice.toString ().equals (m_startingDataChoice.toString ()))
+////					{
+////						m_startingSensor = newSensor;
+////					}
+//
+////					this.notifyObservers (GeopodEventId.DATA_CHOICE_LOADING_FINISHED);
+//				}
+//				catch (DataCancelException dce)
+//				{
+//					// Data selection was canceled. Do not add it to the sensor
+//					// map.
+//				}
+//			}
+//		}
+		
+		
+	}
+	
+	
+	
+	
 	/**
 	 * Wrapper for the protected method addNewData(). Used to allow other
 	 * classes to change which dataChoices are loaded.

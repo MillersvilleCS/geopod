@@ -7,6 +7,7 @@ import geopod.eventsystem.SubjectImpl;
 import geopod.eventsystem.events.GeopodEventId;
 import geopod.gui.Hud;
 import geopod.gui.components.OnScreenCanvas3D;
+import geopod.utils.SyncObj;
 import geopod.utils.ThreadUtility;
 import geopod.utils.debug.Debug;
 import geopod.utils.debug.Debug.DebugLevel;
@@ -1012,48 +1013,6 @@ public class MovieCapturePanel extends JPanel implements ISubject, ActionListene
 			return Double.parseDouble (strOutput);
 		} else {
 			return 0.0;
-		}
-	}
-	
-	class SyncObj {
-		private boolean condition;
-		private Object obj = new Object ();
-		
-		public SyncObj () {
-			this (false);
-		}
-		
-		public SyncObj (boolean isMutex) {
-			condition = isMutex;
-		}
-		
-		public void doWait () {
-			synchronized (obj) {
-				while (!condition) {
-					try {
-						obj.wait ();
-					} catch (InterruptedException e) {
-						e.printStackTrace ();
-					}
-				}
-				condition = false;
-			}
-		}
-		
-		public void doNotify () {
-			synchronized (obj) {
-				condition = true;
-				obj.notify ();
-			}
-		}
-		
-		// For readability when using as a mutex.
-		public void doAcquire () {
-			this.doWait ();
-		}
-		
-		public void doRelease () {
-			this.doNotify ();
 		}
 	}
 	

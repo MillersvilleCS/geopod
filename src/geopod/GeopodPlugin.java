@@ -470,25 +470,25 @@ public class GeopodPlugin
 		// Add new sensors
 		for (final DataChoice dataChoice : choicesToAdd)
 		{
-//			Thread dataLoader = new Thread() {
-//				
-//				@Override
-//				public void run() {
-//					processNewData_inParallel(dataChoice);
-//					
-//					synchronized (m_dataChoicesBeingLoaded) {
-//						if (m_dataChoicesBeingLoaded.isEmpty()) {
-//							m_dataLoadingLock.doNotify();
-//						}
-//					}
-//				}
-//			};
-//			String description = dataChoice.getDescription();
-//			description = description.substring(0, description.indexOf(' '));
-//			dataLoader.setName(description);
-//			System.out.println("GeopodPlugin.addNewData(): Starting " + dataLoader.getName());
-//			dataLoader.start();
-			processNewData (dataChoice); 
+			Thread dataLoader = new Thread() {
+				
+				@Override
+				public void run() {
+					processNewData_inParallel(dataChoice);
+					
+					synchronized (m_dataChoicesBeingLoaded) {
+						if (m_dataChoicesBeingLoaded.isEmpty()) {
+							m_dataLoadingLock.doNotify();
+						}
+					}
+				}
+			};
+			String description = dataChoice.getDescription();
+			description = description.substring(0, description.indexOf(' '));
+			dataLoader.setName(description);
+			System.out.println("GeopodPlugin.addNewData(): Starting " + dataLoader.getName());
+			dataLoader.start();
+//			processNewData (dataChoice); 
 		}
 		
 //		m_dataLoadingLock.doWait();

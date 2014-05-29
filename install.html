@@ -56,8 +56,7 @@
 						<span class="headingStyle">Step 1: Install IDV</span> <br />Geopod
 						is a plugin for the Integrated Data Viewer (IDV), so before you
 						can use Geopod you must have IDV installed on your computer. IDV
-						versions 3.0u2 and 3.1u1 are supported. Older or more recent
-						versions may not be fully compatible with Geopod. You can visit
+						version 5.0 or higher is supported. You can visit
 						the <a href="http://www.unidata.ucar.edu/software/idv">IDV
 							website</a> to learn more about installing IDV.
 
@@ -83,12 +82,10 @@
 
 					<p>
 						<span class="minorHeadingStyle italicized">For Windows
-							users:</span> <br /> Download the following install script: <a
-							href="./plugins/Scripts/InstallGeopod.exe">InstallGeopod
-							(EXE)</a> then right click and choose <span class="bold">run
-							as administrator</span>. This will update the necessary parts of IDV
-						with the files from this website and install the latest version of
-						the Geopod plugin. Note that InstallGeopod is an <i>.exe</i> file
+							users:</span> <br /> Download and run the following install script: <a
+							href="./plugins/Installers/GeopodInstaller.exe">Geopod Installer (EXE)</a>. 
+						This will update the necessary parts of IDV and install the latest version of
+						the Geopod plugin. Note that GeopodInstaller is an <i>.exe</i> file
 						so some antivirus software may generate warnings when you download
 						it.
 					</p>
@@ -102,37 +99,10 @@
 					</p>
 					<p>
 						<span class="bold">If you encounter problems: </span> If for some
-						reason the install script does not work, you can manually replace
-						the necessary files as follows:
+						reason the install script does not work,  please <a
+						href ="./contactUs.html">contact us</a>.
 					</p>
-					<ol class="letters">
-						<li>Locate the IDV program folder. This will typically be
-							C:/Program Files/IDV_<i>VersionNumber</i> unless you chose a
-							different folder when you installed IDV.
-						</li>
-						<li>Download <a href="./plugins/Patch/runIDV.bat">runIDV.bat
-								(Windows Batch File)</a>and use it to replace the runIDV.bat file in
-							the IDV program folder. Note that if your computer hides file
-							extensions (which it does by default) there will appear to be
-							several files called ‘runIDV’ in the IDV program folder. Be sure
-							to replace the one which is of type Windows Batch File.
-						</li>
-						<li>Download <a href="./plugins/Patch/local-visad.jar">local-visad.jar
-								(Executable Jar File)</a> and use it to replace the local-visad.jar
-							file in the IDV program folder.
-						</li>
-						<li>Locate your <i>.unidata</i> folder. This is typically in
-							your home directory, that is, the folder with the name of your
-							account that is located under <i>Users</i>. If you cannot find
-							the <i>.unidata</i> folder and have just installed IDV, make sure
-							you have run IDV at least once.
-						</li>
-						<li>Download the latest <a href="./plugins/GeopodPlugin.jar">Geopod
-								Plugin (Executable Jar File)</a> and place it in the <i>.unidata/idv/DefaultIdv/plugins</i>
-							folder.
-						</li>
-					</ol>
-
+					
 					<p>
 						<span class="bold">For system administrators: </span> If you are
 						installing Geopod in a classroom setting where Geopod users do not
@@ -141,14 +111,14 @@
 
 					</p>
 					<ol class="letters">
-						<li>Run the <a href="./plugins/Script/PatchIDV.exe">PatchIDV
-								Script (EXE)</a> as administrator on all computers where IDV is
+						<li>Run the <a href="./plugins/Installers/GeopodIdvPatch.exe">Geopod IDV Patch
+							(EXE)</a> as administrator on all computers where IDV is
 							installed to replace the necessary IDV files.
 						</li>
 						<li>Have individual Geopod users run the <a
-							href="./plugins/Scripts/UpdateGeopod.exe">Geopod Update
-								Script (EXE)</a>, which does not require administrator privileges,
-							to install the Gepod plugin to their local <i>.unidata</i>
+							href="./plugins/Installers/GeopodPluginInstaller.exe">Geopod Plugin
+								Installer (EXE)</a>, which does not require administrator privileges,
+							to install the Geopod plugin to their local <i>.unidata</i>
 							folder.
 						</li>
 					</ol>

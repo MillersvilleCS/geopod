@@ -6,7 +6,7 @@ SETTING UP AN ECLIPSE PROJECT USING EGit
 
 2. Create a new git project: File -> Import -> Git -> Projects from Git
 
-3. The 'Select Repositotory Source' dialog will appear
+3. The 'Select Repository Source' dialog will appear
 
   ~Select 'Clone URI'
 

@@ -8,7 +8,7 @@ SETTING UP AN ECLIPSE PROJECT USING EGit
 
 3. The 'Select Repositotory Source' dialog will appear
 
-  ~Select 'URI'
+  ~Select 'Clone URI'
 
   ~Click 'Next'
 

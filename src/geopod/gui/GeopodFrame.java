@@ -26,7 +26,6 @@ import geopod.gui.panels.datadisplay.SensorDisplayPanel;
 import geopod.gui.panels.distance.DistancePanel;
 import geopod.gui.panels.dropsonde.MultipleDropsondeChartPanel;
 import geopod.gui.panels.isosurface.IsosurfaceViewPanel;
-import geopod.gui.panels.mission.MissionPanel;
 import geopod.gui.panels.navigation.*;
 import geopod.utils.FileLoadingUtility;
 import geopod.utils.web.WebUtility;
@@ -96,7 +95,6 @@ public class GeopodFrame extends JFrame {
 	private SensorDisplayPanel m_primaryDisplayPanel;
 	private SensorDisplayPanel m_secondaryDisplayPanel;
 	private NavigationPanel m_navigationPanel;
-	private MissionPanel m_missionPanel;
 	private IsosurfaceViewPanel m_isosurfaceViewPanel;
 	private DistancePanel m_distancePanel;
 	private MovieCapturePanel m_movieCapturePanel;
@@ -363,13 +361,6 @@ public class GeopodFrame extends JFrame {
 		m_parameterChooserPanel.setVisible(false);
 		addLayeredComponent(m_parameterChooserPanel, JLayeredPane.MODAL_LAYER,
 				PARAMETER_CHOOSER_PANEL_BOUNDS);
-
-		m_missionPanel = new MissionPanel(m_geopod.getFlightRecorder());
-		m_missionPanel.setVisible(false);
-		m_missionPanel.addObserver(m_hud,
-				GeopodEventId.MISSION_BUTTON_STATE_CHANGED);
-		addLayeredComponent(m_missionPanel, JLayeredPane.MODAL_LAYER,
-				MISSION_PANEL_BOUNDS);
 
 		m_isosurfaceViewPanel = new IsosurfaceViewPanel(m_hud);
 		m_isosurfaceViewPanel.setVisible(false);
@@ -698,13 +689,6 @@ public class GeopodFrame extends JFrame {
 		toggleVisibility(m_parameterChooserPanel);
 		m_parameterChooserPanel
 				.notifyObservers(GeopodEventId.PARAMETER_BUTTON_STATE_CHANGED);
-	}
-
-	/**
-	 * Toggle the visibility of the {@link MissionPanel mission panel}.
-	 */
-	public void toggleMissionPanel() {
-		m_missionPanel.toggleVisibility();
 	}
 
 	/**

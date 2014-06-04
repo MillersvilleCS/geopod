@@ -41,7 +41,6 @@ public final class FrameConstants
 	public static final Rectangle EVENT_NOTIFICATION_PANEL_BOUNDS;
 	public static final Rectangle COMMENT_PROMPT_PANEL_BOUNDS;
 	public static final Rectangle NOTED_LOCATIONS_PANEL_BOUNDS;
-	public static final Rectangle MISSION_PANEL_BOUNDS;
 	public static final Rectangle ISOSURFACE_VIEW_PANEL_BOUNDS;
 	public static final Rectangle DISTANCE_PANEL_BOUNDS;
 	public static final Rectangle MOVIECAPTURE_PANEL_BOUNDS;
@@ -79,7 +78,6 @@ public final class FrameConstants
 		// The bounding rectangle height and the panel height should be the same
 		DISTANCE_PANEL_BOUNDS = centerRectangle (new Rectangle (78, 78, INNER_VIEWING_AREA_BOUNDS.width, 190), new Dimension (412, 190));
 		MOVIECAPTURE_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (1140, 820));
-
 		
 		TOP_VIEW_CANVAS_BOUNDS = new Rectangle (78, 78, 225, 225);
 
@@ -89,7 +87,6 @@ public final class FrameConstants
 		EVENT_NOTIFICATION_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (500, 200));
 		COMMENT_PROMPT_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (500, 200));
 		NOTED_LOCATIONS_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (730, 820));
-		MISSION_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (1140, 820));
 		ISOSURFACE_VIEW_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (720, 820));
 
 		CONFIG_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (570, 820));

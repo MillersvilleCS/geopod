@@ -1,4 +1,0 @@
-/**
- * 
- */
-package geopod.mission;

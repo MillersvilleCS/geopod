@@ -41,17 +41,7 @@ public class ToolPanel
 	}
 
 	private void createAndAddButtons ()
-	{
-		String imageUp = "//Resources/Images/User Interface/Buttons/MissionButton.png";
-		String imageDown = "//Resources/Images/User Interface/Buttons/MissionButtonDown.png";
-		String imageHover = "//Resources/Images/User Interface/Buttons/MissionButtonHover.png";
-		GeopodButton missionButton = new GeopodButton (imageUp, imageDown, imageHover);
-		missionButton.setToolTipTexts (" Open Mission ", " Close Mission ");
-		missionButton.setActionCommand ("mission");
-		missionButton.addActionListener (m_hud);
-		m_hud.addObserver (missionButton, GeopodEventId.MISSION_BUTTON_STATE_CHANGED);
-		super.add (missionButton, "wrap");
-		
+	{		
 		String isoSurfaceImage = "//Resources/Images/User Interface/Buttons/IsoSurfaceButton.png";
 		String isoSurfaceImageDown = "//Resources/Images/User Interface/Buttons/IsoSurfaceButtonDown.png";
 		String isoSurfaceImageHover = "//Resources/Images/User Interface/Buttons/IsoSurfaceButtonHover.png";

@@ -27,7 +27,6 @@ import javax.vecmath.Point3f;
 import ucar.unidata.data.DataInstance;
 import ucar.unidata.data.grid.GridDataInstance;
 import ucar.unidata.data.grid.GridUtil;
-import visad.CoordinateSystem;
 import visad.Data;
 import visad.FieldImpl;
 import visad.FlatField;

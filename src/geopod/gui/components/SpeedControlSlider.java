@@ -1,7 +1,5 @@
 package geopod.gui.components;
 
-import geopod.constants.UIConstants;
-
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;

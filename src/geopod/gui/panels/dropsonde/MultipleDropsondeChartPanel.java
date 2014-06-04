@@ -11,7 +11,6 @@ import geopod.gui.components.BorderFactory;
 import geopod.gui.components.ButtonFactory;
 import geopod.gui.components.GeopodButton;
 import geopod.gui.components.PainterFactory;
-import geopod.utils.idv.SceneGraphControl;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -20,7 +19,6 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;

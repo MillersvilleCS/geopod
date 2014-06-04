@@ -1,21 +1,16 @@
 package geopod.gui.panels.navigation;
 
 import geopod.Geopod;
-import geopod.constants.UIConstants;
 import geopod.eventsystem.events.GeopodEventId;
 import geopod.gui.Hud;
-import geopod.gui.components.SpeedControlSlider;
 import geopod.gui.components.GeopodButton;
 import geopod.utils.debug.Debug;
 import geopod.utils.debug.Debug.DebugLevel;
 
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 
 import net.miginfocom.swing.MigLayout;
 

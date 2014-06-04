@@ -1,7 +1,5 @@
 package geopod.utils.math;
 
-import visad.Real;
-import visad.Unit;
 
 /**
  * Class to provide general math functions.

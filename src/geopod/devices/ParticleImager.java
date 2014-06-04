@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 

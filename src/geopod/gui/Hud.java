@@ -33,7 +33,6 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.concurrent.Future;
 
-import javax.media.j3d.Canvas3D;
 import javax.swing.WindowConstants;
 import javax.vecmath.Point3d;
 
@@ -373,10 +372,6 @@ public class Hud
 			{
 				handleMovieCaptureButtonEvent ();
 			}
-			else if (actionCommand.equals ("mission"))
-			{
-				handleMissionButtonEvent ();
-			}
 			else if (actionCommand.equals ("isosurface"))
 			{
 				handleIsosurfaceViewButtonEvent ();
@@ -524,11 +519,6 @@ public class Hud
 	{
 		m_flightFrame.toggleHelpPanel ();
 		notifyObservers (GeopodEventId.HELP_BUTTON_STATE_CHANGED);
-	}
-
-	private void handleMissionButtonEvent ()
-	{
-		m_flightFrame.toggleMissionPanel ();
 	}
 
 	private void handleIsosurfaceViewButtonEvent ()
@@ -771,10 +761,6 @@ public class Hud
 			else if (keyCode == Keys.Bindings.get (Keys.GeopodKeys.ToggleGridpoints).getKeyCode ())
 			{
 				toggleGridPointVisibility ();
-			}
-			else if (keyCode == Keys.Bindings.get (Keys.GeopodKeys.ToggleMission).getKeyCode ())
-			{
-				handleMissionButtonEvent ();
 			}
 			else if (keyCode == Keys.Bindings.get (Keys.GeopodKeys.ToggleCalculator).getKeyCode ()
 					&& event.isControlDown ())

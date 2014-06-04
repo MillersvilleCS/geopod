@@ -1,6 +1,5 @@
 package geopod.gui.panels.dropsonde;
 
-import java.util.Enumeration;
 
 import geopod.utils.coordinate.IdvCoordinateUtility;
 

@@ -9,7 +9,6 @@ import javax.media.j3d.Group;
 import javax.media.j3d.Locale;
 import javax.media.j3d.Node;
 import javax.media.j3d.TransformGroup;
-import javax.media.j3d.Shape3D;
 
 import visad.java3d.DefaultDisplayRendererJ3D;
 

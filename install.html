@@ -35,11 +35,8 @@
 						problems, feel free to <a href="./contactUs.html">contact us</a>.
 					</p>
 					<p>Geopod is available for Windows and Linux platforms.
-						Unfortunately, Geopod is not compatible with Mac at this time.
-						This is because Apple does not currently provide a package for
-						Java3D, which Geopod requires for 3D rendering. If the Java3D
-						package is provided some time in the future, Geopod will likely
-						become available for Mac.</p>
+						Unfortunately, Geopod is not compatible with Mac at this time due
+						to compatibility issues with Java3D. </p>
 
 					<p>
 						<span class="minorHeadingStyle">Requirements</span> <br />Please
@@ -51,19 +48,22 @@
 						<li>Minimum 2 GB memory</li>
 						<li>Minimum 1366 x 768 screen resolution</li>
 					</ul>
-
+					
 					<p>
-						<span class="headingStyle">Step 1: Install IDV</span> <br />Geopod
+						<span class="headingStyle">Step 1: Install IDV</span> <br />
+						<div style="margin-left: 1em;">	Geopod
 						is a plugin for the Integrated Data Viewer (IDV), so before you
 						can use Geopod you must have IDV installed on your computer. IDV
 						version 5.0 or higher is supported. You can visit
 						the <a href="http://www.unidata.ucar.edu/software/idv">IDV
-							website</a> to learn more about installing IDV.
+							website</a> to learn more about installing IDV. 
+						</div>
 
 					</p>
-
+					
 					<p>
-						<span class="headingStyle">Step 2: Run IDV Once</span> <br />If
+						<span class="headingStyle">Step 2: Run IDV Once</span> <br />
+						<div style="margin-left: 1em;">	If
 						you are already an IDV user and have not just installed a new
 						version of IDV, you may skip this step.
 					</p>
@@ -75,11 +75,12 @@
 						IDV needs to create it so it can store data needed for plugins
 						like Geopod.
 					</p>
+					</div>
 
 					<p>
 						<span class="headingStyle">Step 3: Install Geopod</span>
 					</p>
-
+					<div style="margin-left: 1em;">
 					<p>
 						<span class="minorHeadingStyle italicized">For Windows
 							users:</span> <br /> Download and run the following install script: <a
@@ -139,29 +140,17 @@
 						<li>Locate the IDV program folder. This will typically be <i>YourHomeDirectory</i>/IDV_<i>VersionNumber</i>
 							unless you chose a different location when you installed IDV.
 						</li>
-						<li>In the IDV program folder, locate the <i>runIDV</i>
-							script file (not runIDV.bat) and open it in an editor. Make the
-							appropriate edits as specified below, then save your changes.<br />
-							<b>For IDV version 3.1 or later:</b> uncomment (remove two
-							leading #'s) the line that sets <i>idv_maxpermgensize=128</i>. <br />
-							<b>For older versions of IDV:</b> Locate the line that invokes
-							the java JVM (starts with <i>java ...</i>). The line directly
-							below this one will be commented out (have two #'s in front) and
-							be nearly identical except that it contains the text <i>
-								-XX:MaxPermSize=128m</i>. Uncomment (remove the two #'s in front of)
-							this line and comment out (place two #'s in front of) the line
-							above it.
-						</li>
 						<li>Download <a href="./plugins/Patch/local-visad.jar">local-visad.jar
-								(Executable Jar File)</a> and use it to replace the local-visad.jar
+								(Jar File)</a> and use it to replace the local-visad.jar
 							file in the IDV program folder.
 						</li>
 						<li>Download the latest <a href="./plugins/GeopodPlugin.jar">Geopod
-								Plugin (Executable Jar File)</a> and place it in the
+								Plugin (Jar File)</a> and place it in the
 							~/.unidata/idv/DefaultIdv/plugins folder. If this folder does not
 							exist, make sure you have run IDV at least once after installing.
 						</li>
 					</ol>
+					</div>
 					<br />
 					<p>
 						<span class="headingStyle">Running Geopod</span> <br />Step-by
@@ -172,40 +161,6 @@
 							href="documents/GeopodUsersGuide.pdf">Geopod Users Guide
 							(PDF)</a>. If you have questions or encounter problems, please <a
 							href="./contactUs.html">contact us</a>.
-					</p>
-					<br />
-					<p>
-						<span class="headingStyle">Updating Geopod</span> <br />Geopod is
-						frequently updated to include new features and bug fixes, so it’s
-						a good idea to always make sure you are using the latest version.
-					</p>
-
-					<p>
-						<span class="minorHeadingStyle italicized">For Windows
-							users:</span> <br /> To update to the latest version of Geopod,
-						download and run the <a href="./plugins/Scripts/UpdateGeopod.exe">Geopod
-							Update Script (EXE)</a>. The script will need to locate IDV’s <i>.unidata</i>
-						folder in order to install Geopod. If the <i>.unidata</i> folder
-						cannot be located automatically, you will be prompted to find
-						manually it using the file chooser provided. The <i>.unidata</i>
-						folder is typically in your home directory, that is, the folder
-						with the name of your account that is located under <i>Users</i>.
-					</p>
-
-					<p>
-						<span class="bold">If you encounter problems: </span> If for some
-						reason you have difficulty using the update script above, you can
-						follow the instructions for Linux users below to manually replace
-						your Geopod plugin with the latest version.
-					</p>
-
-					<p>
-						<span class="minorHeadingStyle italicized">For Linux users:</span>
-						<br /> Locate the <i>.unidata</i> folder in your home directory.
-						Download the latest <a href="./plugins/GeopodPlugin.jar">Geopod
-							Plugin (Executable Jar File)</a> and use it to replace the existing
-						GeopodPlugin.jar file it in the <i>.unidata/idv/DefaultIdv/plugins</i>
-						folder.
 					</p>
 					<br /> <br />
 				</div>

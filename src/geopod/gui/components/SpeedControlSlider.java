@@ -55,21 +55,21 @@ public class SpeedControlSlider
 
 		// Draw with a green->red gradient
 		// ESG: 59 - Determining appropriate color scheme
-		
+
 		// Original: (Before Edit)
 		//g2d.setPaint (new GradientPaint (this.getX (), this.getY (), Color.red, this.getX (), (float) this.getY ()
 		//+ this.getHeight () - 2, Color.green, true));
-		
+
 		// New set to Color.green to dark green (0, 128, 0)
 		// Looks much more appealing than Geopod Color constants. -ESG
 		g2d.setPaint (new GradientPaint (this.getX (), this.getY (), Color.green, this.getX (), (float) this.getY ()
-				+ this.getHeight () - 2, new Color(0.0f, 0.5f, 0.0f), true));
+				+ this.getHeight () - 2, new Color (0.0f, 0.5f, 0.0f), true));
 
 		// Alternate
 		// Yuck. Kept for judging by impartial eye. -ESG
 		//g2d.setPaint (new GradientPaint (this.getX (), this.getY (), UIConstants.GEOPOD_DARK_GREEN, this.getX (), (float) this.getY ()
 		//		+ this.getHeight () - 2, UIConstants.GEOPOD_GREEN, true));
-		
+
 		Polygon p = new Polygon ();
 		p.addPoint (0, getWidth () / 2); // upper left point
 		p.addPoint (getWidth (), getWidth () / 2); // upper right point

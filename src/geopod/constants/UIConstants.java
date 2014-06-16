@@ -45,7 +45,7 @@ public class UIConstants
 		GEOPOD_NOTE_COLOR = new Color (0xfff2c5);
 		GEOPOD_BANDY = FileLoadingUtility.loadFont (Font.TRUETYPE_FONT, "//Resources/Fonts/CW_BANDY.TTF");
 		GEOPOD_VERDANA = FileLoadingUtility.loadFont (Font.TRUETYPE_FONT, "//Resources/Fonts/VERDANA.TTF");
-		
+
 		TITLE_SIZE = 22.0f;
 		SUBTITLE_SIZE = 18.0f;
 		BUTTON_FONT_SIZE = 16.0f;
@@ -80,8 +80,11 @@ public class UIConstants
 			simpleNameMap.put (parameter, SPEED);
 		}
 		*/
-		simpleNameMap.put (derivedParameter (PARAM_SPEED, (COMP_U_WIND_D + ISOBARIC_D), (COMP_V_WIND_D + ISOBARIC_D)), SPEED);
-		simpleNameMap.put (derivedParameter (PARAM_SPEED, (COMP_U_WIND_D + HEIGHT_ABOVE_GROUND_D), (COMP_V_WIND_D + HEIGHT_ABOVE_GROUND_D)), SPEED);
+		simpleNameMap.put (derivedParameter (PARAM_SPEED, (COMP_U_WIND_D + ISOBARIC_D), (COMP_V_WIND_D + ISOBARIC_D)),
+				SPEED);
+		simpleNameMap.put (
+				derivedParameter (PARAM_SPEED, (COMP_U_WIND_D + HEIGHT_ABOVE_GROUND_D),
+						(COMP_V_WIND_D + HEIGHT_ABOVE_GROUND_D)), SPEED);
 		//simpleNameMap.put ("Relative_humidity @ isobaric", "RH");
 		//simpleNameMap.put ("Relative_humidity @ pressure", "RH");
 		/*
@@ -91,13 +94,13 @@ public class UIConstants
 		*/
 		simpleNameMap.put (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_ISOBARIC), RELATIVE_HUMIDITY);
 		simpleNameMap.put (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_PRESSURE_LAYER), RELATIVE_HUMIDITY);
-		
+
 		/*
 		for (String parameter : ParameterListConstants.RELATIVE_HUMIDITY_D) {
 			simpleNameMap.put (parameter, RELATIVE_HUMIDITY);
 		}
 		*/
-		
+
 		//simpleNameMap.put ("Dewpoint (from Temperature & Relative_humidity)", "Td");
 		//simpleNameMap.put ("Dewpoint Depression (from Temperature & dewpoint)", "Td");
 		/*
@@ -111,9 +114,13 @@ public class UIConstants
 			simpleNameMap.put (parameter, DEWPOINT);
 		}
 		*/
-		
-		simpleNameMap.put (derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D), (COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)), DEWPOINT);
-		simpleNameMap.put (derivedParameter (PARAM_DEWPOINT_DEPRESSION, (COMP_TEMPERATURE_D + ISOBARIC_D), COMP_DEWPOINT_D), DEWPOINT);
+
+		simpleNameMap.put (
+				derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D),
+						(COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)), DEWPOINT);
+		simpleNameMap.put (
+				derivedParameter (PARAM_DEWPOINT_DEPRESSION, (COMP_TEMPERATURE_D + ISOBARIC_D), COMP_DEWPOINT_D),
+				DEWPOINT);
 
 		//simpleNameMap.put ("mixingratio", "r");
 

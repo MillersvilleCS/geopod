@@ -8,7 +8,7 @@ public abstract class FlightEvent
 {
 	@XStreamAlias("time")
 	protected long m_time;
-	
+
 	public long getTime ()
 	{
 		return (m_time);

@@ -117,5 +117,4 @@ class KeyboardBuffer
 	{
 		Arrays.fill (m_keysDown, KEY_UP);
 	}
-
 }

@@ -34,7 +34,7 @@ public class IsosurfaceLock
 	 * Is the isosurface lock enabled or not.
 	 */
 	private boolean m_isEnabled;
-	
+
 	private boolean m_onSurface;
 
 	/**
@@ -61,7 +61,8 @@ public class IsosurfaceLock
 	public void setEnabled (boolean isEnabled)
 	{
 		m_isEnabled = isEnabled;
-		if(!isEnabled) m_onSurface = false;
+		if (!isEnabled)
+			m_onSurface = false;
 	}
 
 	/**
@@ -72,7 +73,7 @@ public class IsosurfaceLock
 	{
 		return (m_isEnabled);
 	}
-	
+
 	public boolean inOnSurface ()
 	{
 		return (m_onSurface);

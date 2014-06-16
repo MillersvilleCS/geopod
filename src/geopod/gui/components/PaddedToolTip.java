@@ -68,5 +68,4 @@ public class PaddedToolTip
 		Rectangle2D bounds = fontResource.getStringBounds (tipText, frc);
 		return new Dimension ((int) bounds.getWidth (), (int) bounds.getHeight ());
 	}
-
 }

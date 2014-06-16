@@ -197,7 +197,8 @@ public final class ParameterListConstants
 		//CONVECTIVE_INHIBITION = Arrays.asList ("Convective_inhibition @ pressure_difference_layer", "Convective_inhibition @ surface");
 		//CONVECTIVE_PRECIPITATION_0_HOURS = Arrays.asList ("Convective_precipitation_0hours @ surface");
 		//CONVECTIVE_PRECIPITATION_RATE = Arrays.asList ("Convective_Precipitation_Rate @ surface");
-		DEWPOINT_TEMPERATURE = Arrays.asList ("Dew_point_temperature @ pressure_difference_layer", "Dew_point_temperature @ pressure");
+		DEWPOINT_TEMPERATURE = Arrays.asList ("Dew_point_temperature @ pressure_difference_layer",
+				"Dew_point_temperature @ pressure");
 		//DIRECT_EVAPORATION_CEASE_SOIL_MOISTURE = Arrays.asList ("Direct_Evaporation_Cease_soil_moisture @ surface");
 		//DOWNWARD_LONG_WAVE_RAD_FLUX = Arrays.asList ("Downward_Long-Wave_Rad_Flux @ surface");
 		//DOWNWARD_LONG_WAVE_RAD_FLUX_0_HOURS = Arrays.asList ("Downward_Long-Wave_Rad_Flux_0hours @ surface");
@@ -207,7 +208,11 @@ public final class ParameterListConstants
 		//EVAPORATION_0_HOURS = Arrays.asList ("Evaporation_0hours @ surface");
 		//EXCHANGE_COEFFICIENT = Arrays.asList ("Exchange_Coefficient @ surface");
 		//FRICTIONAL_VELOCITY = Arrays.asList ("Frictional_Velocity @ surface");
-		GEOPOTENTIAL_HEIGHT = Arrays.asList ("Geopotential_height @ isobaric", "Geopotential_height @ pressure", "Geopotential_height @ adiabatic_condensation_lifted", "Geopotential_height @ highest_tropospheric_freezing", "Geopotential_height @ hybrid", "Geopotential_height @ lowest_level_of_the_wet_bulb_zero", "Geopotential_height @ maximum_wind", "Geopotential_height @ surface", "Geopotential_height @ zeroDegC_isotherm");
+		GEOPOTENTIAL_HEIGHT = Arrays.asList ("Geopotential_height @ isobaric", "Geopotential_height @ pressure",
+				"Geopotential_height @ adiabatic_condensation_lifted",
+				"Geopotential_height @ highest_tropospheric_freezing", "Geopotential_height @ hybrid",
+				"Geopotential_height @ lowest_level_of_the_wet_bulb_zero", "Geopotential_height @ maximum_wind",
+				"Geopotential_height @ surface", "Geopotential_height @ zeroDegC_isotherm");
 		//GROUND_HEAT_FLUX_0_HOURS = Arrays.asList ("Ground_Heat_Flux_0hours @ surface");
 		//HIGH_CLOUD_COVER = Arrays.asList ("High_cloud_cover @ high_cloud");
 		//HORIZONTAL_MOISTURE_DIVERGENCE = Arrays.asList ("Horizontal_Moisture_Divergence @ pressure", "Horizontal_Moisture_Divergence @ pressure_difference_layer");
@@ -231,15 +236,25 @@ public final class ParameterListConstants
 		//PLANETARY_BOUNDARY_LAYER_HEIGHT = Arrays.asList ("Planetary_Boundary_Layer_Height @ surface");
 		//PLANT_CANOPY_SURFACE_WATER = Arrays.asList ("Plant_Canopy_Surface_Water @ surface");
 		//POTENTIAL_EVAPORATION_0_HOURS = Arrays.asList ("Potential_Evaporation_0hours @ surface");
-		POTENTIAL_TEMPERATURE = Arrays.asList ("Potential_temperature @ height_above_ground", "Potential_temperature @ pressure_difference_layer");
+		POTENTIAL_TEMPERATURE = Arrays.asList ("Potential_temperature @ height_above_ground",
+				"Potential_temperature @ pressure_difference_layer");
 		//PRECIPITABLE_WATER = Arrays.asList ("Precipitable_water @ entire_atmosphere", "Precipitable_water @ pressure_difference_layer");
 		//PRECIPITATION_RATE = Arrays.asList ("Precipitation_rate @ surface");
 		//PRESSURE_OF_LEVEL_FROM_WHICH_PARCEL_WAS_LIFTED = Arrays.asList ("Pressure_of_level_from_which_parcel_was_lifted @ pressure_difference_layer");
 		//PRESSURE_REDUCED_TO_MSL = Arrays.asList ("Pressure_reduced_to_MSL @ msl");
-		PRESSURE = Arrays.asList ("Pressure @ pressure_difference_layer", "Pressure @ adiabatic_condensation_lifted", "Pressure @ cloud_base", "Pressure @ cloud_tops", "Pressure @ convective_cloud_bottom", "Pressure @ convective_cloud_top", "Pressure @ deep_convective_cloud_bottom", "Pressure @ deep_convective_cloud_top", "Pressure @ grid_scale_cloud_bottom", "Pressure @ grid_scale_cloud_top", "Pressure @ hybrid", "Pressure @ maximum_wind", "Pressure @ shallow_convective_cloud_bottom", "Pressure @ shallow_convective_cloud_top", "Pressure @ surface", "Pressure @ tropopause");
+		PRESSURE = Arrays.asList ("Pressure @ pressure_difference_layer", "Pressure @ adiabatic_condensation_lifted",
+				"Pressure @ cloud_base", "Pressure @ cloud_tops", "Pressure @ convective_cloud_bottom",
+				"Pressure @ convective_cloud_top", "Pressure @ deep_convective_cloud_bottom",
+				"Pressure @ deep_convective_cloud_top", "Pressure @ grid_scale_cloud_bottom",
+				"Pressure @ grid_scale_cloud_top", "Pressure @ hybrid", "Pressure @ maximum_wind",
+				"Pressure @ shallow_convective_cloud_bottom", "Pressure @ shallow_convective_cloud_top",
+				"Pressure @ surface", "Pressure @ tropopause");
 		//PROBABILITY_OF_FROZEN_PRECIPITATION = Arrays.asList ("Probability_of_frozen_Precipitation @ surface");
 		//RAIN_MIXING_RATIO = Arrays.asList ("Rain_mixing_ratio @ hybrid");
-		RELATIVE_HUMIDITY = Arrays.asList ("Relative_humidity @ isobaric", "Relative_humidity @ pressure", "Rain_mixing_ratio @ hybrid", "Relative_humidity @ pressure_difference_layer", "Relative_humidity @ height_above_ground", "Relative_humidity @ hybrid", "Relative_humidity @ sigma_layer", "Relative_humidity @ zeroDegC_isotherm");
+		RELATIVE_HUMIDITY = Arrays.asList ("Relative_humidity @ isobaric", "Relative_humidity @ pressure",
+				"Rain_mixing_ratio @ hybrid", "Relative_humidity @ pressure_difference_layer",
+				"Relative_humidity @ height_above_ground", "Relative_humidity @ hybrid",
+				"Relative_humidity @ sigma_layer", "Relative_humidity @ zeroDegC_isotherm");
 		//RIME_FACTOR = Arrays.asList ("Rime_Factor @ hybrid");
 		//SENSIBLE_HEAT_NET_FLUX = Arrays.asList ("Sensible_heat_net_flux_0hours @ surface", "Sensible_heat_net_flux @ surface");
 		//SNOW_FREE_ALBEDO = Arrays.asList ("Snow-Free_Albedo @ surface");
@@ -261,7 +276,10 @@ public final class ParameterListConstants
 		//SURFACE_LIFTED_INDEX = Arrays.asList ("Surface_Lifted_Index @ pressure_layer");
 		//SURFACE_ROUGHNESS = Arrays.asList ("Surface_roughness @ surface");
 		//SURFACE_SLOPE_TYPE = Arrays.asList ("Surface_Slope_Type @ surface");
-		TEMPERATURE = Arrays.asList ("Temperature @ isobaric", "Temperature @ pressure", "Temperature @ pressure_difference_layer", "Temperature @ cloud_tops", "Temperature @ height_above_ground", "Temperature @ hybrid", "Temperature @ surface", "Temperature @ tropopause");
+		TEMPERATURE = Arrays.asList ("Temperature @ isobaric", "Temperature @ pressure",
+				"Temperature @ pressure_difference_layer", "Temperature @ cloud_tops",
+				"Temperature @ height_above_ground", "Temperature @ hybrid", "Temperature @ surface",
+				"Temperature @ tropopause");
 		//TEMPERATURE_PARAMETER_IN_CANOPY_CONDUCTANCE = Arrays.asList ("Temperature_parameter_in_canopy_conductance @ surface");
 		//TOTAL_CLOUD_COVER = Arrays.asList ("Total_cloud_cover @ entire_atmosphere");
 		//TOTAL_CLOUD_COVER_0_HOURS = Arrays.asList ("Total_cloud_cover_0hours @ entire_atmosphere");
@@ -274,13 +292,19 @@ public final class ParameterListConstants
 		//TOTAL_PRECIPITATION_0_HOURS = Arrays.asList ("Total_precipitation_0hours @ surface");
 		//TRANSPIRATION_STRESS_ONSET_SOIL_MOISTURE = Arrays.asList ("Transpiration_Stress-onset_soil_moisture @ surface");
 		//TURBULENT_KINETIC_ENERGY = Arrays.asList ("Turbulent_kinetic_energy @ pressure", "Turbulent_kinetic_energy @ hybrid");
-		U_WIND = Arrays.asList ("u_wind @ isobaric", "U-component_of_wind @ pressure", "U-component_of_wind @ pressure_difference_layer", "U-component_of_wind @ hybrid", "U-component_of_wind @ height_above_ground", "U-component_of_wind @ maximum_wind", "U-component_of_wind @ tropopause");
+		U_WIND = Arrays.asList ("u_wind @ isobaric", "U-component_of_wind @ pressure",
+				"U-component_of_wind @ pressure_difference_layer", "U-component_of_wind @ hybrid",
+				"U-component_of_wind @ height_above_ground", "U-component_of_wind @ maximum_wind",
+				"U-component_of_wind @ tropopause");
 		//U_STORM_MOTION = Arrays.asList ("U-Component_Storm_Motion @ height_above_ground_layer");
 		//UPWARD_LONG_WAVE_RAD_FLUX = Arrays.asList ("Upward_Long-Wave_Rad_Flux @ surface");
 		//UPWARD_LONG_WAVE_RAD_FLUX_0_HOURS = Arrays.asList ("Upward_Long-Wave_Rad_Flux_0hours @ surface", "Upward_Long-Wave_Rad_Flux_0hours @ atmosphere_top");
 		//UPWARD_SHORT_WAVE_RAD_FLUX = Arrays.asList ("Upward_Short-Wave_Rad_Flux @ surface");
 		//UPWARD_SHORT_WAVE_RAD_FLUX_0_HOURS = Arrays.asList ("Upward_Short-Wave_Rad_Flux_0hours @ atmosphere_top", "Upward_Short-Wave_Rad_Flux_0hours @ surface");
-		V_WIND = Arrays.asList ("v_wind @ isobaric", "V-component_of_wind @ pressure", "V-component_of_wind @ pressure_difference_layer", "V-component_of_wind @ hybrid", "V-component_of_wind @ height_above_ground", "V-component_of_wind @ maximum_wind", "V-component_of_wind @ tropopause");
+		V_WIND = Arrays.asList ("v_wind @ isobaric", "V-component_of_wind @ pressure",
+				"V-component_of_wind @ pressure_difference_layer", "V-component_of_wind @ hybrid",
+				"V-component_of_wind @ height_above_ground", "V-component_of_wind @ maximum_wind",
+				"V-component_of_wind @ tropopause");
 		//V_STORM_MOTION = Arrays.asList ("V-Component_Storm_Motion @ height_above_ground_layer");
 		//VEGETATION = Arrays.asList ("Vegetation @ surface");
 		//VEGETATION_TYPE = Arrays.asList ("Vegetation_Type @ surface");
@@ -294,15 +318,19 @@ public final class ParameterListConstants
 		//WILTING_POINT = Arrays.asList ("Wilting_Point @ surface");
 		//WIND_SPEED_GUST = Arrays.asList ("Wind_speed_gust @ surface");
 		// DERIVED PARAMETERS
-		SPEED_D = Arrays.asList ("Speed (from u_wind & v_wind)", "Speed (from U-component_of_wind & V-component_of_wind)", "Speed (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)");
+		SPEED_D = Arrays.asList ("Speed (from u_wind & v_wind)",
+				"Speed (from U-component_of_wind & V-component_of_wind)",
+				"Speed (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)");
 		//FLOW_VECTORS_D = Arrays.asList ("Flow Vectors (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)", "Flow Vectors (from U-component_of_wind & V-component_of_wind)");
 		//TRUE_WIND_VECTORS_D = Arrays.asList ("True Wind vectors (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)", "True Wind vectors (from U-component_of_wind & V-component_of_wind)");
 		DEWPOINT_D = Arrays.asList ("Dewpoint (from Temperature & Relative_humidity)");
 		MIXING_RATIO_D = Arrays.asList ("mixingratio", "Mixing ratio (from Temperature & Relative_humidity)");
 		DEWPOINT_DEPRESSION_D = Arrays.asList ("Dewpoint Depression (from Temperature & dewpoint)");
-		EQUIVALENT_POTENTIAL_TEMPERATURE_D = Arrays.asList ("Equiv. Potential Temperature (from Temperature & Relative_humidity)");
+		EQUIVALENT_POTENTIAL_TEMPERATURE_D = Arrays
+				.asList ("Equiv. Potential Temperature (from Temperature & Relative_humidity)");
 		//SOUNDING_DATA_D = Arrays.asList ("Sounding Data (Temperature & dewpoint only)");
-		POTENTIAL_TEMPERATURE_D = Arrays.asList ("Potential Temperature (from Temperature)", "Potential Temperature (from Temperature & Pressure)");
+		POTENTIAL_TEMPERATURE_D = Arrays.asList ("Potential Temperature (from Temperature)",
+				"Potential Temperature (from Temperature & Pressure)");
 		//HORIZONTAL_DIVERGENCE_D = Arrays.asList ("Horizontal Divergence (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)", "Horizontal Divergence (from U-component_of_wind & V-component_of_wind)");
 		//RELATIVE_VORTICITY_D = Arrays.asList ("Relative Vorticity (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)", "Relative Vorticity (from U-component_of_wind & V-component_of_wind)");
 		//ABSOLUTE_VORTICITY_D = Arrays.asList ("Absolute Vorticity (from U-component_of_wind_height_above_ground & V-component_of_wind_height_above_ground)", "Absolute Vorticity (from U-component_of_wind & V-component_of_wind)");
@@ -319,66 +347,69 @@ public final class ParameterListConstants
 	{
 		// Static final class. No instantiation.
 	}
-	
+
 	@Deprecated
-	public static List<String> getDefaultGeopodParameters() {
-		List<String> paramList = new ArrayList<String>();
+	public static List<String> getDefaultGeopodParameters ()
+	{
+		List<String> paramList = new ArrayList<String> ();
 
 		paramList.add (TEMPERATURE.get (ISOBARIC_INDEX)); // @ isobaric
 		paramList.add (TEMPERATURE.get (PRESSURE_INDEX)); // @ pressure
 
-		paramList.add(SPEED_D.get (FROM_U_AND_V_WIND_INDEX)); // from u_wind and v_wind
+		paramList.add (SPEED_D.get (FROM_U_AND_V_WIND_INDEX)); // from u_wind and v_wind
 		paramList.add (SPEED_D.get (FROM_U_AND_V_COMP_INDEX)); // from U-comp & V-comp
-		
+
 		paramList.add (GEOPOTENTIAL_HEIGHT.get (ISOBARIC_INDEX)); // @ isobaric
 		paramList.add (GEOPOTENTIAL_HEIGHT.get (PRESSURE_INDEX)); // @ pressure
-		
+
 		paramList.add (RELATIVE_HUMIDITY.get (ISOBARIC_INDEX)); // @ isobaric
 		paramList.add (RELATIVE_HUMIDITY.get (PRESSURE_INDEX)); // @ pressure
-		
+
 		paramList.add (DEWPOINT_D.get (FROM_T_AND_RH_INDEX)); // from T & RH
-		paramList.add (DEWPOINT_TEMPERATURE.get(PRESSURE_INDEX)); // @ pressure
-		
+		paramList.add (DEWPOINT_TEMPERATURE.get (PRESSURE_INDEX)); // @ pressure
+
 		paramList.add (MIXING_RATIO_D.get (MIXINGRATIO_INDEX)); // mixingratio
-		
+
 		return Collections.unmodifiableList (paramList);
 	}
-	
+
 	@Deprecated
-	public static List<String> getNonRemoveableParameters() {
+	public static List<String> getNonRemoveableParameters ()
+	{
 		List<String> paramList = new ArrayList<String> ();
-		
+
 		paramList.add (TEMPERATURE.get (ISOBARIC_INDEX)); // @ isobaric
 		paramList.add (TEMPERATURE.get (PRESSURE_INDEX)); // @ pressure
-		
-		paramList.add (RELATIVE_HUMIDITY.get(ISOBARIC_INDEX)); // @ isobaric
-		paramList.add (RELATIVE_HUMIDITY.get(PRESSURE_INDEX)); // @ pressure
-		
+
+		paramList.add (RELATIVE_HUMIDITY.get (ISOBARIC_INDEX)); // @ isobaric
+		paramList.add (RELATIVE_HUMIDITY.get (PRESSURE_INDEX)); // @ pressure
+
 		return Collections.unmodifiableList (paramList);
 	}
-	
+
 	@Deprecated
-	public static Set<String> getDefaultDropsondeParameters() {
-		Set<String> paramList = new HashSet<String>();
-		
+	public static Set<String> getDefaultDropsondeParameters ()
+	{
+		Set<String> paramList = new HashSet<String> ();
+
 		paramList.add (TEMPERATURE.get (ISOBARIC_INDEX)); // @ isobaric
 		paramList.add (TEMPERATURE.get (PRESSURE_INDEX)); // @ pressure
-		
+
 		paramList.add (DEWPOINT_D.get (FROM_T_AND_RH_INDEX)); // from T & RH
-		paramList.add (DEWPOINT_TEMPERATURE.get(PRESSURE_INDEX)); // @ pressure
-		
+		paramList.add (DEWPOINT_TEMPERATURE.get (PRESSURE_INDEX)); // @ pressure
+
 		paramList.add (U_WIND.get (ISOBARIC_INDEX)); // @ isobaric
 		paramList.add (U_WIND.get (PRESSURE_INDEX)); // @ pressure
-		
+
 		paramList.add (V_WIND.get (ISOBARIC_INDEX)); // @ isobaric
 		paramList.add (V_WIND.get (PRESSURE_INDEX)); // @ pressure
-		
-		paramList.add (RELATIVE_HUMIDITY.get(ISOBARIC_INDEX)); // @ isobaric
-		paramList.add (RELATIVE_HUMIDITY.get(PRESSURE_INDEX)); // @ pressure
-		
-		paramList.add (EQUIVALENT_POTENTIAL_TEMPERATURE_D.get(FROM_T_AND_RH_INDEX)); // from T & RH
+
+		paramList.add (RELATIVE_HUMIDITY.get (ISOBARIC_INDEX)); // @ isobaric
+		paramList.add (RELATIVE_HUMIDITY.get (PRESSURE_INDEX)); // @ pressure
+
+		paramList.add (EQUIVALENT_POTENTIAL_TEMPERATURE_D.get (FROM_T_AND_RH_INDEX)); // from T & RH
 		paramList.add (POTENTIAL_TEMPERATURE.get (HEIGHT_ABOVE_GROUND_INDEX)); // @ height above ground
-		
+
 		return Collections.unmodifiableSet (paramList);
 	}
 

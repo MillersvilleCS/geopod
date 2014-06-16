@@ -32,5 +32,4 @@ class FrameRateBehavior
 		super.wakeupOn (m_wakeup);
 		m_startTime = System.nanoTime ();
 	}
-
 }

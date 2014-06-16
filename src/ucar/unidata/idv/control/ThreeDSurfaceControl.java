@@ -234,8 +234,12 @@ public class ThreeDSurfaceControl
 	protected void displayUnitChanged (Unit oldUnit, Unit newUnit)
 	{
 		super.displayUnitChanged (oldUnit, newUnit);
+		
+		// Millersville University Geopod Team: 
 		// NTO
 		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
+		// End Modification
+		
 		try
 		{
 			// For now we don't need to set the level because the Displayable
@@ -451,9 +455,13 @@ public class ThreeDSurfaceControl
 	 * 
 	 * @return range for data
 	 */
+	
+	// Millersville University Geopod Team: 
 	// NTO geopod needs this method to be public
 	public Range getDataRange ()
 	{
+	// End Modification
+		
 		return getGridDataInstance ().getRange (0);
 	}
 
@@ -608,8 +616,10 @@ public class ThreeDSurfaceControl
 			doShareExternal (SHARE_SURFACEVALUE, new Double (lastRawLevel));
 		}
 
+		// Millersville University Geopod Team: 
 		// NTO
 		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
+		// End Modification
 	}
 
 	/**
@@ -914,8 +924,12 @@ public class ThreeDSurfaceControl
 	public void setSurfaceValue (double value)
 	{
 		surfaceValue = value;
+		
+		// Millersville University Geopod Team: 
 		// TODO: remove these when we know how NTO
 		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
+		// End Modification
+		
 	}
 
 	/**
@@ -972,6 +986,7 @@ public class ThreeDSurfaceControl
 		return true;
 	}
 
+	// Millersville University Geopod Team: 
 	// NTO
 	@Override
 	public void addObserver (IObserver observer, GeopodEventId eventId)
@@ -996,4 +1011,6 @@ public class ThreeDSurfaceControl
 	{
 		m_subjectImpl.removeObservers ();
 	}
+	
+	// End Modification
 }

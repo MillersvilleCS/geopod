@@ -31,8 +31,7 @@ public class SceneGraphControl
 	 * 
 	 * @param displayRenderer
 	 */
-	public static void setDisplayRenderer (
-			DefaultDisplayRendererJ3D displayRenderer)
+	public static void setDisplayRenderer (DefaultDisplayRendererJ3D displayRenderer)
 	{
 		m_displayRenderer = displayRenderer;
 	}
@@ -137,8 +136,7 @@ public class SceneGraphControl
 	 * @param nodes
 	 */
 	@SuppressWarnings("unchecked")
-	private static <T> void findNodesOfType (Node node, Class<T> type,
-			List<T> nodes)
+	private static <T> void findNodesOfType (Node node, Class<T> type, List<T> nodes)
 	{
 		if (type.isAssignableFrom (node.getClass ()))
 		{

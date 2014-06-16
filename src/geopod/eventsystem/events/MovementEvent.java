@@ -29,7 +29,7 @@ public class MovementEvent
 	 */
 	public MovementEvent ()
 	{
-		
+
 	}
 
 	public MovementEvent (long time, double lat, double lon, double alt, Quat4d quat)

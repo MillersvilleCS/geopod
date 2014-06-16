@@ -24,7 +24,6 @@ import javax.vecmath.Vector3f;
 
 public class CubicSplineSegment
 {
-
 	// Legendre polynomial information for Gaussian quadrature of speed
 	// for the domain [0,u], 0 <= u <= 1.
 
@@ -411,7 +410,6 @@ public class CubicSplineSegment
 
 	public void getInterpolatedPosition (float u, Point3f newPos)
 	{
-
 		// if linear interpolation
 		if (this.linear == 1)
 		{
@@ -421,11 +419,9 @@ public class CubicSplineSegment
 		}
 		else
 		{
-
 			newPos.x = c0.x + u * (c1.x + u * (c2.x + u * c3.x));
 			newPos.y = c0.y + u * (c1.y + u * (c2.y + u * c3.y));
 			newPos.z = c0.z + u * (c1.z + u * (c2.z + u * c3.z));
-
 		}
 	}
 
@@ -452,11 +448,9 @@ public class CubicSplineSegment
 		}
 		else
 		{
-
 			newPos.x = c0.x + u * (c1.x + u * (c2.x + u * c3.x));
 			newPos.y = c0.y + u * (c1.y + u * (c2.y + u * c3.y));
 			newPos.z = c0.z + u * (c1.z + u * (c2.z + u * c3.z));
-
 		}
 	}
 

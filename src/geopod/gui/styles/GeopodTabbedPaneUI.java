@@ -17,48 +17,49 @@ public class GeopodTabbedPaneUI
 	private Color m_highlightColor;
 	private Color m_textColor;
 	private Font m_font;
-	
-	public GeopodTabbedPaneUI()
+
+	public GeopodTabbedPaneUI ()
 	{
-		super();
+		super ();
 		m_tabColor = new Color (163, 163, 160);
 		m_selectedTabColor = new Color (100, 100, 100);
 		m_highlightColor = Color.DARK_GRAY;
 		m_textColor = UIConstants.GEOPOD_GREEN;
 		m_font = UIConstants.GEOPOD_VERDANA.deriveFont (11.0f);
 	}
-	
-	public GeopodTabbedPaneUI(Color defaultTabColor, Color selectedTabColor, Color tabHighlightColor)
+
+	public GeopodTabbedPaneUI (Color defaultTabColor, Color selectedTabColor, Color tabHighlightColor)
 	{
-		super();
+		super ();
 		m_tabColor = defaultTabColor;
 		m_selectedTabColor = selectedTabColor;
 		m_highlightColor = tabHighlightColor;
 		m_textColor = UIConstants.GEOPOD_GREEN;
 		m_font = UIConstants.GEOPOD_VERDANA.deriveFont (11.0f);
 	}
-	
-	public GeopodTabbedPaneUI(Color defaultTabColor, Color selectedTabColor, Color tabHighlightColor, Color tabTextColor, Font tabFont)
+
+	public GeopodTabbedPaneUI (Color defaultTabColor, Color selectedTabColor, Color tabHighlightColor,
+			Color tabTextColor, Font tabFont)
 	{
-		super();
+		super ();
 		m_tabColor = defaultTabColor;
 		m_selectedTabColor = selectedTabColor;
 		m_highlightColor = tabHighlightColor;
 		m_textColor = tabTextColor;
 		m_font = tabFont;
 	}
-	
+
 	@Override
 	protected void installDefaults ()
 	{
 		tabPane.setBackground (m_tabColor);
 		tabPane.setForeground (m_textColor);
 		tabPane.setFont (m_font);
-		
+
 		super.installDefaults ();
-		
+
 		// Focus painting color, set same as selected tab color so tab never appears to be focus painted
-		super.focus = m_selectedTabColor; 
+		super.focus = m_selectedTabColor;
 		// Color of the face of the tab when selected
 		super.selectColor = m_selectedTabColor;
 		//super.lightHighlight = Color.DARK_GRAY; //cannot determine effect
@@ -66,7 +67,7 @@ public class GeopodTabbedPaneUI
 		// Color around outside of white border on unselected tab
 		super.darkShadow = m_highlightColor;
 		//Color around outside of selected tab, inside blue border
-		super.selectHighlight = m_highlightColor; 
+		super.selectHighlight = m_highlightColor;
 	}
 
 	@Override
@@ -79,5 +80,4 @@ public class GeopodTabbedPaneUI
 		super.paintContentBorder (g, tabPlacement, selectedIndex);
 		UIManager.getDefaults ().put ("TabbedPane.contentAreaColor", oldColor);
 	}
-
 }

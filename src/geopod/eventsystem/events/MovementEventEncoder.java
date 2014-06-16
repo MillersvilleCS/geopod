@@ -59,5 +59,4 @@ public class MovementEventEncoder
 
 		return new MovementEvent (time, lat, lon, alt, quat);
 	}
-
 }

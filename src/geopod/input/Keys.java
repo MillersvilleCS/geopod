@@ -83,7 +83,7 @@ public class Keys
 		setBinding (GeopodKeys.RollCounterclockwise, KeyStroke.getKeyStroke (KeyEvent.VK_E, KeyEvent.SHIFT_DOWN_MASK));
 
 		setBinding (GeopodKeys.MakeUpright, KeyStroke.getKeyStroke (KeyEvent.VK_SPACE, 0));
-		
+
 		setBinding (GeopodKeys.ResetPose, KeyStroke.getKeyStroke (KeyEvent.VK_R, 0));
 		setBinding (GeopodKeys.SetPoseAboveCenterOfViewBox, KeyStroke.getKeyStroke (KeyEvent.VK_T, 0));
 		setBinding (GeopodKeys.LockToSurface, KeyStroke.getKeyStroke (KeyEvent.VK_L, 0));
@@ -94,13 +94,13 @@ public class Keys
 
 		setBinding (GeopodKeys.AngularAccelerate, KeyStroke.getKeyStroke (KeyEvent.VK_PERIOD, 0));
 		setBinding (GeopodKeys.AngularDecelerate, KeyStroke.getKeyStroke (KeyEvent.VK_COMMA, 0));
-		
+
 		setBinding (GeopodKeys.ParameterDisplay, KeyStroke.getKeyStroke (KeyEvent.VK_P, 0));
 		setBinding (GeopodKeys.OverflowDisplay, KeyStroke.getKeyStroke (KeyEvent.VK_O, 0));
 		setBinding (GeopodKeys.NoteLocation, KeyStroke.getKeyStroke (KeyEvent.VK_N, 0));
-		
+
 		setBinding (GeopodKeys.ResetIsosurfaceColors, KeyStroke.getKeyStroke (KeyEvent.VK_I, 0));
-		
+
 		setBinding (GeopodKeys.RecreateFlightPath, KeyStroke.getKeyStroke (KeyEvent.VK_H, 0));
 		setBinding (GeopodKeys.PauseFlightPlayback, KeyStroke.getKeyStroke (KeyEvent.VK_J, 0));
 		setBinding (GeopodKeys.StopFlightPlayback, KeyStroke.getKeyStroke (KeyEvent.VK_K, 0));
@@ -109,6 +109,8 @@ public class Keys
 		setBinding (GeopodKeys.ToggleMission, KeyStroke.getKeyStroke (KeyEvent.VK_M, 0));
 		setBinding (GeopodKeys.ToggleCalculator, KeyStroke.getKeyStroke (KeyEvent.VK_C, 0));
 		setBinding (GeopodKeys.ToggleSettings, KeyStroke.getKeyStroke (KeyEvent.VK_S, 0));
+		// '/' is used in lieu of '?' since the location of the '?' character on international 
+		// keyboards varies. Java also does not provide a KeyEvent for '?'.
 		setBinding (GeopodKeys.ToggleHelp, KeyStroke.getKeyStroke (KeyEvent.VK_SLASH, 0));
 
 		setBinding (GeopodKeys.Menu, KeyStroke.getKeyStroke (KeyEvent.VK_ESCAPE, 0));
@@ -140,5 +142,4 @@ public class Keys
 	{
 		// Static class, no constructor.
 	}
-
 }

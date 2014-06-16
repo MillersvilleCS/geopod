@@ -752,10 +752,13 @@ public abstract class ShadowTypeJ3D
 		appearance.setCapability (Appearance.ALLOW_TEXGEN_READ);
 		appearance.setCapability (Appearance.ALLOW_TEXTURE_ATTRIBUTES_READ);
 		appearance.setCapability (Appearance.ALLOW_TEXTURE_READ);
-		// Geopod Team: Added the capability to write rendering attributes
+		
+		// d Team: Added the capability to write rendering attributes
 		//   so we can write the visibility flag to implement the mini-map. 
 		//   Below ALLOW_VISIBLE_WRITE is also set.
 		appearance.setCapability (Appearance.ALLOW_RENDERING_ATTRIBUTES_WRITE);
+		// End Modification
+		
 		// appearance.setCapability(Appearance.ALLOW_TEXTURE_UNIT_STATE_READ);
 		appearance.setCapability (Appearance.ALLOW_TRANSPARENCY_ATTRIBUTES_READ);
 
@@ -815,11 +818,13 @@ public abstract class ShadowTypeJ3D
 		rendering.setCapability (RenderingAttributes.ALLOW_ALPHA_TEST_FUNCTION_READ);
 		rendering.setCapability (RenderingAttributes.ALLOW_ALPHA_TEST_VALUE_READ);
 		rendering.setCapability (RenderingAttributes.ALLOW_DEPTH_ENABLE_READ);
+		
 		// Geopod Team: Added the capability to write the visible attribute
 		//   so we can use the same scene graph but only draw the map and a cone representing 
 		//   the Geopod in our top-down display (the mini-map)
 		rendering.setCapability (RenderingAttributes.ALLOW_VISIBLE_WRITE);
-
+		// End Modification
+		
 		//rendering.setCapability(RenderingAttributes.ALLOW_IGNORE_VERTEX_COLORS_READ
 		// );
 		// rendering.setCapability(RenderingAttributes.ALLOW_RASTER_OP_READ);

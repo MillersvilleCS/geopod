@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener;
 
 import geopod.ConfigurationManager;
 
-
 /**
  * A class to hold debugging functions.
  * 
@@ -42,7 +41,8 @@ public class Debug
 	{
 		ms_debugLevel = DebugLevel.NONE;
 		ms_createConsole = false;
-		ConfigurationManager.addPropertyChangeListener (ConfigurationManager.Debug,  new PropertyChangeListener (){
+		ConfigurationManager.addPropertyChangeListener (ConfigurationManager.Debug, new PropertyChangeListener ()
+		{
 
 			@Override
 			public void propertyChange (PropertyChangeEvent evt)
@@ -65,7 +65,7 @@ public class Debug
 	{
 		ms_debugLevel = level;
 	}
-	
+
 	/**
 	 * @return true if debugging is turned on.
 	 */
@@ -186,5 +186,4 @@ public class Debug
 		}
 		System.out.println ();
 	}
-
 }

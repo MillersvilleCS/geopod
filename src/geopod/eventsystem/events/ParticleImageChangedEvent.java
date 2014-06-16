@@ -77,5 +77,4 @@ public class ParticleImageChangedEvent
 	{
 		return (GeopodEventId.PARTICLE_IMAGED);
 	}
-
 }

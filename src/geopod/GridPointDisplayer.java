@@ -83,7 +83,8 @@ public class GridPointDisplayer
 	}
 
 	/**
-	 * Build a set of visible grid points based on the given {@link DataInstance}.
+	 * Build a set of visible grid points based on the given
+	 * {@link DataInstance}.
 	 * 
 	 * @param dataInstance
 	 */
@@ -128,8 +129,8 @@ public class GridPointDisplayer
 	{
 		if (m_pointSwitch != null)
 		{
-    			m_isVisible = visible;
-    			m_pointSwitch.setWhichChild (visible ? Switch.CHILD_ALL : Switch.CHILD_NONE);
+			m_isVisible = visible;
+			m_pointSwitch.setWhichChild (visible ? Switch.CHILD_ALL : Switch.CHILD_NONE);
 		}
 	}
 
@@ -198,16 +199,17 @@ public class GridPointDisplayer
 		if (setDimension == 3 || setDimension == 2)
 		{
 			IterableVisADSet locations = new IterableVisADSet (spatialDomainSet);
-			
+
 			@SuppressWarnings("rawtypes")
 			Iterator locIter = locations.iterator ();
 
-			int[] coordinateIndex = getLatLonAltIndexes(spatialDomainSet.getType().prettyString());
-			
+			int[] coordinateIndex = getLatLonAltIndexes (spatialDomainSet.getType ().prettyString ());
+
 			while (locIter.hasNext ())
 			{
 				float[] elArray = (float[]) locIter.next ();
-				EarthLocationLite el = new EarthLocationLite(elArray[coordinateIndex[0]], elArray[coordinateIndex[1]], elArray[coordinateIndex[2]]);
+				EarthLocationLite el = new EarthLocationLite (elArray[coordinateIndex[0]], elArray[coordinateIndex[1]],
+						elArray[coordinateIndex[2]]);
 				Point3f boxPoint = IdvCoordinateUtility.convertEarthToBoxFloat (el);
 				Point3f point = new Point3f (boxPoint);
 				pointSet.add (point);
@@ -227,70 +229,84 @@ public class GridPointDisplayer
 
 		return (gridPoints);
 	}
-	
-	/** 
-	 * @param dataType A string that contains information about the ordering of latitude, 
-	 * longitude, and in the data set.
+
+	/**
+	 * @param dataType
+	 *            A string that contains information about the ordering of
+	 *            latitude, longitude, and in the data set.
 	 * @return an array that "translates" index access such that:<br>
-	 * {@code returnval[0]} will be the index of the latitude,<br>
-	 * {@code returnval[1]} will be the index of the longitude, and<br>
-	 * {@code returnval[2]} will be the index of the altitude. 
+	 *         {@code returnval[0]} will be the index of the latitude,<br>
+	 *         {@code returnval[1]} will be the index of the longitude, and<br>
+	 *         {@code returnval[2]} will be the index of the altitude.
 	 */
-	private int[] getLatLonAltIndexes(String dataType) 
+	private int[] getLatLonAltIndexes (String dataType)
 	{
 		int lat, lon, alt;
-		
-		if (dataType.contains("lat[")) 
+
+		if (dataType.contains ("lat["))
 		{
-			lat = dataType.indexOf("lat[");
-			lon = dataType.indexOf("lon[");
-			alt = dataType.indexOf("isobaric"); // (Sean Arms') WRF Dataset
-			alt = dataType.indexOf("[", alt);
+			lat = dataType.indexOf ("lat[");
+			lon = dataType.indexOf ("lon[");
+			alt = dataType.indexOf ("isobaric"); // (Sean Arms') WRF Dataset
+			alt = dataType.indexOf ("[", alt);
 		}
-		else if (dataType.contains(("x["))) // NCEP
+		else if (dataType.contains (("x["))) // NCEP
 		{
-			lat = dataType.indexOf("x[");
-			lon = dataType.indexOf("y[");
-			alt = dataType.indexOf("isobaric"); // (Sean Arms') WRF Dataset
-			alt = dataType.indexOf("[", alt);		
+			lat = dataType.indexOf ("x[");
+			lon = dataType.indexOf ("y[");
+			alt = dataType.indexOf ("isobaric"); // (Sean Arms') WRF Dataset
+			alt = dataType.indexOf ("[", alt);
 		}
-		else {
-			System.out.println("GridPointDisplayer.getLatLonAltIndexes(): Failed to correctly identify data type format (0). Assuming [lat, lon, alt].");
-			System.out.println("Data type format found: " + dataType);
-			return new int[] {0, 1, 2};
+		else
+		{
+			System.out
+					.println ("GridPointDisplayer.getLatLonAltIndexes(): Failed to correctly identify data type format (0). Assuming [lat, lon, alt].");
+			System.out.println ("Data type format found: " + dataType);
+			return new int[] { 0, 1, 2 };
 		}
-		
-		if (lat < 0 || lon < 0 || alt < 0) {
-			System.out.println("GridPointDisplayer.getLatLonAltIndexes(): Failed to correctly identify data type format (1). Assuming [lat, lon, alt].");
-			System.out.println("Data type format found: " + dataType);
-			return new int[] {0, 1, 2};
+
+		if (lat < 0 || lon < 0 || alt < 0)
+		{
+			System.out
+					.println ("GridPointDisplayer.getLatLonAltIndexes(): Failed to correctly identify data type format (1). Assuming [lat, lon, alt].");
+			System.out.println ("Data type format found: " + dataType);
+			return new int[] { 0, 1, 2 };
 		}
-		
+
 		// Sadly can't think of a more concise way to do this without making a sorted list...
-		if (lat < lon && lat < alt) {
-			if (lon < alt) {
-				return new int[] {0, 1, 2}; // [lat, lon, alt]
+		if (lat < lon && lat < alt)
+		{
+			if (lon < alt)
+			{
+				return new int[] { 0, 1, 2 }; // [lat, lon, alt]
 			}
-			else {
-				return new int[] {0, 2, 1}; // [lat, alt, lon]
-			}
-		}
-		else if (lon < lat && lon < alt) {
-			if (lat < alt) {
-				return new int[] {1, 0, 2}; // [lon, lat, alt]
-			}
-			else {
-				return new int[] {1, 2, 0}; // [lon, alt, lat]
+			else
+			{
+				return new int[] { 0, 2, 1 }; // [lat, alt, lon]
 			}
 		}
-		else {
-			if (lat < lon) {
-				return new int[] {2, 0, 1}; // [alt, lat, lon]
+		else if (lon < lat && lon < alt)
+		{
+			if (lat < alt)
+			{
+				return new int[] { 1, 0, 2 }; // [lon, lat, alt]
 			}
-			else {
-				return new int[] {2, 1, 0}; // [alt, lon, lat]
+			else
+			{
+				return new int[] { 1, 2, 0 }; // [lon, alt, lat]
 			}
-		}	
+		}
+		else
+		{
+			if (lat < lon)
+			{
+				return new int[] { 2, 0, 1 }; // [alt, lat, lon]
+			}
+			else
+			{
+				return new int[] { 2, 1, 0 }; // [alt, lon, lat]
+			}
+		}
 	}
 
 	/**
@@ -299,7 +315,8 @@ public class GridPointDisplayer
 	 * @param pointIndex
 	 * @return - the sample {@link Data} from this index
 	 * @throws RemoteException
-	 *             - problem getting data from remote object (forwarded from IDV.
+	 *             - problem getting data from remote object (forwarded from
+	 *             IDV.
 	 * @throws VisADException
 	 *             - problem getting data (forwarded from IDV).
 	 */
@@ -345,7 +362,8 @@ public class GridPointDisplayer
 	}
 
 	/**
-	 * Create a Shape3D containing all the grid points, given an array of Point3f objects.
+	 * Create a Shape3D containing all the grid points, given an array of
+	 * Point3f objects.
 	 * 
 	 * @param points
 	 * @param sgc
@@ -383,42 +401,43 @@ public class GridPointDisplayer
 
 		return (pointShape);
 	}
-	
+
 	public void resetGridPoints ()
 	{
-	    m_hasPoints = false;
-	    m_isVisible = false;
-	    m_currentlySelected = NONE_SELECTED;
-	    detachFromSceneGraph ();
-	    
-	    m_pointSwitch = null;
-	    m_pointArray = null;
-	    m_pointsShape = null;
+		m_hasPoints = false;
+		m_isVisible = false;
+		m_currentlySelected = NONE_SELECTED;
+		detachFromSceneGraph ();
+
+		m_pointSwitch = null;
+		m_pointArray = null;
+		m_pointsShape = null;
 	}
 
 	/**
-	 * Change how many grid points will be displayed. A stride of 1 will display every point.
+	 * Change how many grid points will be displayed. A stride of 1 will display
+	 * every point.
 	 * 
 	 * @param pointStride
 	 *            - display every stride'th point.
 	 */
 	public void adjustGridPointDensity (int pointStride)
 	{
-	    if (m_gridPointBranch != null)
-	    {
-		// Deselect the previously selected point.
-		deselectCurrentlySelectedPoint ();
+		if (m_gridPointBranch != null)
+		{
+			// Deselect the previously selected point.
+			deselectCurrentlySelectedPoint ();
 
-		// Detach from the scene graph before resizing (avoids slowdown)
-		Group parent = (Group) m_gridPointBranch.getParent ();
-		m_gridPointBranch.detach ();
+			// Detach from the scene graph before resizing (avoids slowdown)
+			Group parent = (Group) m_gridPointBranch.getParent ();
+			m_gridPointBranch.detach ();
 
-		// Select which grid points to display
-		selectPointsByStride (m_pointArray, pointStride);
+			// Select which grid points to display
+			selectPointsByStride (m_pointArray, pointStride);
 
-		// Re-attach to the scene graph
-		parent.addChild (m_gridPointBranch);
-	    }
+			// Re-attach to the scene graph
+			parent.addChild (m_gridPointBranch);
+		}
 	}
 
 	private static Switch createPointsSwitchGroup (Shape3D points)
@@ -503,5 +522,4 @@ public class GridPointDisplayer
 			m_currentlySelected = NONE_SELECTED;
 		}
 	}
-
 }

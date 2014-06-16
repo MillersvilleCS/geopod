@@ -75,7 +75,7 @@ public class Sensor
 	{
 		return (m_dataInstance);
 	}
-	
+
 	public void setDataInstance (DataInstance datainstance)
 	{
 		m_dataInstance = datainstance;

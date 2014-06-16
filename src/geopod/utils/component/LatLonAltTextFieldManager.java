@@ -64,11 +64,12 @@ public class LatLonAltTextFieldManager
 
 		altitudeInput.setFont (m_latitudeFont);
 		altitudeInput.setBackground (m_normalColor);
-		altitudeInput.addFocusListener (new FocusListener ());		
+		altitudeInput.addFocusListener (new FocusListener ());
 	}
 
 	/**
 	 * Set all lat/lon/alt input field fonts to the specified font.
+	 * 
 	 * @param font
 	 */
 	public void setFieldFonts (Font font)
@@ -77,9 +78,10 @@ public class LatLonAltTextFieldManager
 		setLongitudeFont (font);
 		setAltitudeFont (font);
 	}
-	
+
 	/**
 	 * Set only the latitude input field font.
+	 * 
 	 * @param font
 	 */
 	public void setLatitudeFont (Font font)
@@ -87,9 +89,10 @@ public class LatLonAltTextFieldManager
 		m_latitudeFont = font;
 		m_latitudeInput.setFont (m_latitudeFont);
 	}
-	
+
 	/**
 	 * Set only the longitude input field font,
+	 * 
 	 * @param font
 	 */
 	public void setLongitudeFont (Font font)
@@ -97,9 +100,10 @@ public class LatLonAltTextFieldManager
 		m_longitudeFont = font;
 		m_longitudeInput.setFont (m_longitudeFont);
 	}
-	
+
 	/**
 	 * Set only the altitude input field font.
+	 * 
 	 * @param font
 	 */
 	public void setAltitudeFont (Font font)
@@ -107,30 +111,36 @@ public class LatLonAltTextFieldManager
 		m_altitudeFont = font;
 		m_altitudeInput.setFont (m_altitudeFont);
 	}
-	
+
 	/**
-	 * Set the normal background color of all lat/lon/alt input fields to 
-	 * the specified color. 
-	 * @param c - the specified color.
+	 * Set the normal background color of all lat/lon/alt input fields to the
+	 * specified color.
+	 * 
+	 * @param c
+	 *            - the specified color.
 	 */
 	public void resetBackgroundColors (Color c)
 	{
 		m_normalColor = c;
 		resetColors ();
 	}
-	
+
 	/**
 	 * Set the error indication color for all fields to the specified color.
-	 * @param c - the specified color
+	 * 
+	 * @param c
+	 *            - the specified color
 	 */
 	public void resetErrorColor (Color c)
 	{
 		m_errorColor = c;
 	}
-	
+
 	/**
 	 * Add a key listener to the lat/lon/alt input fields
-	 * @param changeListener - the KeyListener to add to each component
+	 * 
+	 * @param changeListener
+	 *            - the KeyListener to add to each component
 	 */
 	public void addKeyListener (KeyListener changeListener)
 	{
@@ -138,9 +148,10 @@ public class LatLonAltTextFieldManager
 		m_longitudeInput.addKeyListener (changeListener);
 		m_altitudeInput.addKeyListener (changeListener);
 	}
-	
+
 	/**
-	 * All lat/lon/alt fields have a key listener that indicates if inputed data is correct.
+	 * All lat/lon/alt fields have a key listener that indicates if inputed data
+	 * is correct.
 	 */
 	public void addDefaultKeyListener ()
 	{
@@ -422,7 +433,7 @@ public class LatLonAltTextFieldManager
 	private Font defaultFont ()
 	{
 		Font textFieldFont = UIConstants.GEOPOD_VERDANA.deriveFont (Font.BOLD, 15.0f);
-		
+
 		return textFieldFont;
 	}
 
@@ -434,11 +445,11 @@ public class LatLonAltTextFieldManager
 	}
 
 	/**
-	 * A default keylistener that checks to see if the lat/lon/alt values are valid
-	 * on the release of each key.
+	 * A default keylistener that checks to see if the lat/lon/alt values are
+	 * valid on the release of each key.
 	 * 
 	 * @author Geopod team
-	 *
+	 * 
 	 */
 	private class ChangeListener
 			extends KeyAdapter

@@ -11,7 +11,7 @@ import javax.vecmath.Vector3f;
 public class InterpolatorUtility
 {
 	private static final int SPLINE;
-	
+
 	@SuppressWarnings("unused")
 	private static final int LINEAR;
 
@@ -20,7 +20,7 @@ public class InterpolatorUtility
 		SPLINE = 0;
 		LINEAR = 1;
 	}
-	
+
 	public static TCBKeyFrame[] createKeys (Transform3D start, Transform3D end)
 	{
 		TCBKeyFrame[] keyFrames = new TCBKeyFrame[2];

@@ -54,5 +54,4 @@ public class GeopodTextField
 	{
 		return (m_toolTip == null) ? new PaddedToolTip () : m_toolTip;
 	}
-
 }

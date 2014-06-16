@@ -76,9 +76,10 @@ public final class FrameConstants
 		PARTICLE_PANEL_BOUNDS = new Rectangle (1200, 78, 406, 337);
 		DROPSONDE_PANEL_BOUNDS = new Rectangle (1200, 420, 406, 505);
 		// The bounding rectangle height and the panel height should be the same
-		DISTANCE_PANEL_BOUNDS = centerRectangle (new Rectangle (78, 78, INNER_VIEWING_AREA_BOUNDS.width, 190), new Dimension (412, 190));
+		DISTANCE_PANEL_BOUNDS = centerRectangle (new Rectangle (78, 78, INNER_VIEWING_AREA_BOUNDS.width, 190),
+				new Dimension (412, 190));
 		MOVIECAPTURE_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (1140, 820));
-		
+
 		TOP_VIEW_CANVAS_BOUNDS = new Rectangle (78, 78, 225, 225);
 
 		PARAMETER_CHOOSER_PANEL_BOUNDS = centerRectangle (INNER_VIEWING_AREA_BOUNDS, new Dimension (1500, 820));
@@ -94,8 +95,9 @@ public final class FrameConstants
 		APPLICATION_ICON_PATH = "//Resources/Images/User Interface/GeopodLogo.png";
 		NSF_LOGO_PATH = "//Resources/Images/User Interface/NSF_Logo.png";
 	}
-	
-	private FrameConstants() {
+
+	private FrameConstants ()
+	{
 		// Uninstantiable class. Private constructor.
 	}
 

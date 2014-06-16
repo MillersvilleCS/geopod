@@ -14,7 +14,7 @@ public class IDV4ParameterConstants
 	private static final String DERIVED_SEPERATOR_END = ")";
 	private static final String AND_SEPERATOR = " & ";
 	private static final String COMMA_SEPERATOR = ", ";
-	
+
 	// @ LEVELS
 	//public static final String AT_0DEG_ISOTHERM = "Level of 0deg C isotherm";
 	//public static final String AT_GROUND_OR_WATER_SURFACE = "Ground or water surface";
@@ -27,7 +27,7 @@ public class IDV4ParameterConstants
 	//public static final String AT_MAXIMUM_WIND_LEVEL = "Maximum wind level";
 	//public static final String AT_TROPOPAUSE = "Tropopause";
 	public static final String AT_HEIGHT_ABOVE_GROUND = "Specified height level above ground";
-	
+
 	// PARAMETER NAMES
 	//public static final String PARAM_THOUSAND_FIVE_HUNDRED_HPA_THICKNESS = "1000-500 hPa Thickness";
 	//public static final String PARAM_AGEOSTROPHIC_WIND = "AGeostrophic Wind";
@@ -70,7 +70,7 @@ public class IDV4ParameterConstants
 	//public static final String PARAM_VERTICAL_VELOCITY_PRESSURE = "Vertical velocity pressure";
 	public static final String PARAM_U_WIND = "u-component of wind";
 	public static final String PARAM_V_WIND = "v-component of wind";
-	
+
 	// COMPONENT PARAMETERS (FOR DERIVATION)
 	public static final String COMP_U_WIND_D = "u-component_of_wind";
 	public static final String COMP_V_WIND_D = "v-component_of_wind";
@@ -84,11 +84,11 @@ public class IDV4ParameterConstants
 	//public static final String COMP_DPDK = "dpdk"; // I have no idea what this is, but it was present.
 	//public static final String COMP_THETA_D = "theta";
 	//public static final String COMP_FLOW_VECTORS_D = "flowvectors";
-	
+
 	// COMPONENT PARAMETER TYPES
 	public static final String ISOBARIC_D = "_isobaric";
 	public static final String HEIGHT_ABOVE_GROUND_D = "_height_above_ground";
-	
+
 	/* DERIVED LEVELS
 	//public static final String FROM_U_WIND_ISOBARIC_V_WIND_ISOBARIC_AND_GEOPOTENTIAL_HEIGHT_ISOBARIC = " (from u-component_of_wind_isobaric, v-component_of_wind_isobaric, and Geopotential_height_isobaric)";
 	//public static final String FROM_U_WIND_ISOBARIC_AND_V_WIND_ISOBARIC = " (from u-component_of_wind_isobaric & v-component_of_wind_isobaric)";
@@ -107,27 +107,36 @@ public class IDV4ParameterConstants
 	//public static final String FROM_GEOPOTENTIAL_HEIGHT_ISOBARIC = "(from Geopotential_height_isobaric)";
 	//public static final String FROM_THETA_AND_FLOWVECTORS = "(from theta & flowvectors)";
 	 */
-	
-	public static final String intrinsicParameter(String param, String component) {
+
+	public static final String intrinsicParameter (String param, String component)
+	{
 		return param + INTRINSIC_SEPERATOR + component;
 	}
-	
-	public static final String derivedParameter(String derivative, List<String> components) {
-		return derivedParameter(derivative, (String[]) components.toArray ());
+
+	public static final String derivedParameter (String derivative, List<String> components)
+	{
+		return derivedParameter (derivative, (String[]) components.toArray ());
 	}
-	
-	public static final String derivedParameter (String derivative, String... components) {
+
+	public static final String derivedParameter (String derivative, String... components)
+	{
 		String derivedParameter = null;
-		if (components.length > 1) {
+		if (components.length > 1)
+		{
 			derivedParameter = derivative + DERIVED_SEPERATOR_BEGIN;
-			if (components.length > 2) {
-				for (int i = 0; i < components.length - 1; i++) {
+			if (components.length > 2)
+			{
+				for (int i = 0; i < components.length - 1; i++)
+				{
 					derivedParameter += components[i] + COMMA_SEPERATOR;
 				}
 				derivedParameter += "and " + components[components.length - 1];
-			} else {
+			}
+			else
+			{
 				derivedParameter += components[0];
-				if (components.length == 2) {
+				if (components.length == 2)
+				{
 					derivedParameter += AND_SEPERATOR + components[1];
 				}
 			}
@@ -135,110 +144,124 @@ public class IDV4ParameterConstants
 		}
 		return derivedParameter;
 	}
-	
-	public static List<String> getDefaultGeopodParameters() {
-		List<String> params = new ArrayList<String>();
-		
+
+	public static List<String> getDefaultGeopodParameters ()
+	{
+		List<String> params = new ArrayList<String> ();
+
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_ISOBARIC)); // @ Isobaric surface
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_PRESSURE_LAYER)); // @ Layer between...
-		
+
 		params.add (derivedParameter (PARAM_SPEED, (COMP_U_WIND_D + ISOBARIC_D), (COMP_V_WIND_D + ISOBARIC_D))); // from u and v wind
-		params.add (derivedParameter (PARAM_SPEED, (COMP_U_WIND_D + HEIGHT_ABOVE_GROUND_D), (COMP_V_WIND_D + HEIGHT_ABOVE_GROUND_D))); // height above ground
-		
+		params.add (derivedParameter (PARAM_SPEED, (COMP_U_WIND_D + HEIGHT_ABOVE_GROUND_D),
+				(COMP_V_WIND_D + HEIGHT_ABOVE_GROUND_D))); // height above ground
+
 		params.add (intrinsicParameter (PARAM_GEOPOTENTIAL_HEIGHT, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_GEOPOTENTIAL_HEIGHT, AT_PRESSURE_LAYER));
-		
+
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_PRESSURE_LAYER));
-		
-		params.add (derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D), (COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
+
+		params.add (derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D),
+				(COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
 		params.add (derivedParameter (PARAM_DEWPOINT_DEPRESSION, (COMP_TEMPERATURE_D + ISOBARIC_D), COMP_DEWPOINT_D));
-		
-		params.add (derivedParameter (PARAM_MIXING_RATIO, (PARAM_TEMPERATURE + ISOBARIC_D), (COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
-		
+
+		params.add (derivedParameter (PARAM_MIXING_RATIO, (PARAM_TEMPERATURE + ISOBARIC_D),
+				(COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
+
 		return Collections.unmodifiableList (params);
 	}
-	
-	public static List<String> getPermanentGeopodParameters() {
-		List<String> params = new ArrayList<String>();
-		
+
+	public static List<String> getPermanentGeopodParameters ()
+	{
+		List<String> params = new ArrayList<String> ();
+
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_PRESSURE_LAYER));
-		
+
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_PRESSURE_LAYER));
-		
+
 		return Collections.unmodifiableList (params);
 	}
-	
-	public static Set<String> getDefaultDropsondeParameters() {
-		Set<String> params = new HashSet<String>();
-		
+
+	public static Set<String> getDefaultDropsondeParameters ()
+	{
+		Set<String> params = new HashSet<String> ();
+
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_PRESSURE_LAYER));
-		
-		params.add (derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D), (COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
+
+		params.add (derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D),
+				(COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
 		params.add (derivedParameter (PARAM_DEWPOINT_DEPRESSION, (COMP_TEMPERATURE_D + ISOBARIC_D), COMP_DEWPOINT_D));
-		
+
 		params.add (intrinsicParameter (PARAM_U_WIND, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_U_WIND, AT_PRESSURE_LAYER));
-		
+
 		params.add (intrinsicParameter (PARAM_V_WIND, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_V_WIND, AT_PRESSURE_LAYER));
-		
+
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_PRESSURE_LAYER));
-		
-		params.add (derivedParameter (PARAM_EQUIVALENT_POTENTIAL_TEMPERATURE, (COMP_TEMPERATURE_D + ISOBARIC_D), (COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
+
+		params.add (derivedParameter (PARAM_EQUIVALENT_POTENTIAL_TEMPERATURE, (COMP_TEMPERATURE_D + ISOBARIC_D),
+				(COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
 		params.add (intrinsicParameter (PARAM_POTENTIAL_TEMPERATURE, AT_HEIGHT_ABOVE_GROUND));
-		
+
 		return Collections.unmodifiableSet (params);
 	}
-	
-	public static List<String> getDropsondeTDpParameters() {
-		List<String> params = new ArrayList<String>();
-		
+
+	public static List<String> getDropsondeTDpParameters ()
+	{
+		List<String> params = new ArrayList<String> ();
+
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_TEMPERATURE, AT_PRESSURE_LAYER));
-		params.add (derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D), (COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
+		params.add (derivedParameter (PARAM_DEWPOINT, (COMP_TEMPERATURE_D + ISOBARIC_D),
+				(COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
 		params.add (derivedParameter (PARAM_DEWPOINT_DEPRESSION, (COMP_TEMPERATURE_D + ISOBARIC_D), COMP_DEWPOINT_D));
-		
+
 		return Collections.unmodifiableList (params);
 	}
-	
-	public static String[] getDropsondeUToVWindParameters() {
-		return new String[] {intrinsicParameter (PARAM_U_WIND, AT_ISOBARIC),
-				intrinsicParameter (PARAM_U_WIND, AT_PRESSURE_LAYER),
-				intrinsicParameter (PARAM_V_WIND, AT_ISOBARIC),
-				intrinsicParameter (PARAM_V_WIND, AT_PRESSURE_LAYER)};
+
+	public static String[] getDropsondeUToVWindParameters ()
+	{
+		return new String[] { intrinsicParameter (PARAM_U_WIND, AT_ISOBARIC),
+				intrinsicParameter (PARAM_U_WIND, AT_PRESSURE_LAYER), intrinsicParameter (PARAM_V_WIND, AT_ISOBARIC),
+				intrinsicParameter (PARAM_V_WIND, AT_PRESSURE_LAYER) };
 	}
-	
-	public static List<String> getDropsondeUVWindParameters() {
-		List<String> params = new ArrayList<String>();
-		
+
+	public static List<String> getDropsondeUVWindParameters ()
+	{
+		List<String> params = new ArrayList<String> ();
+
 		params.add (intrinsicParameter (PARAM_U_WIND, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_U_WIND, AT_PRESSURE_LAYER));
 		params.add (intrinsicParameter (PARAM_V_WIND, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_V_WIND, AT_PRESSURE_LAYER));
-		
+
 		return Collections.unmodifiableList (params);
 	}
-	
-	public static List<String> getDropsondeRHParameters() {
-		List<String> params = new ArrayList<String>();
-		
+
+	public static List<String> getDropsondeRHParameters ()
+	{
+		List<String> params = new ArrayList<String> ();
+
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_ISOBARIC));
 		params.add (intrinsicParameter (PARAM_RELATIVE_HUMIDITY_L, AT_PRESSURE_LAYER));
-		
+
 		return Collections.unmodifiableList (params);
 	}
-	
-	public static List<String> getDropsondeThetaEParameters() {
-		List<String> params = new ArrayList<String>();
-		
-		params.add (derivedParameter (PARAM_EQUIVALENT_POTENTIAL_TEMPERATURE, (COMP_TEMPERATURE_D + ISOBARIC_D), (COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
+
+	public static List<String> getDropsondeThetaEParameters ()
+	{
+		List<String> params = new ArrayList<String> ();
+
+		params.add (derivedParameter (PARAM_EQUIVALENT_POTENTIAL_TEMPERATURE, (COMP_TEMPERATURE_D + ISOBARIC_D),
+				(COMP_RELATIVE_HUMIDITY_D + ISOBARIC_D)));
 		params.add (intrinsicParameter (PARAM_POTENTIAL_TEMPERATURE, AT_HEIGHT_ABOVE_GROUND));
-		
+
 		return Collections.unmodifiableList (params);
 	}
 

@@ -138,8 +138,8 @@ public class ParameterUtil
 
 		// To please the WRF gods
 		params.addAll (WRFParameterUtil.getDefaultGeopodParameters ());
-		
-		System.err.println(params.toString());
+
+		System.err.println (params.toString ());
 
 		return Collections.unmodifiableSet (params);
 	}
@@ -298,5 +298,4 @@ public class ParameterUtil
 
 		return Collections.unmodifiableList (params);
 	}
-
 }

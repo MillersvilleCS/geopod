@@ -64,5 +64,4 @@ public class LocationNotedEvent
 	{
 		return (GeopodEventId.LOCATION_NOTED);
 	}
-
 }

@@ -46,7 +46,7 @@ public class ToolPanel
 		String isoSurfaceImageDown = "//Resources/Images/User Interface/Buttons/IsoSurfaceButtonDown.png";
 		String isoSurfaceImageHover = "//Resources/Images/User Interface/Buttons/IsoSurfaceButtonHover.png";
 		GeopodButton isosurfaceViewButton = new GeopodButton (isoSurfaceImage, isoSurfaceImageDown, isoSurfaceImageHover);
-		isosurfaceViewButton.setToolTipTexts (" Open Isosurface View ", " Close Isosurface View ");
+		isosurfaceViewButton.setToolTipTexts (" Open Isosurface Display ", " Close Isosurface Display ");
 		isosurfaceViewButton.setActionCommand ("isosurface");
 		isosurfaceViewButton.addActionListener (m_hud);
 		m_hud.addObserver (isosurfaceViewButton, GeopodEventId.ISOSURFACE_BUTTON_STATE_CHANGED);
@@ -56,7 +56,7 @@ public class ToolPanel
 		String distanceImageDown = "//Resources/Images/User Interface/Buttons/DistanceButtonDown.png";
 		String distanceImageHover = "//Resources/Images/User Interface/Buttons/DistanceButtonHover.png";
 		GeopodButton distanceButton = new GeopodButton (distanceImage, distanceImageDown, distanceImageHover);
-		distanceButton.setToolTipTexts (" Open Distance Calculator ", " Close Distance Calculator ");
+		distanceButton.setToolTipTexts (" Open Distance Measurer ", " Close Distance Measurer ");
 		distanceButton.setActionCommand ("distance");
 		distanceButton.addActionListener (m_hud);
 		m_hud.addObserver (distanceButton, GeopodEventId.DISTANCE_BUTTON_STATE_CHANGED);

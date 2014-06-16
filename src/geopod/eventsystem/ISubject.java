@@ -29,7 +29,7 @@ public interface ISubject
 	 *            - the event to stop waiting for
 	 */
 	public void removeObserver (IObserver observer, GeopodEventId eventId);
-	
+
 	/**
 	 * Remove all observers from this subject.
 	 * 

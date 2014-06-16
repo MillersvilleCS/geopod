@@ -553,6 +553,7 @@ public class DisplayImplJ3D
 		// Millersville University Geopod Team: 
 		//   We color isosurfaces so we need to be able to write the color array.
 		array.setCapability (GeometryArray.ALLOW_REF_DATA_WRITE);
+		// End Modification
 
 		// only used when using BY_REFERENCE, so just set it anyways
 		// array.setCapability(GeometryArray.ALLOW_REF_DATA_READ);

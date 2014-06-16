@@ -55,7 +55,8 @@ public class TransformGroupControl
 	private TransformGroup m_topTransformGroup;
 
 	/**
-	 * Construct a transfromGroupControl with the transformGroups is meant to control.
+	 * Construct a transfromGroupControl with the transformGroups is meant to
+	 * control.
 	 * 
 	 * @param target
 	 *            - the transfromGroup to control.
@@ -85,7 +86,8 @@ public class TransformGroupControl
 
 	// 
 	/**
-	 * Ensure axes are orthonormal. This corrects for drift over repeated transformations.
+	 * Ensure axes are orthonormal. This corrects for drift over repeated
+	 * transformations.
 	 */
 	public synchronized void orthonormalize ()
 	{
@@ -128,7 +130,8 @@ public class TransformGroupControl
 	}
 
 	/**
-	 * Set the transform using the provided basis vectors and translation vector.
+	 * Set the transform using the provided basis vectors and translation
+	 * vector.
 	 * 
 	 * @param forward
 	 * @param up
@@ -141,8 +144,8 @@ public class TransformGroupControl
 	}
 
 	/**
-	 * Set the transform using the provided basis vectors and LOCAL scale Wrapper function to handle Point3d
-	 * translations.
+	 * Set the transform using the provided basis vectors and LOCAL scale
+	 * Wrapper function to handle Point3d translations.
 	 * 
 	 * @param forward
 	 * @param up
@@ -185,7 +188,8 @@ public class TransformGroupControl
 	}
 
 	/**
-	 * Set the rotation component using the provided forward and up basis vectors.
+	 * Set the rotation component using the provided forward and up basis
+	 * vectors.
 	 * 
 	 * @param forward
 	 * @param up
@@ -361,13 +365,15 @@ public class TransformGroupControl
 	}
 
 	/**
-	 * Get a copy of the current transform with the pitch and roll removed relative to a given vector. This aligns the
-	 * local up vector with the given vector, keeping the right vector constant.
+	 * Get a copy of the current transform with the pitch and roll removed
+	 * relative to a given vector. This aligns the local up vector with the
+	 * given vector, keeping the right vector constant.
 	 * 
 	 * @param worldVector
 	 *            - the world up vector to be relative to.
 	 * 
-	 * @return - a {@link Transform3D} that is level with respect to the given up vector.
+	 * @return - a {@link Transform3D} that is level with respect to the given
+	 *         up vector.
 	 */
 	public Transform3D createAlignedTransform (Vector3d worldVector)
 	{
@@ -383,7 +389,8 @@ public class TransformGroupControl
 	}
 
 	/**
-	 * Align the local up vector with a given world up vector, keeping the right vector constant.
+	 * Align the local up vector with a given world up vector, keeping the right
+	 * vector constant.
 	 * 
 	 * @param rotation
 	 *            - the {@link Matrix3d} to realign.
@@ -552,7 +559,8 @@ public class TransformGroupControl
 	}
 
 	/**
-	 * Get the {@link Pose} of the controlled transform group. NOTE: Scale is disregarded.
+	 * Get the {@link Pose} of the controlled transform group. NOTE: Scale is
+	 * disregarded.
 	 * 
 	 * @return the pose.
 	 */
@@ -567,7 +575,8 @@ public class TransformGroupControl
 	/**
 	 * 
 	 * @param transform
-	 *            - the {@link Transform3D} representing the current transformation.
+	 *            - the {@link Transform3D} representing the current
+	 *            transformation.
 	 */
 	public synchronized void getTransform (Transform3D transform)
 	{
@@ -575,7 +584,8 @@ public class TransformGroupControl
 	}
 
 	/**
-	 * @return the {@link TransformGroup} controlled by this TransformGroupControl.
+	 * @return the {@link TransformGroup} controlled by this
+	 *         TransformGroupControl.
 	 */
 	public synchronized TransformGroup getTransformGroup ()
 	{
@@ -695,9 +705,11 @@ public class TransformGroupControl
 	/**
 	 * Get a vector containing the yaw, pitch, and roll components in radians.
 	 * 
-	 * Based on examples from http://www.geometrictools.com/Documentation/EulerAngles.pdf
+	 * Based on examples from
+	 * http://www.geometrictools.com/Documentation/EulerAngles.pdf
 	 * 
-	 * @return a vector3d consisting of yaw (x component), pitch (y component), roll (z component);
+	 * @return a vector3d consisting of yaw (x component), pitch (y component),
+	 *         roll (z component);
 	 */
 	public Vector3d getYawPitchRoll ()
 	{

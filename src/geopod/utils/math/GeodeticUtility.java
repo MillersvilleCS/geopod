@@ -180,7 +180,4 @@ public class GeodeticUtility
 		}
 		return (altitude);
 	}
-	
-	
-
 }

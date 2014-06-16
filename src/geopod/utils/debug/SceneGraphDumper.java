@@ -20,18 +20,12 @@ import javax.vecmath.Matrix4d;
  * 
  * Sample usage:
  * 
- * // Debug: Dump the entire scene graph to a file 
- * FileOutputStream out;
- * PrintStream p;
- * try { 
- *   out = new FileOutputStream ("SceneGraphDump.txt");
- *   p = new PrintStream (out);
+ * // Debug: Dump the entire scene graph to a file FileOutputStream out;
+ * PrintStream p; try { out = new FileOutputStream ("SceneGraphDump.txt"); p =
+ * new PrintStream (out);
  * 
- *   Node rootNode = this.m_displayRenderer.getRoot ();
- *   DumpSceneGraph.dump (rootNode, p); 
- * }
- * catch (Exception e) 
- * { e.printStackTrace (); }
+ * Node rootNode = this.m_displayRenderer.getRoot (); DumpSceneGraph.dump
+ * (rootNode, p); } catch (Exception e) { e.printStackTrace (); }
  * 
  * @author Geopod Team
  * 
@@ -58,7 +52,7 @@ public class SceneGraphDumper
 		char[] spaces = new char[2 * depth];
 		Arrays.fill (spaces, ' ');
 		out.print (spaces);
-		out.print (n); 
+		out.print (n);
 
 		if (n instanceof Leaf)
 		{

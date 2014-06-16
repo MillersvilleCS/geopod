@@ -66,7 +66,6 @@ public class Compass
 		{
 			LogUtil.printException (GeopodPlugin.LOG_CATEGORY, "Data not loaded yet", e);
 		}
-
 	}
 
 	@Override
@@ -129,7 +128,6 @@ public class Compass
 			{
 				repaint ();
 			}
-
 		});
 	}
 
@@ -142,5 +140,4 @@ public class Compass
 	{
 		return (m_heading);
 	}
-
 }

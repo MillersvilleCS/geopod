@@ -16,8 +16,9 @@ public final class SimpleParameterNameConstants
 		RELATIVE_HUMIDITY = "RH";
 		DEWPOINT = "Td";
 	}
-	
-	private SimpleParameterNameConstants() {
+
+	private SimpleParameterNameConstants ()
+	{
 		// Static final class. No instantiation.
 	}
 }

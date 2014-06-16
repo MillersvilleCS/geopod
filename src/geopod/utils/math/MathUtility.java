@@ -1,6 +1,5 @@
 package geopod.utils.math;
 
-
 /**
  * Class to provide general math functions.
  * 
@@ -97,7 +96,7 @@ public class MathUtility
 	{
 		return (a > b + epsilon);
 	}
-	
+
 	/**
 	 * Parse a double from a string with error handling.
 	 * 

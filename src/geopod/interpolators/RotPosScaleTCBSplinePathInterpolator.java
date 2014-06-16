@@ -185,7 +185,7 @@ public class RotPosScaleTCBSplinePathInterpolator
 		transform.mul (axis, rotation);
 		transform.setScale (new Vector3d (iScale));
 		transform.mul (transform, axisInverse);
-		
+
 		transform.normalize ();
 
 	}

@@ -62,12 +62,12 @@ public class Stopwatch
 
 		return (elapsed);
 	}
-	
+
 	public double getCurrentElapsedTimeInMs ()
 	{
 		double delta = System.nanoTime () - m_startTime;
 		double elapsed = delta * 1e-6;
-		
+
 		return (elapsed);
 	}
 

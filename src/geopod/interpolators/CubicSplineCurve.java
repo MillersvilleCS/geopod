@@ -39,7 +39,6 @@ public class CubicSplineCurve
 
 	CubicSplineCurve (TCBKeyFrame keys[])
 	{
-
 		int keyLength = keys.length;
 		// Require at least 4 key frames for cubic spline curve
 		if (keyLength < 4)
@@ -72,7 +71,6 @@ public class CubicSplineCurve
 	 */
 	CubicSplineCurve (CubicSplineSegment s[])
 	{
-
 		cubicSplineSegment = new CubicSplineSegment[s.length];
 		numSegments = cubicSplineSegment.length;
 		for (int i = 0; i < numSegments; i++)
@@ -94,7 +92,6 @@ public class CubicSplineCurve
 	 */
 	public void setSegments (CubicSplineSegment s[])
 	{
-
 		cubicSplineSegment = new CubicSplineSegment[s.length];
 		numSegments = cubicSplineSegment.length;
 		for (int i = 0; i < numSegments; i++)
@@ -115,21 +112,17 @@ public class CubicSplineCurve
 	 */
 	public CubicSplineSegment getSegment (int index)
 	{
-
 		return this.cubicSplineSegment[index];
-
 	}
 
 	// computes the total length of the curve
 	private void computeTotalCurveLength ()
 	{
-
 		totalCurveLength = 0f;
 		for (int i = 0; i < numSegments; i++)
 		{
 			totalCurveLength += cubicSplineSegment[i].length;
 		}
-
 	}
 
 	/**
@@ -141,9 +134,6 @@ public class CubicSplineCurve
 
 	public float getTotalCurveLength ()
 	{
-
 		return (this.totalCurveLength);
-
 	}
-
 }

@@ -753,7 +753,7 @@ public abstract class ShadowTypeJ3D
 		appearance.setCapability (Appearance.ALLOW_TEXTURE_ATTRIBUTES_READ);
 		appearance.setCapability (Appearance.ALLOW_TEXTURE_READ);
 		
-		// d Team: Added the capability to write rendering attributes
+		// Geopod Team: Added the capability to write rendering attributes
 		//   so we can write the visibility flag to implement the mini-map. 
 		//   Below ALLOW_VISIBLE_WRITE is also set.
 		appearance.setCapability (Appearance.ALLOW_RENDERING_ATTRIBUTES_WRITE);

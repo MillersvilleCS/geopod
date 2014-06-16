@@ -368,10 +368,6 @@ public class Hud
 			{
 				handleDistanceButtonEvent ();
 			}
-			else if (actionCommand.equals ("movieCapture"))
-			{
-				handleMovieCaptureButtonEvent ();
-			}
 			else if (actionCommand.equals ("isosurface"))
 			{
 				handleIsosurfaceViewButtonEvent ();
@@ -529,12 +525,6 @@ public class Hud
 	private void handleDistanceButtonEvent ()
 	{
 		m_flightFrame.toggleDistancePanel ();
-
-	}
-
-	private void handleMovieCaptureButtonEvent ()
-	{
-		m_flightFrame.toggleMovieCapturePanel ();
 
 	}
 

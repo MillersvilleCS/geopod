@@ -47,7 +47,6 @@ public class Keys
 		PauseFlightPlayback,
 		StopFlightPlayback,
 		ToggleGridpoints,
-		ToggleMission,
 		ToggleCalculator,
 		ToggleSettings,
 		ToggleHelp,
@@ -106,7 +105,6 @@ public class Keys
 		setBinding (GeopodKeys.StopFlightPlayback, KeyStroke.getKeyStroke (KeyEvent.VK_K, 0));
 
 		setBinding (GeopodKeys.ToggleGridpoints, KeyStroke.getKeyStroke (KeyEvent.VK_G, 0));
-		setBinding (GeopodKeys.ToggleMission, KeyStroke.getKeyStroke (KeyEvent.VK_M, 0));
 		setBinding (GeopodKeys.ToggleCalculator, KeyStroke.getKeyStroke (KeyEvent.VK_C, 0));
 		setBinding (GeopodKeys.ToggleSettings, KeyStroke.getKeyStroke (KeyEvent.VK_S, 0));
 		// '/' is used in lieu of '?' since the location of the '?' character on international 

@@ -1,3 +1,19 @@
+/* 
+ * Currently not in use. We are not using this feature due to the list of bugs below:
+ * 
+ * 	1) Movie capture button remains highlighted when no video is being captured, or shows as
+ * 		deselected when a movie is still being captured.
+ * 	2) Deselecting the 'maintain aspect ratio' checkbox, and entering in small dimensions such as
+ * 		200 x 200 causes an "Out of bounds" or null pointer exception.
+ * 	3) When capturing a frame or image, the frames often appear 2 or more frames behind the current
+ * 		image.
+ * 	4) At random times after deleting frames and then capturing an image, two images instead of
+ * 		one will be captured.
+ * 	5) At random times selecting the movie capture button will not display the movie capture panel
+ * 		until it is selected twice.
+ * 
+ */
+
 // package geopod.gui.panels.moviecapture;
 package geopod.gui.panels;
 

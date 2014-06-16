@@ -14,7 +14,6 @@ import geopod.gui.panels.ConfigurationPanel;
 import geopod.gui.panels.HelpPanel;
 import geopod.gui.panels.ImagePanel;
 import geopod.gui.panels.LoadingPanel;
-import geopod.gui.panels.MovieCapturePanel;
 import geopod.gui.panels.NotedLocationsPanel;
 import geopod.gui.panels.NotificationPanel;
 import geopod.gui.panels.ParameterChooserPanel;
@@ -99,7 +98,6 @@ public class GeopodFrame
 	private NavigationPanel m_navigationPanel;
 	private IsosurfaceViewPanel m_isosurfaceViewPanel;
 	private DistancePanel m_distancePanel;
-	private MovieCapturePanel m_movieCapturePanel;
 	private MultipleDropsondeChartPanel m_multipleChartPanel;
 	private HelpPanel m_helpPanel;
 	private ParameterChooserPanel m_parameterChooserPanel;
@@ -375,11 +373,6 @@ public class GeopodFrame
 		m_distancePanel.setVisible (false);
 		m_distancePanel.addObserver (m_hud, GeopodEventId.DISTANCE_BUTTON_STATE_CHANGED);
 		addLayeredComponent (m_distancePanel, JLayeredPane.MODAL_LAYER, DISTANCE_PANEL_BOUNDS);
-
-		m_movieCapturePanel = new MovieCapturePanel (m_hud);
-		m_movieCapturePanel.setVisible (false);
-		m_movieCapturePanel.addObserver (m_hud, GeopodEventId.MOVIECAPTURE_BUTTON_STATE_CHANGED);
-		addLayeredComponent (m_movieCapturePanel, JLayeredPane.MODAL_LAYER, MOVIECAPTURE_PANEL_BOUNDS);
 
 		m_configurationPanel = new ConfigurationPanel ();
 		m_configurationPanel.addObserver (m_hud, GeopodEventId.REQUEST_FLIGHT_LOG_RESET);
@@ -701,15 +694,6 @@ public class GeopodFrame
 	public void toggleDistancePanel ()
 	{
 		m_distancePanel.toggleVisibility ();
-	}
-
-	/**
-	 * Toggle the visibility of the movie capture panel
-	 */
-
-	public void toggleMovieCapturePanel ()
-	{
-		m_movieCapturePanel.click ();
 	}
 
 	/**

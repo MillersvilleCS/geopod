@@ -932,9 +932,14 @@ public class ThreeDSurfaceControl
 	 * @param value
 	 *            The new value for SurfaceValue
 	 */
-	public void setSurfaceValue (double value)
+	public void getValue (double value)
 	{
 		surfaceValue = value;
+		
+		// Millersville University Geopod Team: 
+		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
+		// End Modification
+
 	}
 
 	/**

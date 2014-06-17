@@ -62,7 +62,25 @@ IDV:
 
 	Revision 1:
 	==========
-
+	
+	public class ThreeDSurfaceControl
+		extends GridDisplayControl
+			// Millersville University Geopod Team: 
+			implements ISubject
+			// End Modification
+	
+	
+    Revision 2:
+	==========
+	
+	// Millersville University Geopod Team: 
+	private SubjectImpl m_subjectImpl = new SubjectImpl ();
+	// End Modification
+	
+	
+	Revision 3:
+	==========
+	
      m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
       
      The line above is added to the following methods:
@@ -72,8 +90,9 @@ IDV:
      	3)	public void setSurfaceValue (double value)
 
 
-    Revision 2:
+	Revision 4:
 	==========
+	
      // Millersville University Geopod Team: 
 	 // NTO geopod needs this method to be public
 	 public Range getDataRange ()
@@ -85,9 +104,9 @@ IDV:
 	 }
 
 
-	Revision 3:
+	Revision 5:
 	==========
-
+	
      // Millersville University Geopod Team: 
 	 // NTO
 	 @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 1997-2010 Unidata Program Center/University Corporation for
+ * Copyright 1997-2014 Unidata Program Center/University Corporation for
  * Atmospheric Research, P.O. Box 3000, Boulder, CO 80307,
  * support@unidata.ucar.edu.
  * 
@@ -69,7 +69,10 @@ import visad.VisADException;
 
 public class ThreeDSurfaceControl
 		extends GridDisplayControl
-		implements ISubject
+			// Millersville University Geopod Team: 
+			implements ISubject
+			// End Modification
+
 {
 
 	/** displayable for the isosurface */
@@ -117,8 +120,10 @@ public class ThreeDSurfaceControl
 
 	/** range for surface */
 	private Range levelRange = new Range (0.0, 100000.0);
-
+	
+	// Millersville University Geopod Team: 
 	private SubjectImpl m_subjectImpl = new SubjectImpl ();
+	// End Modification
 
 	/**
 	 * Default constructor; does nothing. See init() for class initialization
@@ -145,6 +150,7 @@ public class ThreeDSurfaceControl
 	public boolean init (DataChoice dataChoice)
 			throws VisADException, RemoteException
 	{
+
 		if (!isDisplay3D ())
 		{
 			userMessage ("Can't display IsoSurface in 2D display");
@@ -152,29 +158,30 @@ public class ThreeDSurfaceControl
 		}
 		myDisplay = new Grid3DDisplayable ("3diso_" + dataChoice, true);
 
-		// Create the widgets (which are accessed from the setData call)
+		//Create the widgets (which are accessed from the setData call)
 		makeInitialWidgets ();
 
-		// Now, set the data. Return false if it fails.
+		//Now, set the data. Return false if it fails.
 		if (!setData (dataChoice))
 		{
 			return false;
 		}
 
-		// Now set up the flags and add the displayable
+		//Now set up the flags and add the displayable 
 		setAttributeFlags (FLAG_COLORTABLE);
 
 		if (haveMultipleFields ())
 		{
-			// If we have multiple fields then we want both the color unit
-			// and the display unit
+			//If we have multiple fields then we want both the color unit 
+			//and the display unit
 			addDisplayable (myDisplay, FLAG_COLORTABLE | FLAG_DATACONTROL | FLAG_COLORUNIT | FLAG_DISPLAYUNIT);
 		}
 		else
 		{
-			// If just one field then just the color unit
+			//If just one field then just the color unit
 			addDisplayable (myDisplay, FLAG_COLORTABLE | FLAG_DATACONTROL | FLAG_DISPLAYUNIT);
 		}
+
 		return true;
 	}
 
@@ -216,6 +223,7 @@ public class ThreeDSurfaceControl
 	 * @param values
 	 *            The macro values
 	 */
+	@SuppressWarnings("rawtypes")
 	protected void addLabelMacros (String template, List patterns, List values)
 	{
 		super.addLabelMacros (template, patterns, values);
@@ -234,17 +242,16 @@ public class ThreeDSurfaceControl
 	protected void displayUnitChanged (Unit oldUnit, Unit newUnit)
 	{
 		super.displayUnitChanged (oldUnit, newUnit);
-		
+
 		// Millersville University Geopod Team: 
 		// NTO
 		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
 		// End Modification
-		
+
 		try
 		{
-			// For now we don't need to set the level because the Displayable
-			// ignores the displayunit
-			// setLevel (lastRawLevel);
+			//For now we don't need to set the level because the Displayable ignores the displayunit
+			//setLevel (lastRawLevel);
 			setSliderValues ();
 			adjustSliderLabel (getWholeDisplayValue (lastRawLevel));
 		}
@@ -303,8 +310,8 @@ public class ThreeDSurfaceControl
 	{
 
 		// Make a JSlider to adjust value of surface's value.
-		// slider internal values -- not seen by user --
-		// are 0 to 1000; first slider position at mid range, 500
+		//   slider internal values -- not seen by user --
+		//   are 0 to 1000; first slider position at mid range, 500
 		ChangeListener listener = new ChangeListener ()
 		{
 			public void stateChanged (ChangeEvent e)
@@ -337,7 +344,7 @@ public class ThreeDSurfaceControl
 		levelSlider = new JSlider (JSlider.HORIZONTAL, 0, levelRange.getMaxInt (), levelRange.getMaxInt () / 2);
 		levelSlider = (JSlider) sliderComps[1];
 		sliderComps[0].setToolTipText ("Change Isosurface Value");
-		// TODO GuiUtils.setSliderPercent(levelSlider, levelSliderPercent);
+		//TODO        GuiUtils.setSliderPercent(levelSlider, levelSliderPercent);
 		levelSlider.setPaintTicks (true);
 		levelSlider.setPaintLabels (true);
 		levelSlider.setPaintTrack (true);
@@ -348,7 +355,7 @@ public class ThreeDSurfaceControl
 
 		// make readout of slider value;
 		levelLabel = new JLabel ("   ");
-		// levelLabel.setPreferredSize(new Dimension(70, 10));
+		//        levelLabel.setPreferredSize(new Dimension(70, 10));
 		levelLabel.setToolTipText ("Click to Change Display Unit");
 		levelLabel.addMouseListener (new MouseAdapter ()
 		{
@@ -370,8 +377,8 @@ public class ThreeDSurfaceControl
 				{
 					double displayLevel = Misc.parseNumber (levelReadout.getText ().trim ());
 					double rawValue = convertDisplayToRaw (displayLevel);
-					// System.err.println ("display:" + displayLevel + " "
-					// + " raw:" + rawValue);
+					//              System.err.println ("display:" + displayLevel + " " 
+					//                                  + " raw:" + rawValue);
 					setLevelWithRawValue (rawValue);
 				}
 				catch (NumberFormatException nfe)
@@ -424,7 +431,7 @@ public class ThreeDSurfaceControl
 
 		JPanel labelPanel = GuiUtils.wrap (GuiUtils.hflow (Misc.newList (levelReadout, levelLabel,
 				GuiUtils.inset (sliderComps[0], new Insets (0, 5, 0, 0)))));
-		// add a composite widget with label, level slider, and readout
+		// add a  composite widget with label, level slider, and readout
 		controlWidgets
 				.add (new WrapperWidget (this, GuiUtils.rLabel ("Isosurface Value:"), GuiUtils.left (labelPanel)));
 
@@ -455,13 +462,12 @@ public class ThreeDSurfaceControl
 	 * 
 	 * @return range for data
 	 */
-	
 	// Millersville University Geopod Team: 
 	// NTO geopod needs this method to be public
 	public Range getDataRange ()
 	{
-	// End Modification
-		
+		// End Modification
+
 		return getGridDataInstance ().getRange (0);
 	}
 
@@ -539,7 +545,7 @@ public class ThreeDSurfaceControl
 			throws VisADException, RemoteException
 	{
 		double displayLevel = convertRawToDisplay (rawLevel);
-		// For now don't convert to a whole number
+		//For now don't convert to a whole number
 		if (true)
 		{
 			return displayLevel;
@@ -680,8 +686,7 @@ public class ThreeDSurfaceControl
 			unitLabel = " " + getDisplayUnit ();
 		}
 		value = getDisplayConventions ().format (displayValue);
-		// System.err.println ("displayValue:" + displayValue + " formatted:" +
-		// value);
+		//      System.err.println ("displayValue:" + displayValue + " formatted:" + value);
 		lastReadout = value + unitLabel;
 		boolean lastIgnore = ignoreUIEvents;
 		ignoreUIEvents = true;
@@ -734,9 +739,12 @@ public class ThreeDSurfaceControl
 	}
 
 	/*
-	 * Comment this out for now. We still leave around the set method for legacy
-	 * bundles. public double getLevelSliderPercent() { return
-	 * levelSliderPercent; }
+	 * Comment this out for now. We still leave around the set method
+	 * for legacy bundles.
+	 * public double getLevelSliderPercent() {
+	 * return levelSliderPercent;
+	 * }
+	 *
 	 */
 
 	/**
@@ -806,12 +814,12 @@ public class ThreeDSurfaceControl
 
 		boolean lastIgnore = ignoreUIEvents;
 		ignoreUIEvents = true;
-		// provide default values used in the slider
+		// provide default values used in the slider  
 		// parms with real small ranges
 		Range r = getDataRange ();
 		double span = r.getAbsSpan ();
 
-		// for switching to units preferred for display,
+		// for switching to units preferred for display, 
 		// first make these Reals
 		Real dmin = new Real (getDataRealType (), r.getMin ());
 		Real dmax = new Real (getDataRealType (), r.getMax ());
@@ -819,7 +827,7 @@ public class ThreeDSurfaceControl
 		Unit rangeUnit = Unit.canConvert (getDisplayUnit (), getDataUnit ()) ? getDisplayUnit () : getDataUnit ();
 		span = dspan.getValue (rangeUnit);
 
-		// Set JSlider values to approx. parm values;
+		// Set JSlider values to approx. parm values; 
 		// slider units are integer.
 		// normal case where range of values fairly large;
 		if (span > 50.0)
@@ -848,17 +856,17 @@ public class ThreeDSurfaceControl
 
 			// make slider labels have 4 intervals and 5 numbers:
 			int spacing = (levelRange.getSpanInt ()) / 4;
-			// spacing such as 4123.4 causes failure to label legibly;
-			// round as follows:
-			// if between 10 and 100 use multiple of 10
+			// spacing such as 4123.4 causes failure to label legibly; 
+			// round as follows: 
+			//   if between 10 and 100 use multiple of 10
 			if ((spacing > 10) && (spacing <= 100))
 			{
 				spacing = 10 * (spacing / 10);
 			}
 
-			// System.err.println ("Spacing-1");
-			// spacing = spacing*100;
-			// if spacing > 100 use multiple of 100
+			//            System.err.println ("Spacing-1");
+			//            spacing = spacing*100;
+			//   if spacing > 100 use multiple of 100
 			if (spacing > 100)
 			{
 				spacing = 100 * (spacing / 100);
@@ -876,12 +884,15 @@ public class ThreeDSurfaceControl
 			fmax = (float) dmax.getValue (rangeUnit);
 			fmid = (fmax + fmin) / 2;
 			/*
-			 * DecimalFormat valueFormat = new DecimalFormat("###.0"); if (span
-			 * < 5.0 && span >= 1.0 ) valueFormat = new DecimalFormat("#.00");
-			 * else if (span < 1.0 && span >= 0.1 ) valueFormat = new
-			 * DecimalFormat("#.000"); else if (span < 0.1) valueFormat = new
-			 * DecimalFormat("0.#E0"); //0.#E gives label like 2.5E-6
-			 */
+			DecimalFormat valueFormat = new DecimalFormat("###.0");
+			if (span < 5.0  && span >= 1.0 )
+			    valueFormat = new DecimalFormat("#.00");
+			else if (span < 1.0 && span >= 0.1 )
+			    valueFormat = new DecimalFormat("#.000");
+			else if  (span < 0.1)
+			    valueFormat = new DecimalFormat("0.#E0");
+			//0.#E gives label like 2.5E-6
+			*/
 
 			// make slider labels have 4 intervals and 5 numbers;
 			// Hashtable argument of setLabelTable must have pairs of
@@ -924,12 +935,6 @@ public class ThreeDSurfaceControl
 	public void setSurfaceValue (double value)
 	{
 		surfaceValue = value;
-		
-		// Millersville University Geopod Team: 
-		// TODO: remove these when we know how NTO
-		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
-		// End Modification
-		
 	}
 
 	/**
@@ -986,6 +991,16 @@ public class ThreeDSurfaceControl
 		return true;
 	}
 
+	/**
+	 * @override
+	 * 
+	 * @return _more_
+	 */
+	protected boolean canDoProgressiveResolution ()
+	{
+		return false;
+	}
+
 	// Millersville University Geopod Team: 
 	// NTO
 	@Override
@@ -1011,6 +1026,6 @@ public class ThreeDSurfaceControl
 	{
 		m_subjectImpl.removeObservers ();
 	}
-	
+
 	// End Modification
 }

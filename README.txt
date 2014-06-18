@@ -19,7 +19,7 @@ SETTING UP AN ECLIPSE PROJECT USING EGit
     Location
       URI:  blank (it will be filled in automatically)
       Host: github.com
-      Repository path: gzoppetti/geopod.git
+      Repository path: MillersvilleCS/geopod.git
       
     Connection
       Protocol: https

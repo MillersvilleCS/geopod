@@ -244,7 +244,6 @@ public class ThreeDSurfaceControl
 		super.displayUnitChanged (oldUnit, newUnit);
 
 		// Millersville University Geopod Team: 
-		// NTO
 		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
 		// End Modification
 
@@ -463,7 +462,7 @@ public class ThreeDSurfaceControl
 	 * @return range for data
 	 */
 	// Millersville University Geopod Team: 
-	// NTO geopod needs this method to be public
+	// Geopod needs this method to be public
 	public Range getDataRange ()
 	{
 		// End Modification
@@ -623,7 +622,6 @@ public class ThreeDSurfaceControl
 		}
 
 		// Millersville University Geopod Team: 
-		// NTO
 		m_subjectImpl.notifyObservers (GeopodEventId.ISOSURFACE_LEVEL_CHANGED);
 		// End Modification
 	}
@@ -1007,7 +1005,6 @@ public class ThreeDSurfaceControl
 	}
 
 	// Millersville University Geopod Team: 
-	// NTO
 	@Override
 	public void addObserver (IObserver observer, GeopodEventId eventId)
 	{

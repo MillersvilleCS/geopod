@@ -400,11 +400,12 @@ public class DisplayImplJ3D
 		syncRemoteData (rmtDpy);
 	}
 
-	//	private void initialize (int api, GraphicsConfiguration config)
-	//			throws VisADException, RemoteException
-	//	{
-	//		initialize (api, config, -1, -1, null);
-	//	}
+	@SuppressWarnings("unused")
+	private void initialize (int api, GraphicsConfiguration config)
+			throws VisADException, RemoteException
+	{
+		initialize (api, config, -1, -1, null);
+	}
 
 	private void initialize (int api, GraphicsConfiguration config, VisADCanvasJ3D c)
 			throws VisADException, RemoteException
@@ -412,11 +413,12 @@ public class DisplayImplJ3D
 		initialize (api, config, -1, -1, c);
 	}
 
-	//	private void initialize (int api, GraphicsConfiguration config, int width, int height)
-	//			throws VisADException, RemoteException
-	//	{
-	//		initialize (api, config, width, height, null);
-	//	}
+	@SuppressWarnings("unused")
+	private void initialize (int api, GraphicsConfiguration config, int width, int height)
+			throws VisADException, RemoteException
+	{
+		initialize (api, config, width, height, null);
+	}
 
 	private void initialize (int api, GraphicsConfiguration config, int width, int height, VisADCanvasJ3D c)
 			throws VisADException, RemoteException

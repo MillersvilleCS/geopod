@@ -6,7 +6,7 @@ package visad.java3d;
 
 /*
  * VisAD system for interactive analysis and visualization of numerical data.
- * Copyright (C) 1996 - 2009 Bill Hibbard, Curtis Rueden, Tom Rink, Dave
+ * Copyright (C) 1996 - 2011 Bill Hibbard, Curtis Rueden, Tom Rink, Dave
  * Glowacki, Steve Emmerson, Tom Whittaker, Don Murray, and Tommy Jasmin.
  * 
  * This library is free software; you can redistribute it and/or modify it under
@@ -25,7 +25,6 @@ package visad.java3d;
  */
 
 import java.rmi.RemoteException;
-import java.util.Hashtable;
 import java.util.Vector;
 
 import javax.media.j3d.Appearance;
@@ -86,13 +85,13 @@ public abstract class ShadowTypeJ3D
 	private static final long serialVersionUID = 558561168778156709L;
 
 	/** This holds the cached java3d Appearances */
-	private static Hashtable<Object, Appearance> appearanceCache = new Hashtable<Object, Appearance> ();
+	private static java.util.Hashtable<Object, Appearance> appearanceCache = new java.util.Hashtable<Object, Appearance> ();
 
 	/** This holds the cached java3d ColoringAttributes */
-	private static Hashtable<String, ColoringAttributes> coloringAttributesCache = new Hashtable<String, ColoringAttributes> ();
+	private static java.util.Hashtable<String, ColoringAttributes> coloringAttributesCache = new java.util.Hashtable<String, ColoringAttributes> ();
 
 	/** This holds the cached java3d TransparencyAttributes */
-	private static Hashtable<String, TransparencyAttributes> transparencyAttributesCache = new Hashtable<String, TransparencyAttributes> ();
+	private static java.util.Hashtable<String, TransparencyAttributes> transparencyAttributesCache = new java.util.Hashtable<String, TransparencyAttributes> ();
 
 	/** Do we try to cache appearances */
 	private boolean cacheAppearances = false;
@@ -197,7 +196,7 @@ public abstract class ShadowTypeJ3D
 	 * @param type
 	 * @param doRef
 	 * 
-	 * @return
+	 * @return component array
 	 * 
 	 * @throws VisADException
 	 */
@@ -211,7 +210,7 @@ public abstract class ShadowTypeJ3D
 	/**
 	 * 
 	 * 
-	 * @return
+	 * @return inherited text
 	 */
 	@Override
 	public String getParentText ()
@@ -229,7 +228,7 @@ public abstract class ShadowTypeJ3D
 	/**
 	 * 
 	 * 
-	 * @return
+	 * @return inherited text control
 	 */
 	@Override
 	public TextControl getParentTextControl ()
@@ -304,7 +303,7 @@ public abstract class ShadowTypeJ3D
 	/**
 	 * 
 	 * 
-	 * @return
+	 * @return boolean TBD
 	 */
 	@Override
 	public boolean getMultipleDisplayScalar ()
@@ -315,7 +314,7 @@ public abstract class ShadowTypeJ3D
 	/**
 	 * 
 	 * 
-	 * @return
+	 * @return boolean TBD
 	 */
 	@Override
 	public boolean getMappedDisplayScalar ()
@@ -326,7 +325,7 @@ public abstract class ShadowTypeJ3D
 	/**
 	 * 
 	 * 
-	 * @return
+	 * @return int array display indices
 	 */
 	@Override
 	public int[] getDisplayIndices ()
@@ -337,7 +336,7 @@ public abstract class ShadowTypeJ3D
 	/**
 	 * 
 	 * 
-	 * @return
+	 * @return int array value indices
 	 */
 	@Override
 	public int[] getValueIndices ()
@@ -354,7 +353,7 @@ public abstract class ShadowTypeJ3D
 	 * @param isTransform
 	 * @param levelOfDifficulty
 	 * 
-	 * @return
+	 * @return num occcurrences RealType and DisplayRealType
 	 * 
 	 * @throws RemoteException
 	 * @throws VisADException
@@ -474,7 +473,7 @@ public abstract class ShadowTypeJ3D
 	 * @param spatial_values
 	 * @param color_values
 	 * 
-	 * @return
+	 * @return point geometry array
 	 * 
 	 * @throws VisADException
 	 */
@@ -498,7 +497,7 @@ public abstract class ShadowTypeJ3D
 	 * @param no_material
 	 *            flag for material
 	 * 
-	 * @return
+	 * @return appearance object constructed from geometry array
 	 */
 	public Appearance makeAppearance (GraphicsModeControl mode, TransparencyAttributes constant_alpha,
 			ColoringAttributes constant_color, GeometryArray geometry, boolean no_material)
@@ -524,7 +523,7 @@ public abstract class ShadowTypeJ3D
 	 * @param okToCache
 	 *            flag for caching checked with mode.getCacheAppearances
 	 * 
-	 * @return
+	 * @return appearance object constructed from geometry array
 	 */
 	private Appearance makeCachedAppearance (GraphicsModeControl mode, TransparencyAttributes constant_alpha,
 			ColoringAttributes constant_color, GeometryArray geometry, boolean no_material, boolean okToCache)
@@ -616,7 +615,7 @@ public abstract class ShadowTypeJ3D
 		if (cacheAppearances)
 		{
 			key = red + "," + green + "," + blue;
-			ca = coloringAttributesCache.get (key);
+			ca = (ColoringAttributes) coloringAttributesCache.get (key);
 		}
 		if (ca == null)
 		{
@@ -643,7 +642,7 @@ public abstract class ShadowTypeJ3D
 	 * @param value
 	 *            transparancy value
 	 * 
-	 * @return
+	 * @return cached or new TransparencyAttributes object
 	 */
 	private TransparencyAttributes getTransparencyAttributes (int mode, float value)
 	{
@@ -652,7 +651,7 @@ public abstract class ShadowTypeJ3D
 		if (cacheAppearances)
 		{
 			key = mode + "_" + value;
-			ta = transparencyAttributesCache.get (key);
+			ta = (TransparencyAttributes) transparencyAttributesCache.get (key);
 		}
 		if (ta == null)
 		{
@@ -709,7 +708,7 @@ public abstract class ShadowTypeJ3D
 	 *            If true and if the mode's cacheAppearances flag is true then
 	 *            we will use the appearance cache.
 	 * 
-	 * @return The new appearance or, if available a previously cached one_
+	 * @return The new appearance or, if available a previously cached one
 	 */
 	private static Appearance staticMakeCachedAppearance (GraphicsModeControl mode,
 			TransparencyAttributes constant_alpha, ColoringAttributes constant_color, GeometryArray geometry,
@@ -735,7 +734,7 @@ public abstract class ShadowTypeJ3D
 					+ "_"
 					+ (constant_alpha == null ? "null" : (constant_alpha.getTransparency () + "_" + constant_alpha
 							.getTransparencyMode ())) + "_" + constant_color + "_" + new Boolean (doMaterial);
-			appearance = appearanceCache.get (cacheKey);
+			appearance = (Appearance) appearanceCache.get (cacheKey);
 			if (appearance != null)
 			{
 				return appearance;
@@ -829,7 +828,7 @@ public abstract class ShadowTypeJ3D
 		// );
 		// rendering.setCapability(RenderingAttributes.ALLOW_RASTER_OP_READ);
 		// rendering.setCapability(RenderingAttributes.ALLOW_VISIBLE_READ);
-		rendering.setDepthBufferEnable (true);
+		rendering.setDepthBufferEnable (((GraphicsModeControlJ3D) mode).getDepthBufferEnable ());
 		appearance.setRenderingAttributes (rendering);
 
 		if (constant_color != null)
@@ -860,7 +859,7 @@ public abstract class ShadowTypeJ3D
 		}
 		if (cacheKey != null)
 		{
-			appearanceCache.put (cacheKey, appearance);
+			appearanceCache.put ((Object) cacheKey, appearance);
 		}
 		return appearance;
 	}
@@ -940,7 +939,7 @@ public abstract class ShadowTypeJ3D
 	 * @param index
 	 * @param shadow_api
 	 * 
-	 * @return
+	 * @return transformed Shape values
 	 * 
 	 * @throws RemoteException
 	 * @throws VisADException
@@ -984,7 +983,7 @@ public abstract class ShadowTypeJ3D
 	 * @param renderer
 	 * @param shadow_api
 	 * 
-	 * @return
+	 * @return spatial Set from spatial values
 	 * 
 	 * @throws RemoteException
 	 * @throws VisADException
@@ -1041,7 +1040,7 @@ public abstract class ShadowTypeJ3D
 	 * @param color_values
 	 * @param range_select
 	 * 
-	 * @return
+	 * @return flow geometry array
 	 * 
 	 * @throws VisADException
 	 */
@@ -1068,7 +1067,7 @@ public abstract class ShadowTypeJ3D
 	 * @param valueToMap
 	 * @param MapVector
 	 * 
-	 * @return
+	 * @return streamline geometry array
 	 * 
 	 * @throws VisADException
 	 */
@@ -1110,7 +1109,7 @@ public abstract class ShadowTypeJ3D
 	 * @param domain_units
 	 * @param dataCoordinateSystem
 	 * 
-	 * @return
+	 * @return true if any contours created
 	 * 
 	 * @throws VisADException
 	 */
@@ -1242,7 +1241,7 @@ public abstract class ShadowTypeJ3D
 	 * @param color_values
 	 * @param range_select
 	 * 
-	 * @return
+	 * @return text geometry array
 	 * 
 	 * @throws VisADException
 	 */
@@ -1267,7 +1266,7 @@ public abstract class ShadowTypeJ3D
 	 * @param single_missing
 	 * @param shadow_api
 	 * 
-	 * @return
+	 * @return byte color array
 	 * 
 	 * @throws RemoteException
 	 * @throws VisADException
@@ -1294,7 +1293,7 @@ public abstract class ShadowTypeJ3D
 	 * @param display
 	 * @param shadow_api
 	 * 
-	 * @return
+	 * @return array of booleans as described above
 	 * 
 	 * @throws VisADException
 	 */
@@ -1320,7 +1319,7 @@ public abstract class ShadowTypeJ3D
 	 * @param inherited_values
 	 * @param renderer
 	 * 
-	 * @return
+	 * @return true if post-processing needed
 	 * 
 	 * @throws RemoteException
 	 * @throws VisADException
@@ -1508,7 +1507,7 @@ public abstract class ShadowTypeJ3D
 	 * @param constant_alpha
 	 * @param constant_color
 	 * 
-	 * @return
+	 * @return true if added
 	 * 
 	 * @throws VisADException
 	 */
@@ -1557,7 +1556,7 @@ public abstract class ShadowTypeJ3D
 					byte b = ShadowType.floatToByte (constant_color[2]);
 					int len = array.vertexCount * color_len;
 					byte[] colors = new byte[len];
-					//int k = 0;
+
 					if (color_len == 3)
 					{
 						for (int i = 0; i < len; i += 3)
@@ -1837,7 +1836,8 @@ class LabelTransform
 
 		vertex = this.label_array.coordinates;
 		anchr_vertex = this.anchr_array.coordinates;
-		//int vertexCount = this.label_array.vertexCount;
+		@SuppressWarnings("unused")
+		int vertexCount = this.label_array.vertexCount;
 	}
 
 	/**
@@ -1870,8 +1870,12 @@ class LabelTransform
 		Vector3f trans_vec = new Vector3f (f_scale * anchr_vertex[0], f_scale * anchr_vertex[1], f_scale
 				* anchr_vertex[2]);
 
+		//  These can't all be zero: non-affine transform
+		if (!(factor == 0.0 && (trans_vec.x == 0.0 && trans_vec.y == 0.0 && trans_vec.z == 0.0)))
+		{
 		t3d.set ((float) factor, trans_vec);
 
 		trans.setTransform (t3d);
+		}
 	}
 }

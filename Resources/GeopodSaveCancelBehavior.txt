@@ -1,0 +1,138 @@
+Geopod Save/Cancel Behavior
+===========================
+
+"States" of mission editor, programming perspective
+---------------------------------------------------
+
+New Mission
+***********
+  state where user is editing mission that is not 'in' database yet, and save done by user 
+  will require mission to be added to database. 
+  Will get this state if
+    1. click "create new Mission" button 
+    2. Choose to extend a mission already in database. This could be another complete (public or private) 
+         mission by the same user, a public mission by another user, or a frozen mission by another user saved 
+         in this user's favorites page. 
+
+If is case 1, header of page will be "Create New Mission" and all fields will be blank/default values, 
+  filled in from default values in js Mission object. 
+
+If is case 2, header of page will be "Extend Mission" and fields will already be filled in from mission 
+  extending, whose data will have been retrieved from the database and placed in js Mission object.
+
+Regardless of case, 'new' mission creation screen will have three buttons:
+ (1) "save as draft" 
+ (2) "save as complete" [or "save as final"] & 
+ (3) "discard" [or "cancel"] (button names not finalized) 
+
+Button behavior is as follows: 
+
+(1) "save as draft" adds a new mission to the database, using data from js Mission object, 
+      with status=independentDraft, clears the temporary autosave data, and switches to appropriate
+      edit mode, where different header & buttons will be displayed.
+
+(2) "save as complete" prompts for public or private status, explains that public will be visible to other
+      users. if don't cancel, adds a new mission to the database, with status=complete, clears temporary
+      autosave data, and returns to mission control
+
+(3) "discard" clears the temporary autosave data and returns to mission control. No mission yet created so
+       none need be removed.
+
+Edit Mission
+************
+  state where user is editing a mission that already exists in the database. 
+
+Will get this after initial "save as draft" on anything that was first a new mission 
+(blank or extended from some other mission). Will also get this if choose edit on any mission by 
+this user, complete or draft. Mission editing will behave differently depending on whether user is 
+
+1) editing a draft mission (they chose 'edit' on a mission in myDrafts, or chose 'save as draft' 
+     from the "New Mission" perspective described above), or 
+
+2) editing an already completed mission (they chose 'edit' on mission in myMissions), since in case 1 users
+     will get a 'save as draft' option that creates a new mission in the database linked to the original, 
+     while in case 2 users can only 'save', which updates the draft mission in the database, and does 
+     not create a new mission. 
+
+Regardless of case, header will be "Edit Mission" and fields will be populated from mission in database 
+are editing, whose data will have been retrieved and placed in js Mission object. 
+
+Button options for case 1: (1) "save" (2) "save as complete" (3) "cancel" (4) "discard" 
+
+(1) "save" is roughly equivalent to saving as draft, but no new mission is created, 
+     changes are simply made to the draft already in the database. 
+
+(2) "save as complete" pushes any changes since last save, then if status=independentDraft 
+     (draft of new mission or extension of other mission) moves the mission from draft status
+     to complete status, otherwise, when is draft of changes to other complete mission, deletes
+     that mission, and changes the draft mission's id to match, essentially replacing it.  
+
+(3) "cancel" if has unsaved changes, prompts if want to save changes before exiting. 
+      if so, discards any autosave data since last manual save, then returns to Mission Control.
+
+(4) "discard" prompts if sure want to delete draft mission, if so removed from database and returns
+      to Mission Control
+
+Buttons available in case 2: (1) "save as draft" (2) "save as complete" (3) "cancel" & (4) "discard" 
+
+(1) "save as draft" does not impact the original mission being edited, but creates a new draft mission
+      based on the original but with the changes the user has made, whose status=dependentDraft and
+      links to the id of the original mission, so that when it is eventually saved as complete, 
+      the changes will be made to the original mission. Mode now changes to 'editing draft mission'
+      [case 1, see above].
+
+(2) "save as complete" if is public, prompts if sure want to change mission others could be using. if so
+      or if not public, makes changes directly to the mission that was opened for editing. returns 
+      to Mission Control
+
+(3) "cancel" if have unsaved changes, prompts if sure want to exit without saving. if so, clears 
+      temporary storage and returns to mission control with no changes being made
+
+(4) "discard" prompts if sure want to remove mission entirely. if public, warns that other users may be using. 
+      if confirm, removes the mission that was opened for editing from the database. 
+
+Overall, the user will spend most of their editing time in case 1 of the 'edit' perspective, 
+since most of the time they will be editing a draft mission already in the database. They will see 
+the 'new mission' perspective only between the time they choose to create a new mission or extend 
+a mission, and when they first save it. They will see the 'edit mission case 2' screen only from when 
+they choose to edit a completed mission to when they save. The main difference to the user between these 
+screens is the save options and the cancel behavior. The 'save as complete' option is always available, but 
+'save as draft' appears only when no draft yet exists, and lets them know that by saving, something will be 
+created and "added" to their drafts folder. When they are already editing a draft, as they will usually be, 
+only the more familiar 'save' appears. Similarly, when the user has chosen to create a new mission or extend 
+a mission, and have not yet saved, discarding the mission would be the same as canceling, so only one button 
+is provided. When editing, however, there is a difference, so two different buttons are provided.
+
+"States" of mission editor - user's perspective
+----------------------------------------------
+
+Create New Mission or Extend Mission options:
+
+save as draft (puts mission in draft folder, stays on page, switches to normal editing mode - title changes to "Edit Mission" and edit-related buttons appear, as described in Edit Mission below)
+save as complete (prompts for public or private status, places in my missions, returns to Mission Control)
+discard (leaves page without creating new mission, all changes made are gone)
+
+Edit Mission from complete
+get this when choose to edit one of your completed missions, which appear in my missions and not drafts. special case of editing which is like new mission page in some ways. 
+options -
+save as draft (does not impact original mission, but draft mission with changes will appear in my drafts; switches to normal editing mode)
+save as complete (makes changes to mission that was opened for editing, returns to mission control)
+discard (go back to mission control without any changes being made to mission, or any drafts being created)
+
+Edit Mission not from complete (normal)
+get this when choose to edit a mission in drafts, or have saved a new or extended mission as draft, or have saved edits to completed mission as draft. Almost all mission editing will be done in this mode.
+options -
+save (puts changes made into draft mission currently being edited)
+save as complete (saves any changes made. if this draft was for an edit to one of my existing missions, this mission replaces the existing mission, and is no longer a draft in my drafts. if this was the draft of a new mission, moves from drafts to my missions, prompts whether to make public or private)
+cancel (if are unsaved changes to the draft, prompts if sure want to discard, then closes editor & returns to mission control)
+discard (removes this draft mission completely, no longer in my drafts or anywhere else)
+
+Note: there are two 'types' of drafts that the user needs to know about - drafts of new missions, that when saved as complete become new missions listed in my missions, and drafts of edits to existing missions, which are not a true mission but represent changes to an existing mission; when saved as complete they replace one of my missions rather than adding another. There should be some graphical way to represent to user whether draft in my drafts is draft of new mission or of changes to existing mission.
+
+Note: when switch to normal editing mode from screen that requires 'creation' of draft (any other screen, that is) show notification that draft has been created. Other things will be changing too (like the buttons, and/or page title)
+
+some use case scenarios (incomplete)
+-----------------------------------
+user creates new mission, from scratch (from "Create New Mission" button). Mission is not added to Missions table in database, but is periodically saved to temporary location on server. case 1: If user closes browser or navigates away from page without ever clicking save, will be notified next time log in that new, unsaved mission with changes exists, option to view (or maybe save to drafts) or discard. case 2: user clicks "Save As Draft" - page notifies that have been saved to My Drafts. Page will remain up, but will now be in normal, "edit mission" mode this means header will be 'Edit mission' and available buttons will be 'save' 'save as complete' 'cancel' 'discard'. case 3: user clicks "Save as Complete" will prompt: public or private, inform that if public others will be able to view & use. cancel returns to editing page, ok & choice of public or private adds mission to My Missions, will appear in this user's searches and others if public, page will return to where chose 'create new' from. case 4: user clicks "Discard" prompts 'are you sure you want to discard this new mission?' if cancel stay on page, if ok return to previous page, no new mission created
+
+TODO: scenarios for edit draft, edit completed, extend 

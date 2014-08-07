@@ -1,0 +1,21 @@
+SELECT Missions.*, CONCAT_WS(' ', firstName, lastName) AS author, 
+Users.userName, Users.firstName, Users.lastName, 
+Categories.categoryName, Topics.topicName, 
+CASE WHEN UserFavorites.missionId IS NULL THEN '0' ELSE '1' END AS isFavorite 
+FROM Missions 
+LEFT OUTER JOIN Users ON Missions.lastModifiedByUserId = Users.userId 
+LEFT OUTER JOIN Categories ON Missions.categoryId = Categories.categoryId 
+LEFT OUTER JOIN Topics ON Missions.topicId = Topics.topicId 
+LEFT OUTER JOIN UserFavorites ON (Missions.missionId = UserFavorites.missionId AND UserFavorites.userId = 25) 
+WHERE (lastModifiedByUserId = 25 OR Missions.isPublic = 1) 
+HAVING isFavorite = '1' 
+ORDER BY 'missionName ASC' 
+LIMIT 0,10
+
+
+Not used in DatabaseConnection.php yet:
+
+* CONCAT_WS in column list
+* CASE in column list
+* LEFT JOIN list
+* HAVING list

@@ -1,0 +1,7 @@
+MyMissions - lastModifiedByUserId = this user && missionStatusId = 0 (complete) && !isFrozenCopy; if (!isPublic) display lock icon next to name
+
+My Drafts - lastModifiedByUserId = this user && missionStatusId != 0 (1-independent draft, or some # > 1 - dependent draft)
+
+My Favorites - get list of missionId's from database
+
+SearchResults - missionStatusId = 0 && ((isPublic = true) || (lastModifiedByUserId=this user)) && !isFrozenCopy
